@@ -12,7 +12,7 @@ See deployment for notes on how to deploy the project on a live system.
 What things you need to install the software and how to install them
 
 ```
-Give examples
+to do
 ```
 
 ### Installing
@@ -58,3 +58,20 @@ php artisan make:controller BasketController
 ...
 ```
 
+## Built With
+
+* [Laravel Framework](https://laravel.com/docs) - The web framework used
+
+## Authors
+
+* **Tomasz Razik** - *Initial work* - [raziu](https://github.com/raziu)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone who's code was used
+* Inspiration
+* etc
