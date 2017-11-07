@@ -95,11 +95,11 @@ return [
     /**
      * List of alternative languages (not including the one specified as 'locale')
      */
-    'alt_langs' => array ('en', 'de'),
+    'alt_langs' => array ('en'),
     /**
      * Let's also add a all_langs array
      */
-    'all_langs' => array ('en', 'de', 'pl'),
+    'all_langs' => array ('en', 'pl'),
 
     /**
      *  Prefix of selected locale  - leave empty (set in runtime)

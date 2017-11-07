@@ -4,12 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <title>@yield('pageTitle') - {{ config('app.name', 'Laravel') }}</title>
+    <meta name="description" content="@yield('pageDesc')">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -18,7 +16,6 @@
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
@@ -26,56 +23,52 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ route('home') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
-
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-
+                        <!-- I18n Switch Links -->
+                        @if (count(config('app.alt_langs'))>0)
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ app()->getLocale() }} <span class="caret"></span>
+                            {{ strtoupper(app()->getLocale()) }} <span class="caret"></span>
                           </a>
                           <ul class="dropdown-menu" role="menu">
                           @foreach (config('app.all_langs') as $lang)
                           @if( $lang != app()->getLocale())
                             <li>
-                              <a href="{{ route('home', [], true, $lang) }}">{{ $lang }}</a>
+                              <a href="{{ route('home', [], true, $lang) }}">{{ strtoupper($lang) }}</a>
                             </li>
                           @endif
                           @endforeach
                           </ul>
                         </li>
-
-                        <li><a href="{{ route('basket') }}">Basket</a></li>
-                          
+                        @endif
+                        <!-- Basket Link -->
+                        <li><a href="{{ route('basket') }}">{{ __('basket.navigation_link') }}</a></li>
                         <!-- Authentication Links -->
-                        <?php /*
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}">{{ __('auth.link_login') }}</a></li>
+                            <li><a href="{{ route('register') }}">{{ __('auth.link_register') }}</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            {{ __('auth.link_logout') }}
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -84,15 +77,13 @@
                                     </li>
                                 </ul>
                             </li>
-                        @endif */ ?>
+                        @endif
                     </ul>
                 </div>
             </div>
         </nav>
-
         @yield('content')
     </div>
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

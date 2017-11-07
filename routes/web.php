@@ -49,6 +49,20 @@ foreach( $all_langs as $prefix )
      */
     Route::get(Lang::get('routes.basket',[], $prefix) , 'BasketController@index')->name($prefix.'_basket');
   
+    // Override Auth module Routes...
+    //Auth::routes();
+    $this->get(Lang::get('routes.login',[], $prefix), 'Auth\LoginController@showLoginForm')->name($prefix.'_login');
+    $this->post(Lang::get('routes.login',[], $prefix), 'Auth\LoginController@login');
+    $this->post(Lang::get('routes.logout',[], $prefix), 'Auth\LoginController@logout')->name($prefix.'_logout');
+    // Registration Routes...
+    $this->get(Lang::get('routes.register',[], $prefix), 'Auth\RegisterController@showRegistrationForm')->name($prefix.'_register');
+    $this->post(Lang::get('routes.register',[], $prefix), 'Auth\RegisterController@register');
+    // Password Reset Routes...
+    $this->get(Lang::get('password/reset',[], $prefix), 'Auth\ForgotPasswordController@showLinkRequestForm')->name($prefix.'_password.request');
+    $this->post(Lang::get('password/email',[], $prefix), 'Auth\ForgotPasswordController@sendResetLinkEmail')->name($prefix.'_password.email');
+    $this->get(Lang::get('password/reset/{token}',[], $prefix), 'Auth\ResetPasswordController@showResetForm')->name($prefix.'_password.reset');
+    $this->post(Lang::get('password/reset',[], $prefix), 'Auth\ResetPasswordController@reset');
+
     /**
      * “In another moment down went Alice after it, never once 
      * considering how in the world she was to get out again.”
@@ -79,6 +93,9 @@ foreach( $all_langs as $prefix )
       */
       //Route::post('login', 'AjaxController@login')->name('ajax-login');
   });
+
+  
+
 
 /*
  *  Set up locale and locale_prefix if other language is selected

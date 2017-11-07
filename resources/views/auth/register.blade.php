@@ -1,11 +1,14 @@
 @extends('layouts.app')
 
+@section('pageTitle', __('auth.meta_title_register') )
+@section('pageDesc', __('auth.meta_description_register') )
+
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">{{ __('auth.meta_title_register') }}</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">

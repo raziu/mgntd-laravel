@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('pageTitle', __('home.meta_title') )
+@section('pageDesc', __('home.meta_description') )
+
 @section('content')
 <div class="container">
     <div class="row">
