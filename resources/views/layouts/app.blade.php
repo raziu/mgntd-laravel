@@ -28,7 +28,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ route('home') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -42,7 +42,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
 
-                        <li><a href="{{ route(app()->getLocale().'_basket') }}">Basket</a></li>
+                        <li><a href="{{ route('basket') }}">Basket</a></li>
 
                         <!-- Authentication Links -->
                         <?php /*

@@ -31,7 +31,7 @@ foreach( $all_langs as $prefix )
      * example.com/
      * example.com/en/
      */
-    Route::get('/', 'HomeController@getHome')->name('home');
+    Route::get('/', 'HomeController@getHome')->name($prefix.'_home');
   
     /**
      * The following line will register:
@@ -39,7 +39,7 @@ foreach( $all_langs as $prefix )
      * example.com/kontakt
      * example.com/en/contact
      */
-    Route::get(Lang::get('routes.contact',[], $prefix) , 'HomeController@getContact')->name('contact');
+    Route::get(Lang::get('routes.contact',[], $prefix) , 'HomeController@getContact')->name($prefix.'_contact');
 
     /**
      * The following line will register:
@@ -47,7 +47,7 @@ foreach( $all_langs as $prefix )
      * example.com/koszyk
      * example.com/en/basket
      */
-    Route::get(Lang::get('routes.basket',[], $prefix) , 'BasketController@index')->name('basket');
+    Route::get(Lang::get('routes.basket',[], $prefix) , 'BasketController@index')->name($prefix.'_basket');
   
     /**
      * “In another moment down went Alice after it, never once 
@@ -61,8 +61,8 @@ foreach( $all_langs as $prefix )
         * example.com/admin/uzivatelia
         * example.com/en/admin/users
         */
-      Route::get(Lang::get('routes.admin.users',[], $prefix), 'AdminController@getUsers')
-      ->name($prefix.'_admin-users');
+      //Route::get(Lang::get('routes.admin.users',[], $prefix), 'AdminController@getUsers')
+      //->name($prefix.'_admin-users');
   
     });
   });
@@ -77,7 +77,7 @@ foreach( $all_langs as $prefix )
       /**
       * This will only register example.com/api/login
       */
-      Route::post('login', 'AjaxController@login')->name('ajax-login');
+      //Route::post('login', 'AjaxController@login')->name('ajax-login');
   });
 
 /*

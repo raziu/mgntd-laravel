@@ -13,13 +13,17 @@ function route($name, $parameters = [], $absolute = true, $lang = null)
 
    //Check if $lang is valid and make a route to chosen lang
    if ( $lang && in_array($lang, config('app.alt_langs')) ){
-       return app('url')->route($lang . '_' . $name, $parameters, $absolute);
+      //echo $lang.'_'.$name; exit;
+      return app('url')->route($lang . '_' . $name, $parameters, $absolute);
    }
-
+    //echo __LINE__; exit;
     /**
     * For all other routes get the current locale_prefix and prefix the name.
     */
     $locale_prefix = config('app.locale_prefix');
     if ($locale_prefix == '') $locale_prefix = 'pl';
+
+    //echo $locale_prefix.'_'.$name; exit;
+
     return app('url')->route($locale_prefix . '_' . $name, $parameters, $absolute);
 }
