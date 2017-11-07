@@ -11,12 +11,12 @@ class BasketController extends Controller
     public function index()
     {
       //$user = Auth::user();
-      return view('index', compact('user'));
+      return view('basket.index', compact('user'));
     }
 
     public function add()
     {
-      return view('add');
+      return view('basket.add');
     }
 
     public function create(Request $request)
@@ -40,7 +40,7 @@ class BasketController extends Controller
     {
       if( Auth::check() && Auth::user()->id == $basket->user_id )
       {
-        return view('edit', compact('basket'));
+        return view('basket.edit', compact('basket'));
       }
       else
       {
