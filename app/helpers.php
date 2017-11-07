@@ -12,7 +12,8 @@ function route($name, $parameters = [], $absolute = true, $lang = null)
     }
 
    //Check if $lang is valid and make a route to chosen lang
-   if ( $lang && in_array($lang, config('app.alt_langs')) ){
+   //if ( $lang && in_array($lang, config('app.alt_langs')) ){
+   if ( $lang && in_array($lang, config('app.all_langs')) ){
       //echo $lang.'_'.$name; exit;
       return app('url')->route($lang . '_' . $name, $parameters, $absolute);
    }
@@ -24,6 +25,7 @@ function route($name, $parameters = [], $absolute = true, $lang = null)
     if ($locale_prefix == '') $locale_prefix = 'pl';
 
     //echo $locale_prefix.'_'.$name; exit;
+    //echo "<!-- route: ".$locale_prefix.'_'.$name."   -->\n";
 
     return app('url')->route($locale_prefix . '_' . $name, $parameters, $absolute);
 }

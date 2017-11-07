@@ -42,8 +42,23 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
 
-                        <li><a href="{{ route('basket') }}">Basket</a></li>
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ app()->getLocale() }} <span class="caret"></span>
+                          </a>
+                          <ul class="dropdown-menu" role="menu">
+                          @foreach (config('app.all_langs') as $lang)
+                          @if( $lang != app()->getLocale())
+                            <li>
+                              <a href="{{ route('home', [], true, $lang) }}">{{ $lang }}</a>
+                            </li>
+                          @endif
+                          @endforeach
+                          </ul>
+                        </li>
 
+                        <li><a href="{{ route('basket') }}">Basket</a></li>
+                          
                         <!-- Authentication Links -->
                         <?php /*
                         @if (Auth::guest())
