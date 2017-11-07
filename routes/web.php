@@ -31,7 +31,7 @@ foreach( $all_langs as $prefix )
      * example.com/
      * example.com/en/
      */
-    Route::get('/', 'HomeController@getHome')->name($prefix.'_home');
+    Route::get('/', 'HomeController@getHome')->name('home');
   
     /**
      * The following line will register:
@@ -39,7 +39,7 @@ foreach( $all_langs as $prefix )
      * example.com/kontakt
      * example.com/en/contact
      */
-    Route::get(Lang::get('routes.contact',[], $prefix) , 'HomeController@getContact')->name($prefix.'_contact');
+    Route::get(Lang::get('routes.contact',[], $prefix) , 'HomeController@getContact')->name('contact');
 
     /**
      * The following line will register:
@@ -47,7 +47,7 @@ foreach( $all_langs as $prefix )
      * example.com/koszyk
      * example.com/en/basket
      */
-    Route::get(Lang::get('routes.basket',[], $prefix) , 'BasketController@index')->name($prefix.'_basket');
+    Route::get(Lang::get('routes.basket',[], $prefix) , 'BasketController@index')->name('basket');
   
     /**
      * “In another moment down went Alice after it, never once 

@@ -13,5 +13,7 @@ define('LARAVEL_START', microtime(true));
 | our application's PHP classes. It just feels great to relax.
 |
 */
-
+//Custom helper
+require __DIR__ . '/../app/helpers.php';
+//Right before this original line
 require __DIR__.'/../vendor/autoload.php';
