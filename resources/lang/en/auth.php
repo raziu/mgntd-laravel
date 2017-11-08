@@ -21,6 +21,18 @@ return [
     'meta_title_register' => 'Register',
     'meta_description_register' => 'Register page',
 
+    'login_form_label_email' => 'E-Mail Address',
+    'login_form_label_password' => 'Password',
+    'login_form_label_remember_me' => 'Remember Me',
+    'login_form_label_btn' => 'Login',
+    'login_form_label_forgot' => 'Forgot Your Password?',
+
+    'register_form_label_name' => 'Name',
+    'register_form_label_email' => 'E-Mail Address',
+    'register_form_label_password' => 'Password',
+    'register_form_label_password_repeat' => 'Confirm Password',
+    'register_form_label_btn' => 'Register',
+
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 

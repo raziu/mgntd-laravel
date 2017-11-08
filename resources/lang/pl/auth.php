@@ -21,6 +21,18 @@ return [
     'meta_title_register' => 'Rejestracja',
     'meta_description_register' => 'Strona rejestracji',
 
+    'login_form_label_email' => 'Adres E-mail',
+    'login_form_label_password' => 'Hasło',
+    'login_form_label_remember_me' => 'Zapamiętaj mnie',
+    'login_form_label_btn' => 'Zaloguj się',
+    'login_form_label_forgot' => 'Zapomniałeś hasło?',//Forgot Your Password?
+
+    'register_form_label_name' => 'Imię',
+    'register_form_label_email' => 'Adres E-mail',
+    'register_form_label_password' => 'Hasło',
+    'register_form_label_password_repeat' => 'Powtórz Hasło',
+    'register_form_label_btn' => 'Zarejestruj się',
+
     'failed' => 'Podane informacje nie odpowiadają naszym danym.',
     'throttle' => 'Zbyt wiele prób logowania. Spróbuj ponownie za :seconds sekund.',
 
