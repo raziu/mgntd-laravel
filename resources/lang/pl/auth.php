@@ -26,6 +26,8 @@ return [
     'login_form_label_remember_me' => 'Zapamiętaj mnie',
     'login_form_label_btn' => 'Zaloguj się',
     'login_form_label_forgot' => 'Zapomniałeś hasło?',//Forgot Your Password?
+    'login_form_label_instagram' => 'Zaloguj przez Instagram',
+    'login_form_label_facebook' => 'Zaloguj przez Facebook',
 
     'register_form_label_name' => 'Imię',
     'register_form_label_email' => 'Adres E-mail',

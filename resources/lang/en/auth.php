@@ -26,6 +26,8 @@ return [
     'login_form_label_remember_me' => 'Remember Me',
     'login_form_label_btn' => 'Login',
     'login_form_label_forgot' => 'Forgot Your Password?',
+    'login_form_label_instagram' => 'Login with Instagram',
+    'login_form_label_facebook' => 'Login with Facebook',
 
     'register_form_label_name' => 'Name',
     'register_form_label_email' => 'E-Mail Address',
