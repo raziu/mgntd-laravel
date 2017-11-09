@@ -192,7 +192,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /**
-         * Laravel Socialite (Facebook login etc)
+         * Laravel Socialite (Social Facebook/Instagram login etc)
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class, // add

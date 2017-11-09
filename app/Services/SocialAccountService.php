@@ -67,11 +67,25 @@ class SocialAccountService
 
           if (!$user) 
           {
-              $user = User::create([
-                  'email' => ( !empty($providerUser->getEmail()) ? $providerUser->getEmail() : $providerUser->getNickname().'@instagram' ),
-                  'name' => $providerUser->getNickname(),
-                  'password' => md5(rand(1,10000)),
-              ]);
+            if( $type == 'instagram' )
+            {
+              $data = [
+                'email' => ( !empty($providerUser->getEmail()) ? $providerUser->getEmail() : $providerUser->getNickname().'@'.$type ),
+                'name' => $providerUser->getNickname(),
+                'password' => md5(rand(1,10000)),
+              ];
+            }
+
+            if( $type == 'facebook' )
+            {
+              $data = [
+                'email' => ( !empty($providerUser->getEmail()) ? $providerUser->getEmail() : $providerUser->getNickname().'@'.$type ),
+                'name' => $providerUser->getName(),
+                'password' => md5(rand(1,10000)),
+              ];
+            }
+
+            $user = User::create($data);
           }
           $account->user()->associate($user);
           $account->save();

@@ -41,4 +41,10 @@ return [
       'redirect' => env('INSTAGRAM_REDIRECT_URI'),
     ],
 
+    'facebook' => [
+      'client_id' => env('FB_CLIENT'),
+      'client_secret' => env('FB_SECRET'),
+      'redirect' => env('FB_REDIRECT_URI'),
+    ],
+
 ];

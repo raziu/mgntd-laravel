@@ -66,6 +66,9 @@ foreach( $all_langs as $prefix )
     //social routes
     Route::get(Lang::get('/instagram/redirect',[], $prefix), 'SocialAuthInstagramController@redirect')->name($prefix.'_instagram_redirect');
     Route::get(Lang::get('/instagram/callback',[], $prefix), 'SocialAuthInstagramController@callback')->name($prefix.'_instagram_callback');
+    //
+    Route::get(Lang::get('/facebook/redirect',[], $prefix), 'SocialAuthFacebookController@redirect')->name($prefix.'_facebook_redirect');
+    Route::get(Lang::get('/facebook/callback',[], $prefix), 'SocialAuthFacebookController@callback')->name($prefix.'_facebook_callback');
 
     /**
      * “In another moment down went Alice after it, never once 

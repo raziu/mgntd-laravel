@@ -14,4 +14,6 @@ return array(
     //
     'instagram/redirect' => 'instagram/redirect',
     'instagram/callback' => 'instagram/callback',
+    'facebook/redirect' => 'facebook/redirect',
+    'facebook/callback' => 'facebook/callback',
 );
