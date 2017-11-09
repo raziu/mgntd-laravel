@@ -35,4 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'instagram' => [
+      'client_id' => env('INSTAGRAM_CLIENT'),
+      'client_secret' => env('INSTAGRAM_SECRET'),
+      'redirect' => env('INSTAGRAM_REDIRECT_URI'),
+    ],
+
 ];

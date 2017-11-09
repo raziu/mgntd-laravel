@@ -57,6 +57,43 @@ php artisan make:migration
 php artisan make:controller BasketController
 ...
 ```
+9. Social auth
+Add to composer:
+```
+composer require laravel/socialite
+```
+config/app.php add:
+```
+'providers' => [
+  //...
+  Laravel\Socialite\SocialiteServiceProvider::class,
+]
+'aliases' => [
+  //...
+  'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+]
+```
+config/services.php add:
+```
+'instagram' => [
+  'client_id' => env('INSTAGRAM_CLIENT'),
+  'client_secret' => env('INSTAGRAM_SECRET'),
+  'redirect' => env('INSTAGRAM_REDIRECT'),
+],
+```
+Create new controller
+```
+php artisan make:controller SocialAuthInstagramController
+```
+
+Update composer with instagram provider:
+composer require socialiteproviders/instagram
+
+Create model:
+php artisan make:model SocialAccounts -m
++
+php artisan migrate:refresh
+
 
 ## Built With
 

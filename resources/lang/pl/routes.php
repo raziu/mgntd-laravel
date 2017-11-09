@@ -10,6 +10,8 @@ return array(
     'register'   => 'rejestracja',
     'password/reset'   => 'haslo/reset',
     'password/email'   => 'haslo/email',
-    'password/reset/{token}' => 'haslo/reset/{token}'
-    
+    'password/reset/{token}' => 'haslo/reset/{token}',
+    //
+    'instagram/redirect' => 'instagram/redirect',
+    'instagram/callback' => 'instagram/callback',
 );

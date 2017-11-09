@@ -191,6 +191,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /**
+         * Laravel Socialite (Facebook login etc)
+         */
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class, // add
     ],
 
     /*
@@ -240,6 +245,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        //
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        
     ],
 
 ];

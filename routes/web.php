@@ -49,7 +49,7 @@ foreach( $all_langs as $prefix )
      */
     Route::get(Lang::get('routes.basket',[], $prefix) , 'BasketController@index')->name($prefix.'_basket');
   
-    // Override Auth module Routes...
+    // Override Auth default Routes...
     //Auth::routes();
     $this->get(Lang::get('routes.login',[], $prefix), 'Auth\LoginController@showLoginForm')->name($prefix.'_login');
     $this->post(Lang::get('routes.login',[], $prefix), 'Auth\LoginController@login');
@@ -62,6 +62,10 @@ foreach( $all_langs as $prefix )
     $this->post(Lang::get('password/email',[], $prefix), 'Auth\ForgotPasswordController@sendResetLinkEmail')->name($prefix.'_password.email');
     $this->get(Lang::get('password/reset/{token}',[], $prefix), 'Auth\ResetPasswordController@showResetForm')->name($prefix.'_password.reset');
     $this->post(Lang::get('password/reset',[], $prefix), 'Auth\ResetPasswordController@reset');
+
+    //social routes
+    Route::get(Lang::get('/instagram/redirect',[], $prefix), 'SocialAuthInstagramController@redirect')->name($prefix.'_instagram_redirect');
+    Route::get(Lang::get('/instagram/callback',[], $prefix), 'SocialAuthInstagramController@callback')->name($prefix.'_instagram_callback');
 
     /**
      * “In another moment down went Alice after it, never once 
