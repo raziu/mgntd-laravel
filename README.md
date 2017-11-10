@@ -94,6 +94,10 @@ php artisan make:model SocialAccounts -m
 +
 php artisan migrate:refresh
 
+php artisan make:controller ProductController
+
+php artisan make:controller InfoController
+
 
 ## Built With
 

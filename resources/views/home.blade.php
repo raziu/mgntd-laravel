@@ -5,16 +5,28 @@
 <section id="home" class="home-section home-parallax home-fade home-full-height">
   <div class="hero-slider">
     <ul class="slides">
-    <li class="bg-dark-30 bg-dark" style="background-image:url(/img/slide1.jpg)">
-      <div class="hs-caption">
-        <div class="caption-content">
-          <div class="hs-title-size-4 font-alt mb-30">
-            Huge Sale
-            <br> Up to 80% off
+      <li class="bg-dark-30 bg-dark" style="background-image:url(/img/slide1.jpg)">
+        <div class="hs-caption">
+          <div class="caption-content">
+            <div class="hs-title-size-4 font-alt mb-30">
+              Huge Sale
+              <br> Up to 80% off
+            </div>
+            <div class="hs-title-size-1 font-alt mb-40">Paris Street Style</div>
+            <a href="#" class="section-scroll btn btn-border-w btn-round">Shop Now</a>
           </div>
-          <div class="hs-title-size-1 font-alt mb-40">Paris Street Style</div>
-          <a href="#" class="section-scroll btn btn-border-w btn-round">Shop Now</a></div>
-      </div>
+        </div>
+      </li>
+      <li class="bg-dark-30 bg-dark" style="background-image:url(/img/slide2.jpg)">
+        <div class="hs-caption">
+          <div class="caption-content">
+            <div class="hs-title-size-4 font-alt mb-30">
+              New arrival for man<br>a modern style
+            </div>
+            <div class="hs-title-size-1 font-alt mb-40">Discovery the new collection</div>
+            <a href="#" class="section-scroll btn btn-border-w btn-round">View Collection</a>
+          </div>
+        </div>
       </li>
     </ul>
   </div>

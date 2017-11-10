@@ -13,6 +13,7 @@ return [
     |
     */
     'navigation_link' => 'Koszyk',
+    'navigation_link_title' => 'Twój koszyk',
     'meta_title' => 'Koszyk',
     'meta_description' => 'Koszyk meta opis',
 

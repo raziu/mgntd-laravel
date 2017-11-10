@@ -12,7 +12,8 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'navigation_link' => 'Basket',
-    'meta_title' => 'Basket',
-    'meta_description' => 'Basket meta desc',
+    'navigation_link' => 'Shopping cart',
+    'navigation_link_title' => 'View Your Shopping cart',
+    'meta_title' => 'Shopping cart',
+    'meta_description' => 'Shopping cart meta desc',
 ];

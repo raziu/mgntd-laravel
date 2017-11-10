@@ -11,6 +11,9 @@ return array(
     'password/reset'   => 'haslo/reset',
     'password/email'   => 'haslo/email',
     'password/reset/{token}' => 'haslo/reset/{token}',
+    'products'  => 'produkty',
+    'info'  => 'info',
+    'info/privacy'  => 'info/polityka-prywatnosci',
     //
     'instagram/redirect' => 'instagram/redirect',
     'instagram/callback' => 'instagram/callback',

@@ -110,7 +110,7 @@
         //$('.video-player').YTPlayer();
       });
   
-      $('#video-play').click(function(event) {
+      /*$('#video-play').click(function(event) {
         event.preventDefault();
         if ($(this).hasClass('fa-play')) {
           $('.video-player').playYTP();
@@ -126,7 +126,7 @@
         $('.video-player').toggleVolume();
         $(this).toggleClass('fa-volume-off fa-volume-up');
         return false;
-      });
+      });*/
   
       /* ---------------------------------------------- /*
        * Transparent navbar animation
@@ -156,16 +156,16 @@
             var MenuLeftOffset  = $('.sub-menu', $(this)).offset().left;
             var Menu1LevelWidth = $('.sub-menu', $(this)).width();
             if (width - MenuLeftOffset < Menu1LevelWidth * 2) {
-              $(this).children('.sub-menu').addClass('leftauto');
+              //$(this).children('.sub-menu').addClass('leftauto');
             } else {
-              $(this).children('.sub-menu').removeClass('leftauto');
+              //$(this).children('.sub-menu').removeClass('leftauto');
             }
             if ($('.menu-item-has-children', $(this)).length > 0) {
               var Menu2LevelWidth = $('.sub-menu', $(this)).width();
               if (width - MenuLeftOffset - Menu1LevelWidth < Menu2LevelWidth) {
-                $(this).children('.sub-menu').addClass('left-side');
+                //$(this).children('.sub-menu').addClass('left-side');
               } else {
-                $(this).children('.sub-menu').removeClass('left-side');
+                //$(this).children('.sub-menu').removeClass('left-side');
               }
             }
           });

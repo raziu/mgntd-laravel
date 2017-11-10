@@ -49,6 +49,23 @@ foreach( $all_langs as $prefix )
      */
     Route::get(Lang::get('routes.basket',[], $prefix) , 'BasketController@index')->name($prefix.'_basket');
   
+    /**
+     * The following line will register:
+     *
+     * example.com/info
+     * example.com/en/info
+     */
+    Route::get(Lang::get('routes.info',[], $prefix) , 'InfoController@index')->name($prefix.'_info');
+    Route::get(Lang::get('routes.info/privacy',[], $prefix) , 'InfoController@privacy')->name($prefix.'_info_privacy');
+
+    /**
+     * The following line will register:
+     *
+     * example.com/produkty
+     * example.com/en/products
+     */
+    Route::get(Lang::get('routes.products',[], $prefix) , 'ProductController@index')->name($prefix.'_product');
+
     // Override Auth default Routes...
     //Auth::routes();
     $this->get(Lang::get('routes.login',[], $prefix), 'Auth\LoginController@showLoginForm')->name($prefix.'_login');
