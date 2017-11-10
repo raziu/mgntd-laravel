@@ -57,7 +57,7 @@
                         <div class="form-group">
                           <div class="col-md-8 col-md-offset-4">
                             <a href="{{route('instagram_redirect')}}" class="btn btn-primary">{{ __('auth.login_form_label_instagram') }}</a>
-                            or
+                            {{ __('global.or') }}
                             <a href="{{route('facebook_redirect')}}" class="btn btn-primary">{{ __('auth.login_form_label_facebook') }}</a>
                           </div>
                         </div>
