@@ -8,6 +8,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('pageTitle') - {{ config('app.name', 'MGNTD') }}</title>
     <meta name="description" content="@yield('pageDesc')">
+    <?php /*<!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P793MFQ');</script>
+    <!-- End Google Tag Manager -->*/ ?>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <base href="{{ URL::asset('/') }}" target="_top">
@@ -29,7 +36,11 @@
     <script type='text/javascript' src="{{ URL::asset(config('app.theme').'/assets/js/jquery-migrate.min.js') }}"></script>
     <script type='text/javascript' src="{{ URL::asset(config('app.theme').'/assets/js/jquery.cookie.min.js') }}"></script>
 </head>
-<body class="home blog woocommerce-active">
+<body class="{{ $controller }} blog woocommerce-active">
+  <?php /*<!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P793MFQ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) --> */ ?>
   <div class="page-loader">
     <div class="loader">{{ __('global.loading') }}</div>
   </div>

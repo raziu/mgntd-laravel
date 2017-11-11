@@ -10,4 +10,15 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function __construct()
+    {
+      
+
+      #$currentAction = \Route::currentRouteAction();
+      #list($controller, $method) = explode('@', $currentAction);
+      // $controller now is "App\Http\Controllers\FooBarController"
+      #$controller = preg_replace('/.*\\\/', '', $controller);
+      // $controller now is "FooBarController"
+    }
 }

@@ -81,7 +81,7 @@
         <div class="navbar-cart-inner">
           <a href="{{ route('basket') }}" title="{{ __('basket.navigation_link_title') }}" class="cart-contents"> 
             <span class="icon-basket"></span> 
-            <span class="cart-item-number">0</span> 
+            <span class="cart-item-number"><?php echo count($cart)?></span> 
           </a>
         </div>
       </div>

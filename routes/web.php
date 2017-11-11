@@ -57,6 +57,8 @@ foreach( $all_langs as $prefix )
      */
     Route::get(Lang::get('routes.info',[], $prefix) , 'InfoController@index')->name($prefix.'_info');
     Route::get(Lang::get('routes.info/privacy',[], $prefix) , 'InfoController@privacy')->name($prefix.'_info_privacy');
+    Route::get(Lang::get('routes.info/regulations',[], $prefix) , 'InfoController@regulations')->name($prefix.'_info_regulations');
+    Route::get(Lang::get('routes.info/payment',[], $prefix) , 'InfoController@payment')->name($prefix.'_info_payment');
 
     /**
      * The following line will register:

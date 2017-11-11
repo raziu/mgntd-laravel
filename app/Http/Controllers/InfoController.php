@@ -14,4 +14,12 @@ class InfoController extends Controller
   {
     return view('info.privacy', compact('user'));
   }
+  public function regulations()
+  {
+    return view('info.regulations', compact('user'));
+  }
+  public function payment()
+  {
+    return view('info.payment', compact('user'));
+  }
 }

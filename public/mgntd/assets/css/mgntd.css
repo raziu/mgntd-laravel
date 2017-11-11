@@ -10,6 +10,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block;
 }
+html {
+  background: #050F2C;
+}
 
 body {
   line-height: 1;
@@ -36,7 +39,7 @@ table {
 
 body {
   overflow: hidden;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Roboto Condensed",sans-serif;
   font-weight: 400;
   color: #333;
   font-size: 13px;
@@ -47,6 +50,46 @@ a {
   text-decoration: none;
   color: #fff;
 }
+
+footer.footer {
+  background: #050F2C;
+  color: #fff;
+  padding: 30px 0px 0px 0px;
+}
+footer span.coffee, footer span.heart {
+  color: #ff0000;
+}
+footer #catapult-cookie-bar {
+  color: #ccc;
+}
+footer a {
+  color: #2DDE98;
+}
+footer .footer-links {
+  float: none;
+  margin-left: 0px;
+  margin-right: 0px;
+  max-width: 230px;
+}
+footer .footer-links > li {
+  display: block;
+  float: left;
+  width: 100%;
+  text-transform: uppercase;
+}
+footer .footer-links > li a {
+  color: #fff;
+}
+footer .footer-links > li a:hover {
+  color: #2DDE98;
+  background: transparent;
+}
+footer.footer .divider-d {
+  border-color :#323a52;
+  margin-top: 30px;
+}
+
+
 
 #switcher {
   padding: 6px 0px 7px;
@@ -243,6 +286,41 @@ a {
 #catapult-cookie-bar {
   padding: 30px;
   text-align: center;
+}
+
+.page-header-module.module {
+  /*padding: 90px 0 10px;*/
+  padding: 0px 0 0px;
+}
+body.HomeController .page-header-module.module {
+  /*padding: 190px 0 40px;*/
+  padding: 0px 0 0px;
+}
+.page-header-module {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  color: #fff;
+  background-size: cover !important;
+  width: 100%; 
+}
+.module {
+  padding: 30px 0px;
+}
+
+.bg-gradient {
+  height: 100%;
+  padding: 90px 0px 0px 0px;
+  background: -moz-linear-gradient(130deg, #2DDE98 0%, #021b79 50%);
+  background: -webkit-linear-gradient(130deg, #2DDE98 0%, #021b79 50%);
+  background: -ms-linear-gradient(130deg, #2DDE98 0%, #021b79 50%);
+  
+  /*background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('/img/header.jpg') no-repeat;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(59%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.65))), url('/img/header.jpg') no-repeat;
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('/img/header.jpg') no-repeat;
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('/img/header.jpg') no-repeat;
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('/img/header.jpg') no-repeat;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, rgba(0, 0, 0, 0.65) 100%), url('/img/header.jpg') no-repeat;*/
 }
 
 .responsive {

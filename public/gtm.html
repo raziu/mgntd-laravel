@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>GTM popup plugin test</title>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.11/ouibounce.min.js"></script>
+        
+    <script type="text/javascript">
+      const CssPopup = ({ overlay_bg, header_size, header_color, popup_width, popup_close_cross_color, popup_bg, popup_border_radius, popup_text_color, help_block_font_size, help_block_font_color, close_popup_link_size, close_popup_link_color }) => `#erte-ouibounce-modal {display: none;}.erte-overlay {position: fixed;top: 0;left: 0;right: 0;bottom: 0;background-color: ${overlay_bg};background: 	url(data:;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuNUmK/OAAAAATSURBVBhXY2RgYNgHxGAAYuwDAA78AjwwRoQYAAAAAElFTkSuQmCC) repeat fixed transparent\9;z-index: 9998;color: #fff;transition: opacity 500ms;}.erte-content {padding-bottom: 30px;}.erte-content h2 {font-size: ${header_size};color: ${header_color};}.erte-popup {margin: 0px;padding: 30px;z-index: 9999;padding-bottom: 0px;text-align: left;height: auto;background: ${popup_bg};border-radius: ${popup_border_radius};width: ${popup_width};position: fixed;left: 50%;top: 50%;transform: translate(-50%, -50%);color: ${popup_text_color};}.erte-popup .closePopupCross {position: absolute;top: 20px;right: 30px;transition: all 200ms;font-size: 30px;font-weight: bold;text-decoration: none;color: ${popup_close_cross_color};}.form-group {padding-top: 20px;}.help-block {font-size: ${help_block_font_size};color: ${help_block_font_color};}.erte-popup .closePopupLink {font-size: ${close_popup_link_size};color: ${close_popup_link_color};margin-left: 30px;}`;
+      const Popup1 = ({ title, body, form_action, form_id, label_name, placeholder_name, label_email, placeholder_email, label_button_agree, label_button_disagree }) => `
+        <div id="erte-ouibounce-modal">
+          <div class="erte-overlay"></div>
+          <div class="erte-popup">
+            <a class="closePopupCross" href="#">×</a>
+            <div class="erte-content">
+              <h2>${title}</h2>
+              ${body}
+              <form action="${form_action}" method="POST" id="${form_id}">
+                <div id="name-group" class="form-group">
+                  <label for="name">${label_name}</label>
+                  <input type="text" class="form-control" name="name" placeholder="${placeholder_name}">
+                </div>
+                <div id="email-group" class="form-group">
+                  <label for="email">${label_email}</label>
+                  <input type="text" class="form-control" name="email" placeholder="${placeholder_email}">
+                </div>
+                <br/>
+                <button type="submit" class="">${label_button_agree}</button> 
+                <a class="closePopupLink" href="#">${label_button_disagree}</a>
+              </form>
+            </div>
+          </div>
+        </div>`;
+      var erteGMT = {
+        defaults: {
+          jquery_path: 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js',
+          ouibounce_path: 'https://cdnjs.cloudflare.com/ajax/libs/ouibounce/0.0.11/ouibounce.min.js',
+          title: 'Nie uciekaj! Zostaw swój e-mail jeśli chcesz otrzymywać informacje o zniżkach!',
+          body: 'Dodatkowy tekst z linkiem: <a href="http://google.com">link</a>.',
+          form_action: 'http://magnetoid.local/gtm.php',
+          form_id: 'XYZFormID',
+          label_name: 'Nazwa',
+          placeholder_name: 'domyślna nazwa',
+          label_email: 'Adres E-mail',
+          placeholder_email: 'twoj@email.com',
+          label_button_agree: 'TAK, chcę otrzymywać zniżki',
+          label_button_disagree: 'Nie, dziękuję',
+          css_overlay_bg: 'rgba(0, 0, 0, 0.4)',
+          css_header_size: '17pt',
+          css_header_color: '#FFF', 
+          css_popup_width: '700px',
+          css_popup_close_cross_color: '#ff0000',
+          css_popup_bg: '#ff00ff',
+          css_popup_border_radius: '5px',
+          css_popup_text_color: '#000',
+          css_help_block_font_size: '10pt',
+          css_help_block_font_color: '#C71585',
+          css_close_popup_link_size: '11pt',
+          css_close_popup_link_color: '$ff0000'
+        },
+        checkJSLibraries: function() {
+          var script = document.createElement('script');
+          if(!window.jQuery)
+          {
+            script.type = "text/javascript";
+            script.src = this.defaults.jquery_path;
+            document.getElementsByTagName('head')[0].appendChild(script);
+          }
+          script.type = "text/javascript";
+          script.src = this.defaults.ouibounce_path;
+          document.getElementsByTagName('head')[0].appendChild(script);
+        },
+        createPopup: function() {
+          $('body').prepend(
+            [{
+              title: this.defaults.title, 
+              body: this.defaults.body, 
+              form_action: this.defaults.form_action, 
+              form_id: this.defaults.form_id, 
+              label_name: this.defaults.label_name, 
+              placeholder_name: this.defaults.placeholder_name, 
+              label_email: this.defaults.label_email, 
+              placeholder_email: this.defaults.placeholder_email, 
+              label_button_agree: this.defaults.label_button_agree, 
+              label_button_disagree: this.defaults.label_button_disagree
+            }].map(Popup1).join('')
+          );
+        },
+        appendCss: function() {
+          var css = document.createElement("style");
+          css.type = "text/css";
+          css.innerHTML = [{
+            overlay_bg: this.defaults.css_overlay_bg,
+            header_size: this.defaults.css_header_size,
+            header_color: this.defaults.css_header_color, 
+            popup_width: this.defaults.css_popup_width,
+            popup_close_cross_color: this.defaults.css_popup_close_cross_color,
+            popup_bg: this.defaults.css_popup_bg,
+            popup_border_radius: this.defaults.css_popup_border_radius,
+            popup_text_color: this.defaults.css_popup_text_color,
+            help_block_font_size: this.defaults.css_help_block_font_size,
+            help_block_font_color: this.defaults.css_help_block_font_color,
+            close_popup_link_size: this.defaults.css_close_popup_link_size,
+            close_popup_link_color: this.defaults.css_close_popup_link_color
+          }].map(CssPopup);
+          document.body.appendChild(css);
+        },
+        handleEvents: function() {
+          $('.closePopupLink, .closePopupCross, .closeLeavePage, .erte-overlay').click(function() {
+            $('.erte-overlay, .erte-popup').fadeOut(500);
+          });
+          $('#'+this.defaults.form_id).submit(function(event) 
+          {
+            $('.form-group').removeClass('has-error');
+            $('.help-block').remove();
+            var formData = {
+                'name' 				: $('input[name=name]').val(),
+                'email' 				: $('input[name=email]').val(),
+                'website' : $(location).attr('hostname'),
+            };
+            jQuery.ajax({
+              type 			: 'POST',
+              url 			: this.defaults.form_action,
+              data 			: formData,
+              dataType 		: 'json',
+              encode 		: true,
+              async 		: true
+            })
+            .done(function(data) 
+            {
+              if(!data.success) 
+              {					
+                if(data.errors.name) 
+                {
+                  $('#name-group').addClass('has-error');
+                  $('#name-group').append('<div class="help-block">' + data.errors.name + '</div>');
+                }
+                if(data.errors.email) 
+                {
+                  $('#email-group').addClass('has-error');
+                  $('#email-group').append('<div class="help-block">' + data.errors.email + '</div>');
+                }
+              } 
+              else 
+              {
+                $('#'+this.defaults.form_id).append('<div class="alert alert-success">' + data.message + '</div>');
+                $('.erte-overlay, .erte-popup').fadeOut(500);
+              }
+            })
+            .fail(function(data) {
+              console.log(data);
+            });
+            event.preventDefault();
+          });
+        },
+        init: function($) {
+          erteGMT.checkJSLibraries();
+          erteGMT.createPopup();
+          erteGMT.appendCss();
+          erteGMT.handleEvents();
+        },
+      };
+      jQuery(document).ready(function($) {
+        "use strict";
+        erteGMT.init($);
+        var _ouibounce = ouibounce(document.getElementById('erte-ouibounce-modal'), {
+          //sensitivity: 10,
+          aggressive: true, //each page reloads or cookie (false)
+          timer: 0,
+          //delay: 100, //delay to show modal
+          //cookieExpire: 10,
+          //cookieDomain: '.example.com', 
+          //cookieName: 'customCookieName',
+          //sitewide: true
+          callback: function() { console.log('ouibounce fired!'); }
+        });
+        /*
+        var modal = ouibounce(document.getElementById('ouibounce-modal'));
+        modal.fire(); // fire the ouibounce event
+        modal.disable() // disable ouibounce, it will not fire on page exit
+        modal.disable({ cookieExpire: 50, sitewide: true }) // disable ouibounce sitewide for 50 days. 
+        */
+      });
+    </script>
+  </head>
+  <body>
+    <h1>GTM popup plugin test</h1>
+    <div>Lorem ipsum dolor...</div>
+  </body>
+</html>

@@ -1,13 +1,13 @@
 @extends('layouts.app')
-@section('pageTitle', __('info.meta_title_privacy') )
-@section('pageDesc', __('info.meta_description_privacy') )
+@section('pageTitle', __('info.meta_title_payment') )
+@section('pageDesc', __('info.meta_description_payment') )
 @section('content')
 <section class="page-header-module module bg-dark" data-background="/img/header.jpg">
   <div class="bg-gradient">
     <div class="container">
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
-          <h1 class="module-title font-alt">{{ __('info.meta_title_privacy') }}</h1>
+          <h1 class="module-title font-alt">{{ __('info.meta_title_payment') }}</h1>
           <div class="module-subtitle font-serif mb-0"></div>
         </div>
       </div>
@@ -19,12 +19,12 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3">
-        <h2 class="module-title font-alt meet-out-team-title">{{ __('info.privacy_h2') }}</h2>
+        <h2 class="module-title font-alt meet-out-team-title">{{ __('info.payment_h2') }}</h2>
         <div class="module-subtitle font-serif meet-out-team-subtitle">
-        {!! nl2br(__('info.privacy_body')) !!}
+        {!! nl2br(__('info.payment_body')) !!}
         </div>
       </div>
     </div>
   </div>
 </section>
-@endsection 
+@endsection

@@ -14,6 +14,8 @@ return array(
     'products'  => 'products',
     'info'  => 'info',
     'info/privacy'  => 'info/privacy',
+    'info/regulations'  => 'info/regulations',
+    'info/payment'  => 'info/payment',
     //
     'instagram/redirect' => 'instagram/redirect',
     'instagram/callback' => 'instagram/callback',
