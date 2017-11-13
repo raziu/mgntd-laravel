@@ -6,7 +6,7 @@
           <div class="shop-isle-header-title-inner">
             <h1 class="site-title">
               <a href="{{ route('home') }}" title="{{ config('app.name', 'MGNTD') }}" rel="home">
-                <img src="/img/magnetoid-logo-white-full.svg" alt="" />
+                <img src="/img/magnetoid-logo-color-full.svg" alt="" />
               </a>
             </h1>
             <p class="site-description">
@@ -64,6 +64,21 @@
               </ul>
             </li>
             @endif
+
+            <!-- Currencies -->
+            @if (count(config('app.all_currencies'))>0)
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+              <a href="#" title="{{ strtoupper(app()->getLocale()) }}">@if(!empty(Session::get('currency'))){!! Session::get('currency') !!}@endif</a>
+              <ul class="sub-menu">
+              @foreach (config('app.all_currencies') as $currencyCode => $currencyName)
+                <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat">
+                  <a href="javascript:void(0);" class="change_currency" data-value="{{ strtoupper($currencyName) }}">{{ $currencyCode }} {{ strtoupper($currencyName) }}</a>
+                </li>
+              @endforeach
+              </ul>
+            </li>
+            @endif
+
           </ul>
         </div>
       </div>

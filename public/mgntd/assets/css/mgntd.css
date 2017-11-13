@@ -51,6 +51,46 @@ a {
   color: #fff;
 }
 
+/* HOME */
+#newsletter-email {
+  max-width: 250px;
+  margin: 0 auto;
+}
+.newsletter-message.error {
+  background: #050F2C;
+  color: #ff0000;
+  padding: 10px;
+  width: 50%;
+  margin: 0 auto;
+}
+.newsletter-message.success {
+  background: #050F2C;
+  color: #2DDE98;
+  padding: 10px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.module.home-products {
+  background: #fafafa;
+}
+.module.home-products h3.post-title {
+  color: #2DDE98;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+.module.home-products h4 {
+  color: #666;
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+.module.home-products h5.price {
+  color: #2DDE98;
+  font-size: 22px;
+  margin: 30px 0px;
+}
+
+/* FOOTER */
 footer.footer {
   background: #050F2C;
   color: #fff;

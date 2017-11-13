@@ -16,6 +16,8 @@ return array(
     'info/privacy'  => 'info/privacy',
     'info/regulations'  => 'info/regulations',
     'info/payment'  => 'info/payment',
+    'subscribers/submit' => 'subscribers/submit',
+    'change/currency' => 'change/currency',
     //
     'instagram/redirect' => 'instagram/redirect',
     'instagram/callback' => 'instagram/callback',

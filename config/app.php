@@ -111,6 +111,9 @@ return [
      */
     'theme' => 'mgntd',
 
+    'default_currency' => 'zł',
+    'all_currencies' => array('zł'=>'PLN','$'=>'USD'),
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key

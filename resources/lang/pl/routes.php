@@ -16,6 +16,8 @@ return array(
     'info/privacy'  => 'info/polityka-prywatnosci',
     'info/regulations'  => 'info/regulamin',
     'info/payment'  => 'info/platnosc',
+    'subscribers/submit' => 'subscribers/submit',
+    'change/currency' => 'change/currency',
     //
     'instagram/redirect' => 'instagram/redirect',
     'instagram/callback' => 'instagram/callback',

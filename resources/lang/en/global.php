@@ -18,4 +18,7 @@ return [
     'cookies_details_link_label' => 'Find out more.',
     'cookies_agree_label' => 'Okay, thanks',
     'footer_powered_by' => 'Crafted with <span class="coffee">☕</span> in Świdnica <span class="heart">♥</span> Poland by <a href="http://www.raziu.com?source=magnetoid" title="RAZIU.COM">RAZIU.COM</a>',
+    'footer_regulations' => 'Using the service means acceptance of the regulations. ',
+    'find_out_more' => 'Find Out More',
+    'from' => 'from',
 ];

@@ -7,18 +7,45 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
+use Illuminate\Support\Facades\View;
+use Illuminate\Http\Request;
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function __construct()
     {
-      
+      //$this->includeJs();
 
-      #$currentAction = \Route::currentRouteAction();
-      #list($controller, $method) = explode('@', $currentAction);
-      // $controller now is "App\Http\Controllers\FooBarController"
-      #$controller = preg_replace('/.*\\\/', '', $controller);
-      // $controller now is "FooBarController"
+      $this->middleware(function ($request, $next) {
+        if (!$request->session()->has('currency')) 
+        {
+          $request->session()->put('currency', config('app.default_currency'));
+        }
+
+        return $next($request);
+      });
+
     }
+
+    /**
+    * Include js files
+    */
+  private function includeJs()
+  {
+    /*$currentAction = \Route::currentRouteAction();
+    list($controller, $method) = explode('@', $currentAction);
+    $controller = preg_replace('/.*\\\/', '', $controller);
+    $controller = preg_replace('/Controller/', '', $controller);
+    $js = '/js/' . kebab_case($controller) . '/' . kebab_case($method) . '.js';
+    //echo $js; exit;
+    if ( file_exists( $_SERVER['DOCUMENT_ROOT'] . $js) )
+    {
+      return View::make($controller.".".$method)
+      ->with("scripts", '<script src="'.$js.'">')
+      ->with("styles", '')
+      ;
+    }*/
+  }
 }

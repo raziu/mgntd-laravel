@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\View;
 use Auth;
 use App\Basket;
 
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -56,6 +55,10 @@ class AppServiceProvider extends ServiceProvider
           $view->with('controller', $controller);
       });
       //View::share('controller', 'xxx');
+
+      
+
+      
     }
 
     /**

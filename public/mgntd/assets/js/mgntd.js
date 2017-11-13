@@ -465,10 +465,36 @@
 
   var ctcc_vars = {"expiry":"30","method":"1","version":"1"};
 
+  function change_currency()
+  {
+    jQuery('.change_currency').on('click', function(){
+      jQuery.post(LOCALE+'change/currency', {
+        currency: jQuery(this).attr('data-value')
+        }, 
+        function($data){
+          if($data.status == 'success') {
+            location.reload();
+          } else {
+            //show alert
+          }
+        });
+    });
+  }
+
   jQuery(document).ready(function($){
     if(!catapultReadCookie("catAccCookies")){ // If the cookie has not been set then show the bar
       $("html").addClass("has-cookie-bar");
       $("html").addClass("cookie-bar-bottom-bar");
       $("html").addClass("cookie-bar-bar");
     }
+
+    //AJAX requests TokenMismatchException issue solve
+    $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    change_currency();
+
   });  

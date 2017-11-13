@@ -35,6 +35,10 @@
     <script type='text/javascript' src="{{ URL::asset(config('app.theme').'/assets/js/jquery.js') }}"></script>
     <script type='text/javascript' src="{{ URL::asset(config('app.theme').'/assets/js/jquery-migrate.min.js') }}"></script>
     <script type='text/javascript' src="{{ URL::asset(config('app.theme').'/assets/js/jquery.cookie.min.js') }}"></script>
+    @section('styles')
+    {!! isset($styles)?$styles:'' !!}
+    @stop
+    <script type="text/javascript">var LOCALE = '/{{ (app()->getLocale()!="pl")?app()->getLocale()."/":"" }}';</script>
 </head>
 <body class="{{ $controller }} blog woocommerce-active">
   <?php /*<!-- Google Tag Manager (noscript) -->
@@ -64,7 +68,7 @@
     <script type='text/javascript' src="{{ URL::asset(config('app.theme').'/assets/js/owl.carousel.js') }}"></script>
     <script src="{{ URL::asset(config('app.theme').'/assets/js/mgntd.js') }}"></script>
     <script src="{{ URL::asset(config('app.theme').'/assets/js/navigation.js') }}"></script>
-
+    @yield('javascript')
     <?php /*<script src="{{ URL::asset(config('app.theme').'/assets/js/tabs.js') }}"></script>
     <script src="{{ URL::asset(config('app.theme').'/assets/js/master.js') }}"></script>
     <script src="{{ URL::asset(config('app.theme').'/assets/js/modernizr.js') }}"></script>

@@ -5,6 +5,7 @@
               <div class="col-sm-5">
                 <img src="/img/magnetoid-logo-footer-full.svg" alt="{{ config('app.name', 'MGNTD') }}" style="max-width:150px;" /><br/>
                 <strong></strong> {!! __('global.footer_powered_by') !!}
+                <br/>{{ __('global.footer_regulations') }}
               </div>
               <div class="col-sm-3">
                 <ul class="footer-links nav navbar-nav">
