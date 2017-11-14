@@ -21,5 +21,7 @@ return [
     'footer_regulations' => 'Korzystanie z serwisu oznacza akceptację regulaminu. ',
     'find_out_more' => 'Dowiedz się więcej',
     'from' => 'od',
+    'edit' => 'edytuj',
+    'remove' => 'usuń',
 
 ];

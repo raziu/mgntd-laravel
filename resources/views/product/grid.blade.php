@@ -46,11 +46,11 @@ $cnt = 0;
       <h6 class="text-center">( {{ $from }} - {{ $to }}  )</h6>
       @for( $i=1; $i<=$max2; $i++ )
       <div class="square-{{ $elements }} img_1-{{ $i }} add_to_set" data-i="{{ $cnt }}"  id="idx-{{ $cnt }}" data-has-image="" data-width="" data-height="" data-is-square="" data-big-id="">
-        <div class="square-content">
+        <div class="square-content hidden">
           <div class="table">
               <div class="table-cell">
-                <span data-idx="{{ $cnt }}" class="btn btn-default edit-set-image hidden2"><i class="fa fa-pencil-square-o"></i></span>
-                <span data-idx="{{ $cnt }}" class="btn btn-danger edit-remove-image hidden2"><i class="fa fa-times"></i></span>
+                <span data-idx="{{ $cnt }}" class="btn btn-default edit-set-image"><i class="fa fa-pencil-square-o"></i> {{ __('global.edit') }}</span>
+                <span data-idx="{{ $cnt }}" class="btn btn-danger edit-remove-image"><i class="fa fa-times"></i>{{ __('global.remove') }}</span>
               </div>
           </div>        
         </div>

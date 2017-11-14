@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('pageTitle', $type.' - '.__("products.$group").' - '.__('products.meta_title') )
 @section('pageDesc', __("products.".$group."_desc") )
+@section('javascript')
+<script type="text/javascript" src="{{ URL::asset(config('app.theme').'/assets/js/app/product.js') }}"></script>
+@parent    
+@stop
 @section('content')
 <section class="page-header-module module bg-dark" data-background="/img/header.jpg">
   <div class="bg-gradient">

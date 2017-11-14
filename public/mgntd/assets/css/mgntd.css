@@ -281,8 +281,7 @@ a {
   height: 90%;
   width: 90%;
   padding: 5%;
-  background: #ff0000;
-  opacity: 0.5;
+  background: rgba(45, 222, 152, .6);
   margin: 5%;
 }
 .table {
@@ -294,6 +293,12 @@ a {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+}
+.square-content span.btn {
+  padding: 5px 5px !important;
+  display: block;
+  width: 70%;
+  margin: 2px auto;
 }
 
 

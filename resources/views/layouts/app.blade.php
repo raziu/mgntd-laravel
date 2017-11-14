@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c5.css') }}" data-minify="1" />
     <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c6.css') }}" data-minify="1" />
     <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c7.css') }}" data-minify="1" />
+    <script src="https://use.fontawesome.com/3202eb5af8.js"></script>
     <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/mgntd.css') }}" data-minify="1" />
     <script type='text/javascript' src="{{ URL::asset(config('app.theme').'/assets/js/jquery.js') }}"></script>
     <script type='text/javascript' src="{{ URL::asset(config('app.theme').'/assets/js/jquery-migrate.min.js') }}"></script>

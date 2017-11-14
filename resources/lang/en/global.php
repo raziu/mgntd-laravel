@@ -21,4 +21,6 @@ return [
     'footer_regulations' => 'Using the service means acceptance of the regulations. ',
     'find_out_more' => 'Find Out More',
     'from' => 'from',
+    'edit' => 'edit',
+    'remove' => 'remove',
 ];
