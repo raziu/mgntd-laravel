@@ -51,7 +51,6 @@ return [
     'editor_customize' => 'Dostosuj zdjęcia',
     'editor_customize_text' => 'Zmieniaj jasność, kontrast, nasycenie, ostrość i ciepło poręcznym narzędziem regulacji.',
     //
-    'products_magnets_header' => 'Magnesy na lodówkę',
-    'products_magnets_text' => 'Stwórz 4 lub 9 klasycznych magnesów lub stwórz kreatywną układankę z jednego zdjęcia tzw. Jigsaw.',
+    
 
 ];

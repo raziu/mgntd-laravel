@@ -21,12 +21,11 @@ class CreateProductsTable extends Migration
             $table->string('type', 64)->default('3x3|2x2|1x9');
             $table->string('image', 128);
             $table->text('intro');
-            $table->string('item_size', 10);
+            $table->string('item_size', 64);
             $table->decimal('price', 10, 2);
             $table->string('border_color');
-            $table->tinyInteger('set_quantity');
+            $table->string('set_quantity',64);
             $table->text('desc');
-            $table->integer('lang')->default(1);
             $table->timestamps();
         });
     }

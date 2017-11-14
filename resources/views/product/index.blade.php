@@ -16,12 +16,54 @@
     </div>
   </div>
 </section>
+
+<section class="sub-nav" id="sub-nav">
+  <div class="container">
+    <div class="actions">
+      <?php /*<a class="primary" href="#"><span>Get started</span></a>*/ ?>
+    </div>
+    <div class="destinations">
+      <div class="content">
+      @if (count($products) > 0)
+        @foreach ($products as $product)
+        <a class="btn btn-sub" href="{{ route('product') }}#{{ $product->group }}">{{ __("products.$product->group") }}</a>
+        @endforeach
+      @endif
+      </div>
+    </div>
+  </div>
+</section>
+
 <hr class="divider-w">
-<section class="module">
+
+<section class="module product-listing">
   <div class="container">
     <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-      index product
+      <div class="col-md-12">
+      @if (count($products) > 0)
+      @foreach ($products as $product)
+      <a name="{{ $product->group }}"></a>
+      <h2>{{ $product->getTitleAttributeForTranslation($product->group) }}</h2>
+      <h4>{{ $product->getIntroAttribute($product->group) }}</h4>
+      <p>{!! __("products.$product->desc") !!}</p>
+      <section class="home-banners">
+        <div class="container">
+          <div class="row">
+            @foreach( $product->setTypeAttribute( $product->type ) as $type )
+            <div class="col-sm-4">
+              <a href="{!! route('product_view',[$product->group,$type]) !!}" class="content-box-type">
+                <div class="content-box-image">
+                  <img src="/img/{{ $type }}.svg" alt="" style="height:150px;" />
+                  <h3>{{ $type }}</h3>
+                </div>
+              </a>
+            </div>
+            @endforeach  
+          <div>
+        <div>
+      </section>
+      @endforeach
+      @endif
       </div>
     </div>
   </div>

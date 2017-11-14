@@ -19,8 +19,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <base href="{{ URL::asset('/') }}" target="_top">
     <!-- MGNTD theme -->
-    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
-	  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon"/>
+	  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon"/>
     <!--[if lt IE 9]>
 	  <script src="{{ URL::asset(config('app.theme').'/js/html5.js')}}" type="text/javascript"></script>
 	  <![endif]-->

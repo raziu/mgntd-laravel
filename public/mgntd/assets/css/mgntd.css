@@ -70,13 +70,51 @@ a {
   width: 50%;
   margin: 0 auto;
 }
+.hs-title-size-4 {
+  font-size: 48px;
+  font-weight: 100;
+  /*letter-spacing: 12px;*/
+  letter-spacing: 5px;
+  font-family: 'Quicksand', cursive;
+  text-transform: initial;
+}
+.module {
+  padding: 40px 0px;
+}
+
+.home-banners {
+  margin: 30px 0px;
+}
+.home-banners .row {
+  border-bottom: solid 1px #ccc;
+  padding: 60px 0px;
+}
+.home-banners h3 {
+  font-size: 22px;
+  font-weight: 100;
+  font-family: 'Quicksand', cursive;
+  text-transform: initial;
+  color: #2e3b4e;
+  margin-top: 20px;
+}
+.home-banners .content-box-type {
+  border-radius: 5px;
+  border: solid 2px #ccc;
+  padding: 30px 30px 30px 30px;
+  display: block;
+  text-align: center;
+}
+.home-banners .content-box-type:hover {
+  border: solid 2px #2DDE98;
+  background: #efefef;
+}
 
 .module.home-products {
-  background: #fafafa;
+  background: #050F2C;
 }
 .module.home-products h3.post-title {
-  color: #2DDE98;
-  font-size: 30px;
+  color: #fff;
+  font-size: 36px;
   margin-bottom: 30px;
 }
 .module.home-products h4 {
@@ -89,6 +127,176 @@ a {
   font-size: 22px;
   margin: 30px 0px;
 }
+.module.home-products .btn-default {
+  color: #2DDE98;
+  background: transparent;
+  border: solid 3px #2DDE98;
+}
+.module.home-products .btn-default:hover {
+  color: #000;
+  background: #2DDE98;
+  border: solid 3px #2DDE98;
+}
+
+.btn.section-scroll {
+  color: #fff;
+  background: #2DDE98;
+  border: solid 3px #2DDE98;
+  font-weight: bold;
+}
+
+.navbar-fixed-top {
+  background: #050F2C;  
+}
+.navbar-fixed-top.navbar-transparent {
+  background: transparent;
+}
+
+/* PRODUCTS */
+.sub-nav {
+  position: relative;
+  width: 100%;
+  z-index: 2;
+  max-width: 1680px;
+  min-height: 60px;
+  background-color: #fafafa;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.sub-nav .actions {
+  float: right;
+  position: relative;
+  z-index: 2;
+}
+.sub-nav .destinations {
+  border: none;
+  padding: 0;
+  -webkit-transition: none;
+  transition: none;
+  visibility: visible;
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  position: relative;
+  background-color: transparent;
+  bottom: 0;
+}
+.no-touch .sub-nav .destinations {
+  top: 0;
+  bottom: auto;
+  border: none;
+}
+.sub-nav .destinations a {
+  margin: 10px 10px;
+  display: inline-block;
+  line-height: 22px;
+  width: auto;
+}
+.sub-nav a {
+  color: #5f6a7d;
+  display: block;
+  
+  font-size: 11px;
+  
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.sub-nav .destinations a:hover {
+  color: #2DDE98;
+}
+
+.module.product-listing h2 {
+  text-align: center;
+  color: #2DDE98;
+  text-transform: uppercase;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+.module.product-listing h4 {
+  color: #2e3b4e;
+  font-size: 28px;
+  line-height: 30px;
+  font-weight: 300;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.module.product-listing p {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 300;
+  color: #5f6a7d;
+  text-align: center;
+}
+.btn-sub {
+  padding: 7px 15px;
+  border: solid 1px #5f6a7d;
+  line-height: 22px;
+  border-radius: 3px;
+}
+.btn-sub:hover {
+  border: solid 1px #2DDE98;
+}
+.btn-active {
+  border: solid 1px #2DDE98;
+  background: #2DDE98;
+  color: #fff !important;
+}
+
+.square-9 {
+  float:left;
+  position: relative;
+  width: 30%;
+  padding-bottom : 30%; /* = width for a 1:1 aspect ratio */
+  margin:1.66%;
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-size:cover; /* you change this to "contain" if you don't want the images to be cropped */
+  background-image:url('https://farm8.staticflickr.com/7163/6822904141_50277565c3.jpg');
+}
+.square-4 {
+  float:left;
+  position: relative;
+  width: 45%;
+  padding-bottom : 45%; /* = width for a 1:1 aspect ratio */
+  margin:2.5%;
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-size:cover; /* you change this to "contain" if you don't want the images to be cropped */
+  background-image:url('https://farm8.staticflickr.com/7163/6822904141_50277565c3.jpg');
+}
+.square-1 {
+  float:left;
+  position: relative;
+  width: 98%;
+  padding-bottom : 98%; /* = width for a 1:1 aspect ratio */
+  margin:1%;
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-size:cover; /* you change this to "contain" if you don't want the images to be cropped */
+  background-image:url('https://farm8.staticflickr.com/7163/6822904141_50277565c3.jpg');
+}
+.square-content {
+  position: absolute;
+  height: 90%;
+  width: 90%;
+  padding: 5%;
+  background: #ff0000;
+  opacity: 0.5;
+  margin: 5%;
+}
+.table {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.table-cell {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+
 
 /* FOOTER */
 footer.footer {

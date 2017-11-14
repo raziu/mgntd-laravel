@@ -50,7 +50,4 @@ return [
     'editor_customize' => 'Customize your photos',
     'editor_customize_text' => 'Change brightness, contrast, saturation, sharpness and heat with a handy adjustment tool.',
     //
-    'products_magnets_header' => 'Photo Magnets',
-    'products_magnets_text' => 'Create 9 classic magnets or get creative with The Jigsaw',
-
 ];

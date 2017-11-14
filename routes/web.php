@@ -41,7 +41,11 @@ foreach( $all_langs as $prefix )
     Route::post(Lang::get('routes.subscribers/submit',[], $prefix) , 'SubscribersController@postSubmit')->name($prefix.'_subscribers');
 
     Route::post(Lang::get('routes.change/currency',[], $prefix), 'HomeController@changeCurrency')->name($prefix.'_change_currency');
+
+    Route::get(Lang::get('routes.product/{group}/{type}',[], $prefix), ['uses' =>'ProductController@view', 'as'=>$prefix.'_product_view']);
   
+
+
     /**
      * The following line will register:
      *

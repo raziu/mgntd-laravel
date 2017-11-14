@@ -19,6 +19,8 @@ return array(
     'subscribers/submit' => 'subscribers/submit',
     'change/currency' => 'change/currency',
     //
+    'product/{group}/{type}' => 'add/{group}/{type}',
+    //
     'instagram/redirect' => 'instagram/redirect',
     'instagram/callback' => 'instagram/callback',
     'facebook/redirect' => 'facebook/redirect',
