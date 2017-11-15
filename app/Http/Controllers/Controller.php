@@ -23,7 +23,10 @@ class Controller extends BaseController
         {
           $request->session()->put('currency', config('app.default_currency'));
         }
-
+        if (!$request->session()->has('uploaded_files')) 
+        {
+          $request->session()->put('uploaded_files', []);
+        }
         return $next($request);
       });
 

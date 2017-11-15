@@ -23,7 +23,9 @@
 	  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon"/>
     <!--[if lt IE 9]>
 	  <script src="{{ URL::asset(config('app.theme').'/js/html5.js')}}" type="text/javascript"></script>
-	  <![endif]-->
+    <![endif]-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c1.css') }}" data-minify="1" />
     <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c2.css') }}" data-minify="1" />
     <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c3.css') }}" data-minify="1" />
@@ -60,6 +62,8 @@
     <!-- Scripts -->
     <?php /*<script src="{{ asset('js/app.js') }}"></script>*/ ?>
     <!-- MGNTD theme -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="{{ URL::asset(config('app.theme').'/plugins/uk-cookie/uk-cookie.js') }}"></script>
     <script type='text/javascript' src="{{ URL::asset(config('app.theme').'/assets/js/blockUI.js') }}"></script>
     <script type='text/javascript' src="{{ URL::asset(config('app.theme').'/assets/js/jquery.selectBox.js') }}"></script>

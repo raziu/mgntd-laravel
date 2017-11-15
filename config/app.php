@@ -114,6 +114,9 @@ return [
     'default_currency' => 'zł',
     'all_currencies' => array('zł'=>'PLN','$'=>'USD'),
 
+    'av_key' => env('AVIARY_KEY', false),
+    'av_secret' => env('AVIARY_SECRET', false),
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key
@@ -204,6 +207,11 @@ return [
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class, // add
+
+        /**
+         * AWS S3 
+         */
+        Aws\Laravel\AwsServiceProvider::class,
     ],
 
     /*
@@ -255,6 +263,7 @@ return [
 
         //
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'AWS' => Aws\Laravel\AwsFacade::class,
         
     ],
 

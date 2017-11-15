@@ -8,6 +8,12 @@ use App\Services\SocialAccountService;
 
 class SocialAuthFacebookController extends Controller
 {
+  public function __construct()
+  {
+    //$this->middleware('auth');
+    parent::__construct();
+  }
+  
   /**
    * Create a redirect method to facebook api.
    *

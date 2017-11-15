@@ -43,7 +43,7 @@ $cnt = 0;
         $max2 = $max%$single;
       }
       @endphp
-      <h6 class="text-center">( {{ $from }} - {{ $to }}  )</h6>
+      <h6 class="text-center product-view-h6">( {{ $from }} - {{ $to }}  )</h6>
       @for( $i=1; $i<=$max2; $i++ )
       <div class="square-{{ $elements }} img_1-{{ $i }} add_to_set" data-i="{{ $cnt }}"  id="idx-{{ $cnt }}" data-has-image="" data-width="" data-height="" data-is-square="" data-big-id="">
         <div class="square-content hidden">

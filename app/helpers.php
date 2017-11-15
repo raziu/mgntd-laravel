@@ -29,3 +29,27 @@ function route($name, $parameters = [], $absolute = true, $lang = null)
 
     return app('url')->route($locale_prefix . '_' . $name, $parameters, $absolute);
 }
+/**
+ * Custom helper for plural translations
+ */
+if (!function_exists('variety')) 
+{
+  function variety( $number, $varietyFor1, $varietyFor234, $varietyForOthers )
+  {
+    if( $number == 1 )
+    {
+      return $varietyFor1;
+    }
+    if( $number % 100 >= 10 && $number % 100 <= 20 )
+    {
+      return $varietyForOthers;
+    }
+    if( in_array( $number % 10, array( 2, 3, 4 ) ) )
+    {
+      return $varietyFor234;
+    }
+    return $varietyForOthers;
+  }
+}
+
+//x. echo 'Zdobyłeś właśnie '.$x.' '.$this->Variety($x,'punkt','punkty','punktów');

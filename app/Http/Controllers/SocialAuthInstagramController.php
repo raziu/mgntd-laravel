@@ -8,6 +8,12 @@ use App\Services\SocialAccountService;
 
 class SocialAuthInstagramController extends Controller
 {
+  public function __construct()
+  {
+    //$this->middleware('auth');
+    parent::__construct();
+  }
+  
   /**
    * Create a redirect method to Instagram api.
    *

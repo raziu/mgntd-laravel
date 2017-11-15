@@ -10,6 +10,12 @@ use App\Subscribers;
 
 class SubscribersController extends Controller
 {
+  public function __construct()
+  {
+    //$this->middleware('auth');
+    parent::__construct();
+  }
+  
   //The method to show the form to add a new feed
   public function getIndex() 
   {

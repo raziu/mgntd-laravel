@@ -20,6 +20,7 @@ return array(
     'change/currency' => 'change/currency',
     //
     'product/{group}/{type}' => 'add/{group}/{type}',
+    'product/s3' => 'product/s3',
     //
     'instagram/redirect' => 'instagram/redirect',
     'instagram/callback' => 'instagram/callback',
