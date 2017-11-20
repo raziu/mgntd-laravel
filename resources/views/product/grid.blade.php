@@ -44,22 +44,31 @@ $cnt = 0;
       }
       @endphp
       <h6 class="text-center product-view-h6">( {{ $from }} - {{ $to }}  )</h6>
-      @for( $i=1; $i<=$max2; $i++ )
-      <div class="square-{{ $elements }} img_1-{{ $i }} add_to_set" data-i="{{ $cnt }}"  id="idx-{{ $cnt }}" data-has-image="" data-width="" data-height="" data-is-square="" data-big-id="">
-        <div class="square-content hidden">
-          <div class="table">
-              <div class="table-cell">
-                <span data-idx="{{ $cnt }}" class="btn btn-default edit-set-image"><i class="fa fa-pencil-square-o"></i> {{ __('global.edit') }}</span>
-                <span data-idx="{{ $cnt }}" class="btn btn-danger edit-remove-image"><i class="fa fa-times"></i>{{ __('global.remove') }}</span>
-              </div>
-          </div>        
+      @for( $cnt=1; $cnt<=$max2; $cnt++ )
+      <div class="square-{{ $elements }}">
+        <div class="square-in add_to_set" data-i="{{ $cnt }}" id="idx-{{ $cnt }}" data-has-image="" data-width="" data-height="" data-is-square="" data-big-id="" style="">
+          <div class="square-content hidden">
+            <div class="table">
+                <div class="table-cell">
+                  <span data-idx="{{ $cnt }}" class="btn btn-default edit-set-image edit-{{ $cnt }}"><i class="fa fa-pencil-square-o"></i> {{ __('global.edit') }}</span>
+                  <span data-idx="{{ $cnt }}" class="btn btn-danger remove-set-image remove-{{ $cnt }}"><i class="fa fa-times"></i>{{ __('global.remove') }}</span>
+                  <img id="editable-{{ $cnt }}" src="" class="editable hidden" style=""/>
+                </div>
+            </div>        
+          </div>
         </div>
         @if( $elements == 1 )
-        <div class="jigsaw-mask-big no-pointer-events jigsaw-mask-big-{{ $type }}"></div>
+        <div class="jigsaw-mask-big jigsaw-mask-big-{{ $elements }}"></div>
         @endif
       </div>
       @endfor
     </div>
     @endfor
+  </div>
+</div>
+
+<div class="row">
+  <div class="text-center">
+    <a href="javascript:void(0);" class="btn btn-primary btn-add-to-cart hidden" id="btn-add-to-cart" data-group="{{ $group }}" data-type="{{ $type }}">{{ __('products.btn_add_to_cart') }}</a>
   </div>
 </div>

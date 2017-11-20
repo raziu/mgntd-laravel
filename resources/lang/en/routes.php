@@ -4,7 +4,8 @@
 return array(
     'contact' => 'contact',
     'about'   => 'about-us',
-    'basket'  => 'basket',
+    'basket'  => 'cart',
+    'basket/add' => 'cart/add',
     'login'   => 'login',
     'logout'   => 'logout',
     'register'   => 'register',

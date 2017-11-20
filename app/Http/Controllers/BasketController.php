@@ -20,26 +20,27 @@ class BasketController extends Controller
       return view('basket.index', compact('user'));
     }
 
-    public function add()
-    {
-      return view('basket.add');
-    }
-
     public function create(Request $request)
     {
-      $basket = new Basket();
-      $basket->user_id = Auth::id();
-      $basket->pictures = $request->pictures;
-      $basket->status = $request->status;
-      $basket->quantity = $request->quantity;
-      $basket->order_id = 0;
-      $basket->type = $request->type;
-      $basket->s3_id = $request->s3_id;
-      $basket->product_type = $request->product_type;
-      $basket->price = $request->price;
-      $basket->border_color = $request->border_color;
-      $basket->save();
-      return redirect('/basket');
+      if($request->isMethod('post')) 
+      {
+        $basket = new Basket();
+        $basket->user_id = (Auth::id() ? Auth::id() : 0);
+        $basket->pictures = base64_encode(json_encode($request->pictures));
+        $basket->status = 'saved';
+        $basket->quantity = 1;
+        $basket->order_id = 0;
+        $basket->type = $request->product_type;
+        $basket->s3_id = 0;
+        $basket->product_type = $request->group;
+        $basket->price = 0;
+        $basket->border_color = $request->border;
+        $basket->save();
+      }
+      return response()->json([
+        'response' => '', 
+        'status' => 'success'
+      ]);
     }
 
     public function edit( Basket $basket )

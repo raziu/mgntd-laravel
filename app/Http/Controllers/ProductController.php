@@ -25,23 +25,35 @@ class ProductController extends Controller
 
   public function view($group, $type, Request $request)
   {
-    //$request = request();
-
     $product = \App\Product::where('active', 1)
     ->where('group', $group)
     ->first();
 
-    //todo - check if is object + if type exits
+    /**
+     * Redirect to index action if product group not exists
+     */
+    if( !is_object( $product ) )
+    {
+      return redirect()->route(app()->getLocale().'_product');
+    }
 
     $product_types = $product->setTypeAttribute( $product->type );
+    /**
+     * Redirect to index action if product type not exists
+     */
+    if( !in_array( $type, $product_types ) )
+    {
+      return redirect()->route(app()->getLocale().'_product');
+    }
+
     $elements = $product->setSetQuantityAttribute( $product->set_quantity, $type );
-    $borders = $product->border_color;
+    $borderColors = json_encode(explode('|',$product->border_color));
     
-    $s3 = AWS::createClient('s3');
-    /*$s3 = new \Aws\S3\S3Client([
+    //$s3 = AWS::createClient('s3');
+    $s3 = new \Aws\S3\S3Client([
       'version' => 'latest',
       'region' => config('aws.region'),
-    ]);*/
+    ]);
     // Set some defaults for form input fields
     $formInputs = [
       'acl' => config('aws.acl'),
@@ -75,20 +87,17 @@ class ProductController extends Controller
     $uploaded_files = $request->session()->get('uploaded_files');
     //echo "<pre>".print_r( $uploaded_files, 1 )."</pre>"; exit;
 
-    return view('product.view', compact('product', 'group', 'type', 'product_types', 'elements', 'borders', 'formInputs', 'formAttributes', 'uploaded_files'));
+    return view('product.view', compact('product', 'group', 'type', 'product_types', 'elements', 'borderColors', 'formInputs', 'formAttributes', 'uploaded_files'));
   }
 
   public function uploadS3(Request $request)
   {
     if($request->isMethod('get')) 
     {
-      //todo save files in session
       //Update session data
       $uploaded_files = $request->session()->get('uploaded_files');
       //echo "<pre>".print_r( $_GET, 1 )."</pre>"; exit;
-      //echo "<pre>".print_r( $request->files, 1 )."</pre>"; exit;
-      // ?? Symfony\Component\HttpFoundation\FileBag Object
-
+      //echo "<pre>".print_r( $request->files, 1 )."</pre>"; exit; // ?? Symfony\Component\HttpFoundation\FileBag Object
       $file = [
         'width' => $_GET['files'][0]['width'],
         'height' => $_GET['files'][0]['height'],
@@ -99,15 +108,10 @@ class ProductController extends Controller
         'type' => $_GET['files'][0]['type'],
         'url' => $_GET['files'][0]['url']
       ];
-      //$cnt = count( $uploaded_files );
-
       $uploaded_files[] = $file;
       $request->session()->put('uploaded_files', $uploaded_files);
-
       return response()->json([
         'response' => count($uploaded_files), 
-        //'files1' => print_r($uploaded_files_new,1), 
-        //'files2' => print_r($request->files,1), 
         'status' => 'success'
         ]);
     }
@@ -118,6 +122,65 @@ class ProductController extends Controller
         'status' => 'error'
       ]);
     }
+  }
+
+  public function updateGrid(Request $request)
+  {
+    $urlArr = explode('/', $_POST['url']);
+    $filename = end($urlArr);
+    $res = [];
+    $res['post_new_url'] = $_POST['new_url'];
+    $res['filename'] = $filename; 
+    $res['save_result'] = $this->savePic($_POST['new_url'], $filename); 
+    $storage_path = storage_path();
+    $path = $storage_path.'/tmp-images/'.$filename;    
+    if( file_exists( $path ) ) 
+    {
+      list($width, $height, $type, $attr) = getimagesize($path);
+      $res['new_size']['width'] = $width;
+      $res['new_size']['height'] = $height;
+    }
+    $res['status'] = 'success';
+    //delete image from server
+    @unlink($path);
+    return response()->json( $res );
+  }
+
+  public function savePic($pic_url, $imageName) 
+  {
+    define('OK', 0);
+    define('URL_EMPTY', 1);
+    define('WRITING_PROBLEMS',2);
+    define('OTHER_PROBLEM', 3);
+    $storage_path = storage_path();
+    $imageDir = $storage_path.'/tmp-images';    
+    if (!is_dir($imageDir))
+    {
+      @mkdir($imageDir, 0775);
+    }
+    if (!strlen($pic_url))
+    {
+      return URL_EMPTY;
+    }      
+    if (!is_dir($imageDir) || !is_writable($imageDir)) 
+    {  
+      if (!is_dir($imageDir))
+      {
+        return 'IS NOT DIR';
+      }
+      if( !is_writable($imageDir) ) 
+      {
+        return 'IS NOT WRITABLE';
+      }
+      return WRITING_PROBLEMS.': '.$imageDir;
+    }  
+    //$pic_url = str_replace( 'https', 'http', $pic_url );  
+    $image = file_get_contents($pic_url);  
+    $r = file_put_contents($imageDir.'/'.$imageName, $image);  
+    if ($r)
+      return OK;
+    else
+      return OTHER_PROBLEM;  
   }
 
 }

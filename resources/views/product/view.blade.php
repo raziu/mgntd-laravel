@@ -1,12 +1,23 @@
 @extends('layouts.app')
 @section('pageTitle', $type.' - '.__("products.$group").' - '.__('products.meta_title') )
 @section('pageDesc', __("products.".$group."_desc") )
+
+@section('styles')
+<link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/js/spectrum/spectrum.css') }}" />
+@parent    
+@stop
+
 @section('javascript')
 <script type="text/javascript">
   var AVK = '{{ config("app.av_key") }}';
   var LANG = '{{ app()->getLocale() }}';
-  var BORDER_COLORS = '';
+  var BORDER_COLORS = '{{ $borderColors }}';
   var URL_REDIRECT = '{{ route("product_upload") }}';
+  var ELEMENTS = '{{ $elements }}';
+  var CAPTCHA_ERROR = 'CAPTCHA_ERROR';
+  var ADDING_TO_BASKET_TEXT = 'ADDING_TO_BASKET_TEXT';
+  var URL_CART_ADD = '{{ route("basket_add") }}';
+  var URL_CART = '{{ route("basket") }}';
 </script>
 <script type="text/javascript" src="{{ URL::asset(config('app.theme').'/assets/js/jQuery-File-Upload/js/vendor/jquery.ui.widget.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset(config('app.theme').'/assets/js/jQuery-File-Upload/js/jquery.iframe-transport.js') }}"></script>
@@ -35,17 +46,18 @@
 </section>
 <section class="sub-nav" id="sub-nav">
   <div class="container">
-    <div class="actions">
-      <?php /*<a class="primary" href="#"><span>Get started</span></a>*/ ?>
-    </div>
-    <div class="destinations">
-      <div class="content">
-        <span>{{ __('products.available_types') }}</span>
-        @if (count($product_types) > 0)
-          @foreach ($product_types as $product_type)
-          <a class="btn btn-sub {{ ($product_type==$type?'btn-active':'') }}" href="{{ route('product_view',[$product->group,$product_type]) }}">{{ $product_type }}</a>
-          @endforeach
-        @endif
+    <div class="row">
+      <div class="col-md-6">
+          <span>{{ __('products.available_types') }}</span>
+          @if (count($product_types) > 0)
+            @foreach ($product_types as $product_type)
+            <a class="btn btn-sub {{ ($product_type==$type?'btn-active':'') }}" href="{{ route('product_view',[$product->group,$product_type]) }}">{{ $product_type }}</a>
+            @endforeach
+          @endif        
+      </div>
+      <div class="col-md-6 text-right">
+          <span>{{ __('products.choose_border_color') }}</span>
+          <input type='text' id="border" name="border" value="#FFFFFF" />
       </div>
     </div>
   </div>

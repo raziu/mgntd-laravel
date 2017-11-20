@@ -26,24 +26,21 @@
     <![endif]-->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c1.css') }}" data-minify="1" />
-    <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c2.css') }}" data-minify="1" />
-    <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c3.css') }}" data-minify="1" />
-    <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c4.css') }}" data-minify="1" />
-    <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c5.css') }}" data-minify="1" />
-    <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c6.css') }}" data-minify="1" />
-    <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c7.css') }}" data-minify="1" />
+    <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c1.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c2.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c4.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c5.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c6.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/c7.css') }}" />
     <script src="https://use.fontawesome.com/3202eb5af8.js"></script>
     <link rel="stylesheet" href="{{ URL::asset(config('app.theme').'/assets/css/mgntd.css') }}" data-minify="1" />
     <script type='text/javascript' src="{{ URL::asset(config('app.theme').'/assets/js/jquery.js') }}"></script>
     <script type='text/javascript' src="{{ URL::asset(config('app.theme').'/assets/js/jquery-migrate.min.js') }}"></script>
     <script type='text/javascript' src="{{ URL::asset(config('app.theme').'/assets/js/jquery.cookie.min.js') }}"></script>
-    @section('styles')
-    {!! isset($styles)?$styles:'' !!}
-    @stop
+    @yield('styles')
     <script type="text/javascript">var LOCALE = '/{{ (app()->getLocale()!="pl")?app()->getLocale()."/":"" }}';</script>
 </head>
-<body class="{{ $controller }} blog woocommerce-active">
+<body class="{{ $controller }}">
   <?php /*<!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P793MFQ"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

@@ -5,6 +5,7 @@ return array(
     'contact' => 'kontakt',
     'about'   => 'o-nas',
     'basket'  => 'koszyk',
+    'basket/add' => 'koszyk/dodaj',
     'login'   => 'logowanie',
     'logout'   => 'wyloguj',
     'register'   => 'rejestracja',

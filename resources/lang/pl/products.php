@@ -9,6 +9,9 @@ return array(
     'available_types' => 'Dostępne opcje: ',
     'create_set' => 'Stwórz zestaw',
     'choose' => 'Wybierz',
+    'choose_border_color' => 'Wybierz kolor ramki',
+    'add_to_set' => 'Dodaj do zestawu',
+    'btn_add_to_cart' => 'Dodaj do koszyka',
     //
     '1photo' => 'zdjęcie',
     '234photos' => 'zdjęcia',

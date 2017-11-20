@@ -21,7 +21,7 @@ class Controller extends BaseController
       $this->middleware(function ($request, $next) {
         if (!$request->session()->has('currency')) 
         {
-          $request->session()->put('currency', config('app.default_currency'));
+          $request->session()->put('currency', config('app.default_currency_code'));
         }
         if (!$request->session()->has('uploaded_files')) 
         {

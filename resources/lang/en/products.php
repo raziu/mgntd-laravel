@@ -9,6 +9,9 @@ return array(
     'available_types' => 'Available types: ',
     'create_set' => 'Create set',
     'choose' => 'Choose',
+    'choose_border_color' => 'Choose border color',
+    'add_to_set' => 'Add to set',
+    'btn_add_to_cart' => 'Add to cart',
     //
     '1photo' => 'photo',
     '234photos' => 'photos',

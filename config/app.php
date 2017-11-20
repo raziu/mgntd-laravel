@@ -112,6 +112,7 @@ return [
     'theme' => 'mgntd',
 
     'default_currency' => 'zł',
+    'default_currency_code' => 'PLN',
     'all_currencies' => array('zł'=>'PLN','$'=>'USD'),
 
     'av_key' => env('AVIARY_KEY', false),
