@@ -327,6 +327,7 @@ var productScript = {
           pictures: basketData,
           group: $(this).attr("data-group"),
           product_type: $(this).attr("data-type"),
+          product_price: $(this).attr("data-price"),
           border: $('#border').val()
         },
         beforeSend: function(result) {},

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\View;
 use Auth;
 use App\Basket;
+use Session;
+use Config;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,7 +30,15 @@ class AppServiceProvider extends ServiceProvider
            config([ 'app.locale_prefix' => Request::segment(1) ]);
       }
 
-      
+      /**
+       * Set unique ID for users (not logged)
+       */
+      $sessionId = session()->getId();
+      if(!session()->has('s3id') || ( session()->has('s3id') && session()->get('s3id') == "") )
+      {
+        $s3id = time().'-'.sprintf('%u', ip2long( $this->getIP() )).'-'.$sessionId;
+        session()->put('s3id',$s3id);
+      }
 
       /**
        * Pass extra data to all views
@@ -36,29 +46,29 @@ class AppServiceProvider extends ServiceProvider
       //compose all the views....
       view()->composer('*', function ($view) 
       {
-        if( Auth::check() )
+        $cartItems = \App\Basket::where('status','saved')
+        ->orderBy('id', 'desc')
+        ->take(100)
+        ->get()
+        ;
+        if( Auth::id() )
         {
-          $basket = Basket::where('user_id', Auth::user()->id);
-          $view->with('cart', $basket );    
+          $cartItems->where('user_id', Auth::id() );
         }
         else
         {
-          //$basket = new \stdClass();
-          $basket = [];
-          $view->with('cart', $basket );    
+          $cartItems->where('s3_id', session()->get('s3id') );
         }
-          
+        $view->with('cart', $cartItems );  
 
-          $action = app('request')->route()->getAction();
-          $controller = class_basename($action['controller']);
-          list($controller, $action) = explode('@', $controller);
-          $view->with('controller', $controller);
+        Config::set('cart', $cartItems);
+
+        $action = app('request')->route()->getAction();
+        $controller = class_basename($action['controller']);
+        list($controller, $action) = explode('@', $controller);
+        $view->with('controller', $controller);
       });
       //View::share('controller', 'xxx');
-
-      
-
-      
     }
 
     /**
@@ -69,5 +79,18 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+
+    public function getIP()
+    {
+      if ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) )
+      {
+        $forwarded_for = explode( ',', $_SERVER['HTTP_X_FORWARDED_FOR'] );
+        return trim( $forwarded_for[ count( $forwarded_for ) - 1 ] );
+      }
+      else
+      {
+        return @$_SERVER['REMOTE_ADDR'];
+      }
     }
 }

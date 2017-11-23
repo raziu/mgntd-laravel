@@ -23,5 +23,9 @@ return [
     'from' => 'od',
     'edit' => 'edytuj',
     'remove' => 'usuń',
+    'btn_confirm' => 'Tak, potwierdzam',
+    'btn_cancel' => 'Nie, rezygnuję',
+    'btn_order_more' => 'Zamów coś jeszcze',
+    'btn_back' => 'Wróć',
 
 ];

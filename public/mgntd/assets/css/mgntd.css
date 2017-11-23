@@ -356,6 +356,171 @@ a {
   z-index: 300;
 }
 
+/* CART */
+.jigsaw-mask {
+  height: 100%;
+  image-rendering: -moz-crisp-edges;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 300;
+}
+.basket-mask {
+  position: relative;
+}
+.basket-photo {
+  float: left;
+}
+table.cart td, table.cart td.product-thumbnail img{
+  vertical-align: middle;
+}
+table.cart td.product-thumbnail {
+  position: relative;
+}
+.white-popup-block {
+  background: #FFF;
+  padding: 20px 30px;
+  text-align: left;
+  max-width: 650px;
+  margin: 40px auto;
+  position: relative;
+}
+.white-popup-block .content {
+  padding: 15px;
+}
+.white-popup-block .content h2 {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+
+.toppage-slider {
+  overflow-y: hidden;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  background: #df3320;
+  color: #fff;
+  z-index: 20000;
+  border: 0;
+  display: none;
+}
+.toppage-slider .alert-container {
+  min-height: 73px;
+  padding: 26.5px 40px;
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+}
+.toppage-slider strong {
+  font-size: 22px;
+  display: block;
+}
+.toppage-slider .alert-close-icon {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  right: 0;
+  margin-top: -10px;
+}
+.has-error .form-control {
+  border-color: #df3320;
+}
+.text-danger {
+  color: #df3320;
+}
+
+/* SHIPPING */
+section.shipping h3 {
+  font-size: 30px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+}
+section.shipping h6 {
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: normal;
+  color: #5f6a7d;
+}
+section.shipping label {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: #5f6a7d;
+}
+section.shipping input, section.shipping select {
+  -webkit-transition: color 300ms,border-color 300ms,background-color 300ms;
+  transition: color 300ms,border-color 300ms,background-color 300ms;
+  position: relative;
+  z-index: 0;
+  display: block;
+  margin: 0;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 300;
+  background: #fff;
+  color: #5f6a7d;
+  outline: none;
+  border: 1px solid #c4c4c4;
+  border-radius: 3px;
+  text-transform: initial;
+}
+section.shipping select.country-code {
+  padding: 0px 38px 0px 10px;
+  background-position: 5px 5px;
+  background-size: 30px 20px;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  padding-left: 40px;
+}
+
+section.shipping ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #ccc;
+  font-weight: 100;
+}
+section.shipping ::-moz-placeholder { /* Firefox 19+ */
+  color: #ccc;
+  font-weight: 100;
+}
+section.shipping :-ms-input-placeholder { /* IE 10+ */
+  color: #ccc;
+  font-weight: 100;
+}
+section.shipping :-moz-placeholder { /* Firefox 18- */
+  color: #ccc;
+  font-weight: 100;
+}
+section.shipping input:focus {
+  border-color :#2996cc;;
+}
+section.shipping form {
+  border-bottom:solid 1px #e0e0e0 !important;
+  border-top:solid 1px #e0e0e0 !important;
+  padding: 30px 0px;
+}
+#address_name_div {
+  /*display: none;*/
+  clear: left;
+}
+section.shipping .checkbox label {
+  float: left;
+}
+section.shipping .checkbox input[type='checkbox']
+{
+  float: left;
+  margin-right: 5px;
+  margin-left: 0px;
+  width: auto;
+}
+
 /* FOOTER */
 footer.footer {
   background: #050F2C;

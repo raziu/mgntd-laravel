@@ -62,6 +62,11 @@ foreach( $all_langs as $prefix )
      */
     Route::get(Lang::get('routes.basket',[], $prefix) , 'BasketController@index')->name($prefix.'_basket');
     Route::post(Lang::get('routes.basket/add',[], $prefix) , 'BasketController@create')->name($prefix.'_basket_add');
+    Route::get(Lang::get('routes.basket/update',[], $prefix) , 'BasketController@update')->name($prefix.'_basket_update_get');
+    Route::post(Lang::get('routes.basket/update',[], $prefix) , 'BasketController@update')->name($prefix.'_basket_update');
+    Route::get(Lang::get('routes.basket/shipping',[], $prefix) , 'BasketController@shipping')->name($prefix.'_basket_shipping');
+    Route::post(Lang::get('routes.basket/validation',[], $prefix) , 'BasketController@validation')->name($prefix.'_basket_validation');
+    Route::get(Lang::get('routes.basket/payment',[], $prefix) , 'BasketController@payment')->name($prefix.'_basket_payment');
   
     /**
      * The following line will register:

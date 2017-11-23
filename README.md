@@ -98,6 +98,18 @@ php artisan make:controller ProductController
 
 php artisan make:controller InfoController
 
+Add countries table using seeder
+```
+php artisan make:migration create_countries_table --create=countries
+php artisan migrate
+php artisan make:seeder CountriesTableSeeder
+```
++ update seed class with data in run()
+```
+composer dump-autoload
+php artisan db:seed --class=CountriesTableSeeder
+```
+
 
 ## Built With
 

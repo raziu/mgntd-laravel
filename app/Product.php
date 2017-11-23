@@ -77,6 +77,7 @@ class Product extends Model
   {
     $res = [];
     $arr = json_decode( $value );
+    //echo "<pre>".print_r( $arr, 1 )."</pre>"; exit;
     if( count( $arr ) )
     {
       $res = (array)$arr;

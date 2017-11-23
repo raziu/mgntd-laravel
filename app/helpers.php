@@ -51,5 +51,3 @@ if (!function_exists('variety'))
     return $varietyForOthers;
   }
 }
-
-//x. echo 'Zdobyłeś właśnie '.$x.' '.$this->Variety($x,'punkt','punkty','punktów');

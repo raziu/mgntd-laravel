@@ -481,6 +481,8 @@
     });
   }
 
+  
+
   jQuery(document).ready(function($){
     if(!catapultReadCookie("catAccCookies")){ // If the cookie has not been set then show the bar
       $("html").addClass("has-cookie-bar");
@@ -498,3 +500,56 @@
     change_currency();
 
   });  
+
+  function testme() {
+    alert('testme ok');
+  }
+
+  var confirmDialog = function(message, headline, callbackFunction) {
+    var dialog = '<div class="dialog confirm mfp-with-anim">';
+    dialog += '<div class="white-popup-block"><div class="content">';
+    if (headline) {
+      dialog += '<h2>' + headline + '</h2>';
+    }
+    dialog += message + '</div>';
+    dialog += '<div class="actions">';
+    dialog += '<button type="button" class="btn btn-default btn-cancel">'+CANCEL+'</button> ';
+    dialog += '<button type="button" class="btn btn-primary btn-submit btn-submit-remove-cart-item">'+CONFIRM+'</button>';
+    dialog += '</div>';
+    dialog += '</div>';
+    dialog += '</div>';
+ 
+    jQuery.magnificPopup.open({
+      modal: true,
+      items: {
+          src: dialog,
+          type: 'inline'
+      },
+      callbacks: {
+        open: function() {
+          var $content = jQuery(this.content);
+          $content.on('click', '.btn-submit', function() {
+            if (typeof (callbackFunction) === 'function') {
+                callbackFunction();
+            }
+            jQuery.magnificPopup.close();
+            jQuery(document).off('keydown', keydownHandler);
+          });
+          $content.on('click', '.btn-cancel', function() {
+            jQuery.magnificPopup.close();
+            jQuery(document).off('keydown', keydownHandler);
+          });
+          var keydownHandler = function (e) {
+            if (e.keyCode == 13) {
+              $content.find('.btn-submit').click();
+              return false;
+            } else if (e.keyCode == 27) {
+              $content.find('.btn-cancel').click();
+              return false;
+            }
+          };
+          jQuery(document).on('keydown', keydownHandler);
+        }
+      }
+    });
+  };

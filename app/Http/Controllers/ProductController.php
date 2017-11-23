@@ -20,6 +20,9 @@ class ProductController extends Controller
     ->orderBy('id', 'desc')
     ->take(10)
     ->get();
+    ;
+    //dd($products->toSql());
+    //echo count($products); exit;
     return view('product.index', compact('products'));
   }
 
@@ -86,8 +89,19 @@ class ProductController extends Controller
 
     $uploaded_files = $request->session()->get('uploaded_files');
     //echo "<pre>".print_r( $uploaded_files, 1 )."</pre>"; exit;
+    //var_dump($elements); exit;
 
-    return view('product.view', compact('product', 'group', 'type', 'product_types', 'elements', 'borderColors', 'formInputs', 'formAttributes', 'uploaded_files'));
+    return view('product.view', compact(
+      'product', 
+      'group', 
+      'type', 
+      'product_types', 
+      'elements', 
+      'borderColors', 
+      'formInputs', 
+      'formAttributes', 
+      'uploaded_files')
+    );
   }
 
   public function uploadS3(Request $request)

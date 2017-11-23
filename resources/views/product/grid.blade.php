@@ -69,6 +69,6 @@ $cnt = 0;
 
 <div class="row">
   <div class="text-center">
-    <a href="javascript:void(0);" class="btn btn-primary btn-add-to-cart hidden" id="btn-add-to-cart" data-group="{{ $group }}" data-type="{{ $type }}">{{ __('products.btn_add_to_cart') }}</a>
+    <a href="javascript:void(0);" class="btn btn-primary btn-add-to-cart hidden" id="btn-add-to-cart" data-group="{{ $group }}" data-type="{{ $type }}" data-price="{{ $product->price }}">{{ __('products.btn_add_to_cart') }}</a>
   </div>
 </div>

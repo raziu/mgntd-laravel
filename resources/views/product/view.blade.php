@@ -14,8 +14,8 @@
   var BORDER_COLORS = '{{ $borderColors }}';
   var URL_REDIRECT = '{{ route("product_upload") }}';
   var ELEMENTS = '{{ $elements }}';
-  var CAPTCHA_ERROR = 'CAPTCHA_ERROR';
-  var ADDING_TO_BASKET_TEXT = 'ADDING_TO_BASKET_TEXT';
+  var CAPTCHA_ERROR = '{{ __("products.captcha_error") }}';
+  var ADDING_TO_BASKET_TEXT = '{{ __("products.adding_to_basket") }}';
   var URL_CART_ADD = '{{ route("basket_add") }}';
   var URL_CART = '{{ route("basket") }}';
 </script>

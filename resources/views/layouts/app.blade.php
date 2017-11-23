@@ -38,7 +38,11 @@
     <script type='text/javascript' src="{{ URL::asset(config('app.theme').'/assets/js/jquery-migrate.min.js') }}"></script>
     <script type='text/javascript' src="{{ URL::asset(config('app.theme').'/assets/js/jquery.cookie.min.js') }}"></script>
     @yield('styles')
-    <script type="text/javascript">var LOCALE = '/{{ (app()->getLocale()!="pl")?app()->getLocale()."/":"" }}';</script>
+    <script type="text/javascript">
+    var LOCALE = '/{{ (app()->getLocale()!="pl")?app()->getLocale()."/":"" }}';
+    var CONFIRM = '{{ __("global.btn_confirm") }}';
+    var CANCEL = '{{ __("global.btn_cancel") }}';
+    </script>
 </head>
 <body class="{{ $controller }}">
   <?php /*<!-- Google Tag Manager (noscript) -->

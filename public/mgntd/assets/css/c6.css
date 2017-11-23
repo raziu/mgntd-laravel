@@ -852,11 +852,14 @@
   5px 0;padding:0
   10px}ul.products li.product .product-button-wrap .add-to-cart-button-wrap .button,
   .add-to-cart-button-wrap
-  .button{display:inline}.shop_table.cart{border:none}.shop_table.cart th,
+  .button{display:inline}
+  .shop_table.cart{border:none}
+  .shop_table.cart th,
   .shop_table.cart
   td{border:1px
-  solid #e5e5e5}.shop_table.cart tr:last-child
-  td{padding-right:0;padding-left:0;border-right:none;border-left:none}.shop_table.cart>tbody>tr:nth-of-type(odd){background:none}.shop_table.cart>thead>tr,.shop_table.cart>tbody>tr:nth-of-type(even){background-color:#f9f9f9}.shop_table.cart tbody tr:last-child{background:none}ul.products li.product
+  solid #e5e5e5}
+
+  .shop_table.cart>tbody>tr:nth-of-type(odd){background:none}.shop_table.cart>thead>tr,.shop_table.cart>tbody>tr:nth-of-type(even){background-color:#f9f9f9}.shop_table.cart tbody tr:last-child{background:none}ul.products li.product
   img{width:100%}ul.products li.product:hover
   img{}.woocommerce-billing-fields
   input{height:33px;padding:6px

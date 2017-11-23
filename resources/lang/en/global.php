@@ -23,4 +23,8 @@ return [
     'from' => 'from',
     'edit' => 'edit',
     'remove' => 'remove',
+    'btn_confirm' => 'Yes, I agree',
+    'btn_cancel' => 'No, thanks',
+    'btn_order_more' => 'Order something else',
+    'btn_back' => 'Go Back',
 ];

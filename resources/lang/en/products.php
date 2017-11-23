@@ -12,6 +12,8 @@ return array(
     'choose_border_color' => 'Choose border color',
     'add_to_set' => 'Add to set',
     'btn_add_to_cart' => 'Add to cart',
+    'captcha_error' => 'Error captcha!',
+    'adding_to_basket' => 'Adding product to cart',
     //
     '1photo' => 'photo',
     '234photos' => 'photos',
