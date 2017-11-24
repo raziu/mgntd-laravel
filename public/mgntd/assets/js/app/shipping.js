@@ -31,9 +31,23 @@ var shippingScript = {
       //$("select#country").change();
     }
     $(document).on('change', 'select#country', function(){
-      console.log('select change');
+      //console.log('select change');
       var newValue = $(this).val();
       $(this).attr('style', 'background-image: url(/img/ico/ico-'+newValue+'.png)');
+
+      //ajax
+      $.ajax({
+        method: "POST",
+        url: URL_CHANGE_COUNTRY,
+        data: { iso: newValue }
+      }).done(function(data) 
+      {
+        $('#delivery-container').html('');
+        if( data.status == 'success' )
+        {
+          $('#delivery-option-template').tmpl(data.response).appendTo('#delivery-container');
+        }
+      });
     });
   },
   initCheckboxToggle: function($) {

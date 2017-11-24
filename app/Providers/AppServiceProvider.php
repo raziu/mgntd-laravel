@@ -60,7 +60,7 @@ class AppServiceProvider extends ServiceProvider
           $cartItems->where('s3_id', session()->get('s3id') );
         }
         $view->with('cart', $cartItems );  
-
+        //?not working in controller
         Config::set('cart', $cartItems);
 
         $action = app('request')->route()->getAction();

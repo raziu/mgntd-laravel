@@ -7,7 +7,7 @@
     </a>
   </li>
   <li role="presentation"> 
-    <a href="/add/magnets/1x9#instagram" aria-controls="instagram" role="tab" data-toggle="tab" title="{{ __('products.tab_instagram') }}">
+    <a href="{!! route('product_view',[$product->group,$type]) !!}#instagram" aria-controls="instagram" role="tab" data-toggle="tab" title="{{ __('products.tab_instagram') }}">
       <i class="fa fa-2x fa-instagram" aria-hidden="true"></i> 
     </a>
   </li>

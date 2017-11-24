@@ -51,4 +51,16 @@ return [
     'save_address' => 'Save address',
     'label_address_name' => 'Address name',
     'placeholder_address_name' => 'Enter address name',
+    //
+    'meta_title_payment' => 'Order payment',
+    'meta_description_payment' => 'Order payment meta',
+    //
+    'header_delivery' => 'Delivery',
+    'header_sub_delivery' => 'Available options (depending on the country)',
+    'delivery_free' => 'Free',
+    'delivery_free_desc' => 'Provided by your local postal office',
+    'delivery_free_time' => 'Estimated delivery 4-10 days',
+    'delivery_express' => 'Priority',
+    'delivery_express_desc' => 'Provided by your local postal office',
+    'delivery_express_time' => 'Estimated delivery 3-5 days',
 ];

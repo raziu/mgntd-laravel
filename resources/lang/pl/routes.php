@@ -10,6 +10,7 @@ return array(
     'basket/shipping' => 'koszyk/wysylka',
     'basket/validation' => 'koszyk/walidacja',
     'basket/payment' => 'koszyk/platnosc',
+    'basket/country' => 'koszyk/kraj',
     'login'   => 'logowanie',
     'logout'   => 'wyloguj',
     'register'   => 'rejestracja',

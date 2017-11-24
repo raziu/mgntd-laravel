@@ -51,5 +51,25 @@ return [
     'save_address' => 'Zapisz adres',
     'label_address_name' => 'Nazwa adresu',
     'placeholder_address_name' => 'Wpisz nazwę adresu',
-
+    //
+    'meta_title_payment' => 'Płatność za zamówienie',
+    'meta_description_payment' => 'Płatność meta opis',
+    //
+    'header_delivery' => 'Dostawa',
+    'header_sub_delivery' => 'Dostępne opcje dostawy (w zależności od kraju)',
+    'delivery_free' => 'Darmowa',
+    'delivery_free_desc' => 'Przesyłka Pocztą Polską nierejestrowana',
+    'delivery_free_time' => 'Czas dostawy 4-10 dni',
+    'delivery_express' => 'Priorytet',
+    'delivery_express_desc' => 'Przesyłka Pocztą Polską rejestrowana',
+    'delivery_express_time' => 'Czas dostawy 3-5 dni',
+    //
+    'header_payment' => 'Płatność',
+    'header_sub_payment' => 'Dostępne metody płatności',
+    'payment_wire' => 'Przelew na konto',
+    'payment_wire_desc' => 'Płacisz zwykłym przelewem na nasze konto',
+    'payment_dotpay' => 'DOTPAY',
+    'payment_dotpay_desc' => 'Płatności online obsługiwane prze DOTPAY',
+    'payment_paypal' => 'PAYPAL',
+    'payment_paypal_desc' => 'Płatność online obsługiwana prze PAYPAL',
 ];

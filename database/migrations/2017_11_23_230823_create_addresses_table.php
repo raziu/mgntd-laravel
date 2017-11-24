@@ -23,7 +23,7 @@ class CreateAddressesTable extends Migration
           $table->string('country',2);
           $table->string('email',128);
           $table->string('address_name',32);
-          $table->string('s3_id', 64);
+          $table->string('s3_id', 128);
           $table->timestamps();
         });
     }

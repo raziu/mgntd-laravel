@@ -10,6 +10,7 @@ return array(
     'basket/shipping' => 'cart/shipping',
     'basket/validation' => 'cart/validation',
     'basket/payment' => 'cart/payment',
+    'basket/country' => 'cart/country',
     'login'   => 'login',
     'logout'   => 'logout',
     'register'   => 'register',

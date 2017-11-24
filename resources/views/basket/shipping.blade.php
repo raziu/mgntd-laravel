@@ -11,7 +11,9 @@
 @section('javascript')
 <script type="text/javascript">
   var LANG = '{{ app()->getLocale() }}';
+  var URL_CHANGE_COUNTRY = '{{ route("basket_country") }}';
 </script>
+<script type="text/javascript" src="{{ URL::asset(config('app.theme').'/assets/js/jquery.tmpl.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset(config('app.theme').'/assets/js/app/shipping.js') }}"></script>
 @parent    
 @stop
@@ -36,7 +38,9 @@
       <div class="col-md-8 col-md-offset-2">
         <h3>{{ __('basket.header') }}</h3>
         <h6>{{ __('basket.header_sub') }}</h6>
-        <form method="POST" action="{{ route('basket_validation') }}" autocomplete="off">
+        <hr class="divider-w divider-p">
+        <form method="POST" action="{{ route('basket_shipping') }}" autocomplete="off">
+          
           @if (count($errors) > 0)
           <div class="alert alert-danger toppage-slider">
             <div class="alert-container">
@@ -52,6 +56,7 @@
             </div>
           </div>
           @endif
+
           <div class="row">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="col-md-6">
@@ -69,6 +74,7 @@
               </div>
             </div>
           </div>
+
           <div class="row">
             <div class="col-md-6">
               <div class="form-group {{ $errors->has('city') ? 'has-error' : '' }}">
@@ -85,6 +91,7 @@
               </div>
             </div>
           </div>
+
           <div class="row">
             <div class="col-md-6">
               <div class="form-group {{ $errors->has('country') ? 'has-error' : '' }}">
@@ -111,6 +118,7 @@
               </div>
             </div>
           </div>
+
           <div class="row">
             <div class="col-md-6">&nbsp;</div>
             <div class="col-md-6">
@@ -130,7 +138,69 @@
               @endif
             </div>
           </div>
+
           <div class="row">
+            <hr class="divider-w divider-p">
+            <h3>{{ __('basket.header_delivery') }}</h3>
+            <h6>{{ __('basket.header_sub_delivery') }}</h6>
+            <hr class="divider-w divider-p">
+            <div id="delivery-container" class="col-md-12 col-sm-12 delivery {{ $errors->has('delivery_type') ? 'has-error' : '' }}">
+              @foreach( $deliveries as $delivery )
+              <div class="form-group delivery-option">
+                <div class="row">
+                  <div class="option-col option-radio">
+                    <input type="radio" name="delivery_type" id="delivery_type" value="{{ $delivery->id }}" 
+                    @if( old('delivery_type') == $delivery->id )
+                     checked="checked"
+                    @endif
+                    />
+                  </div>
+                  <div class="option-col option-ico">
+                    <img src="/img/ico/{{ $delivery->d_icon }}.svg" alt="" />
+                  </div>
+                  <div class="option-col">
+                    <label>{{ __('basket.'.$delivery->d_name) }} ({{ $delivery->d_price }})</label>
+                    <p>{{ __('basket.'.$delivery->d_desc) }}</p>
+                    <p>{{ __('basket.'.$delivery->d_time) }}</p>
+                  </div>
+                </div>
+              </div>
+              @endforeach
+            </div>
+            <span class="text-danger">{{ $errors->first('delivery_type') }}</span>
+          </div>
+
+          <div class="row">
+            <hr class="divider-w divider-p">
+            <h3>{{ __('basket.header_payment') }}</h3>
+            <h6>{{ __('basket.header_sub_payment') }}</h6>
+            <hr class="divider-w divider-p">
+            <div id="payment-container" class="col-md-12 col-sm-12 payment {{ $errors->has('payment_type') ? 'has-error' : '' }}">
+              @foreach( $payments as $payment )
+              <div class="form-group payment-option">
+                <div class="row">
+                  <div class="option-col option-radio">
+                    <input type="radio" name="payment_type" id="payment_type" value="{{ $payment->id }}" 
+                    @if( old('payment_type') == $payment->id )
+                     checked="checked"
+                    @endif
+                    />
+                  </div>
+                  <div class="option-col option-ico">
+                    <img src="/img/ico/{{ $payment->icon }}" alt="" />
+                  </div>
+                  <div class="option-col">
+                    <label>{{ __('basket.'.$payment->name) }}</label>
+                    <p>{{ __('basket.'.$payment->desc) }}</p>
+                  </div>
+                </div>
+              </div>
+              @endforeach
+            </div>
+            <span class="text-danger">{{ $errors->first('payment_type') }}</span>
+          </div>
+
+          <div class="row" style="margin-top:30px;">
             <div class="col-md-6">
               <div class="form-group">
                 <a href="{{ route('basket') }}" class="btn btn-default"><i class="fa fa-arrow-left" aria-hidden="true"></i> {{ __('global.btn_back') }}</a>
@@ -148,4 +218,23 @@
     </div>
   </div>
 </section>
+
+<script id="delivery-option-template" type="text/x-jquery-tmpl">
+<div class="form-group delivery-option">
+  <div class="row">
+    <div class="option-col option-radio">
+      <input type="radio" name="delivery_type" id="delivery_type" value="${id}" />
+    </div>
+    <div class="option-col option-ico">
+      <img src="/img/ico/${icon}.svg" alt="" />
+    </div>
+    <div class="option-col">
+      <label>${name} (${price})</label>
+      <p>${desc}</p>
+      <p>${time}</p>
+    </div>
+  </div>
+</div>
+</script>
+
 @endsection  
