@@ -431,7 +431,7 @@ table.cart td.product-thumbnail {
 .has-error .form-control {
   border-color: #df3320;
 }
-.delivery.has-error {
+.delivery.has-error, .payment.has-error {
   border: solid 1px #df3320;
   border-radius: 3px;
 }
