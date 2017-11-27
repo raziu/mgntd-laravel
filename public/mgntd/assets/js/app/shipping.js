@@ -50,6 +50,24 @@ var shippingScript = {
       });
     });
   },
+  initDeliveryTypeSelected: function($) {
+    $('input[name="delivery_type"]').on('change', function(){
+      shippingScript.updateTotalPrice($);
+    });
+  },
+  updateTotalPrice: function($) {
+    var deliveryPrice = 0;;
+    if( $('input[name="delivery_type"]:checked').length )
+    {
+      deliveryPrice = $('input[name="delivery_type"]:checked').data('price')*1;
+    }
+    
+    console.log('deliveryPrice = '+deliveryPrice);
+    $('#summary_shipping').html( parseFloat( deliveryPrice ).toFixed(2) );
+    var cartPrice = $('#summary_products').html();
+    var totalPrice = parseFloat(cartPrice) + parseFloat(deliveryPrice);
+    $('#summary_to_pay').html( parseFloat( totalPrice ).toFixed(2) );
+  },
   initCheckboxToggle: function($) {
     $('#save_address').on('click', function(){
       //$('#address_name_div').toggle('slow');
@@ -59,6 +77,8 @@ var shippingScript = {
     shippingScript.initAlerts($);
     shippingScript.initFormSelect($);
     shippingScript.initCheckboxToggle($);
+    shippingScript.initDeliveryTypeSelected($);
+    shippingScript.updateTotalPrice($);
   }
 };
 jQuery(document).ready(function($) {

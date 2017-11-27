@@ -22,6 +22,7 @@ return [
     'header_quantity' => 'Ilość',
     'header_total' => 'Suma',
     //
+    'cart_contents_header' => 'Zawartość koszyka',
     'remove_this_item' => 'Usuń ten produkt',
     'no_items' => 'Brak produktów w koszyku',
     'confirm_title' => 'Usuń produkt',
@@ -46,7 +47,7 @@ return [
     'placeholder_city' => 'Wpisz miejscowość',
     'placeholder_zip' => 'Wpisz kod pocztowy',
     'placeholder_email' => 'Wpisz swój email',
-    'label_btn' => 'Idź do płatności',
+    'label_btn' => 'Złóż zamówienie',
     //
     'save_address' => 'Zapisz adres',
     'label_address_name' => 'Nazwa adresu',
@@ -59,7 +60,7 @@ return [
     'header_sub_delivery' => 'Dostępne opcje dostawy (w zależności od kraju)',
     'delivery_free' => 'Darmowa',
     'delivery_free_desc' => 'Przesyłka Pocztą Polską nierejestrowana',
-    'delivery_free_time' => 'Czas dostawy 4-10 dni',
+    'delivery_free_time' => 'Czas dostawy 7-14 dni',
     'delivery_express' => 'Priorytet',
     'delivery_express_desc' => 'Przesyłka Pocztą Polską rejestrowana',
     'delivery_express_time' => 'Czas dostawy 3-5 dni',
@@ -69,7 +70,14 @@ return [
     'payment_wire' => 'Przelew na konto',
     'payment_wire_desc' => 'Płacisz zwykłym przelewem na nasze konto',
     'payment_dotpay' => 'DOTPAY',
-    'payment_dotpay_desc' => 'Płatności online obsługiwane prze DOTPAY',
+    'payment_dotpay_desc' => 'Płatności online obsługiwane przez DOTPAY',
     'payment_paypal' => 'PAYPAL',
-    'payment_paypal_desc' => 'Płatność online obsługiwana prze PAYPAL',
+    'payment_paypal_desc' => 'Płatność online obsługiwana przez PAYPAL',
+    //
+    'header_summary' => 'Podsumowanie',
+    'header_sub_summary' => 'Finalne koszty Twojego zamówienia',
+    'summary_total' => 'W koszyku',
+    'summary_shipping' => 'Koszt dostawy',
+    'summary_discount' => 'Zniżka',
+    'summary_to_pay' => 'Do zapłaty',
 ];

@@ -15,6 +15,7 @@ class PaymentsTableSeeder extends Seeder
         [
           'active' => 1,
           'name' => 'payment_wire',
+          'code' => 'wire',
           'icon' => 'payment-bank',
           'desc' => 'payment_wire_desc',
           'subs' => 0,
@@ -23,6 +24,7 @@ class PaymentsTableSeeder extends Seeder
         [
           'active' => 1,
           'name' => 'payment_dotpay',
+          'code' => 'dotpay',
           'icon' => 'payment-dotpay',
           'desc' => 'payment_dotpay_desc',
           'subs' => 1,
@@ -31,6 +33,7 @@ class PaymentsTableSeeder extends Seeder
         [
           'active' => 0,
           'name' => 'payment_paypal',
+          'code' => 'paypal',
           'icon' => 'payment-paypal',
           'desc' => 'payment_paypal_desc',
           'subs' => 0,

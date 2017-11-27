@@ -47,7 +47,8 @@ class Basket extends Model
       $converter = 0.5;
       $price = number_format(ceil($value*$converter), 2);
     }
-    return $this->attributes['price'] = $price * $this->attributes['quantity'];
+    //return $this->attributes['price'] = $price * $this->attributes['quantity'];
+    return $price * $this->attributes['quantity'];
   }
 
   public function basketThumb( Basket $basket, $class = '', $width = 80, $onlyTileLink = false )

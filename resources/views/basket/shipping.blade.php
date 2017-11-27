@@ -36,9 +36,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <h3>{{ __('basket.header') }}</h3>
-        <h6>{{ __('basket.header_sub') }}</h6>
-        <hr class="divider-w divider-p">
+        
         <form method="POST" action="{{ route('basket_shipping') }}" autocomplete="off">
           
           @if (count($errors) > 0)
@@ -57,150 +55,205 @@
           </div>
           @endif
 
-          <div class="row">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <div class="col-md-6">
-              <div class="form-group {{ $errors->has('fullname') ? 'has-error' : '' }}">
-                <label for="fullname">{{ __('basket.label_fullname') }}</label>
-                <input type="text" id="fullname" name="fullname" class="form-control" placeholder="{{ __('basket.placeholder_fullname') }}" value="{{ old('fullname') }}">
-                <span class="text-danger">{{ $errors->first('fullname') }}</span>
+          <div class="box">
+            <div class="row">
+            <h3>{{ __('basket.header') }}</h3>
+            <h6>{{ __('basket.header_sub') }}</h6>
+            <hr class="divider-w divider-p">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <div class="col-md-6">
+                <div class="form-group {{ $errors->has('fullname') ? 'has-error' : '' }}">
+                  <label for="fullname">{{ __('basket.label_fullname') }}</label>
+                  <input type="text" id="fullname" name="fullname" class="form-control" placeholder="{{ __('basket.placeholder_fullname') }}" value="{{ old('fullname') }}">
+                  <span class="text-danger">{{ $errors->first('fullname') }}</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
+                  <label for="address">{{ __('basket.label_address') }}</label>
+                  <input type="text" id="address" name="address" class="form-control" placeholder="{{ __('basket.placeholder_address') }}" value="{{ old('address') }}">
+                  <span class="text-danger">{{ $errors->first('address') }}</span>
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
-                <label for="address">{{ __('basket.label_address') }}</label>
-                <input type="text" id="address" name="address" class="form-control" placeholder="{{ __('basket.placeholder_address') }}" value="{{ old('address') }}">
-                <span class="text-danger">{{ $errors->first('address') }}</span>
-              </div>
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group {{ $errors->has('city') ? 'has-error' : '' }}">
-                <label for="fullname">{{ __('basket.label_city') }}</label>
-                <input type="text" id="city" name="city" class="form-control" placeholder="{{ __('basket.placeholder_city') }}" value="{{ old('city') }}">
-                <span class="text-danger">{{ $errors->first('city') }}</span>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group {{ $errors->has('city') ? 'has-error' : '' }}">
+                  <label for="fullname">{{ __('basket.label_city') }}</label>
+                  <input type="text" id="city" name="city" class="form-control" placeholder="{{ __('basket.placeholder_city') }}" value="{{ old('city') }}">
+                  <span class="text-danger">{{ $errors->first('city') }}</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group {{ $errors->has('zip') ? 'has-error' : '' }}">
+                  <label for="address">{{ __('basket.label_zip') }}</label>
+                  <input type="text" id="zip" name="zip" class="form-control" placeholder="{{ __('basket.placeholder_zip') }}" value="{{ old('zip') }}">
+                  <span class="text-danger">{{ $errors->first('zip') }}</span>
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group {{ $errors->has('zip') ? 'has-error' : '' }}">
-                <label for="address">{{ __('basket.label_zip') }}</label>
-                <input type="text" id="zip" name="zip" class="form-control" placeholder="{{ __('basket.placeholder_zip') }}" value="{{ old('zip') }}">
-                <span class="text-danger">{{ $errors->first('zip') }}</span>
-              </div>
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group {{ $errors->has('country') ? 'has-error' : '' }}">
-                <label for="mobileno">{{ __('basket.label_country') }}</label>
-                <select id="country" name="country" class="form-control country-code" style="background-image: url(/img/ico/ico-{{ old('country') }}.png)">
-                <option value="">{{ __('global.choose') }}</option>
-                  @foreach( $countries as $country )
-                  <option 
-                    value="{{ $country->iso }}" 
-                    @if ($country->iso == old('country'))
-                      selected="selected"
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group {{ $errors->has('country') ? 'has-error' : '' }}">
+                  <label for="mobileno">{{ __('basket.label_country') }}</label>
+                  <select id="country" name="country" class="form-control country-code" style="background-image: url(/img/ico/ico-{{ old('country') }}.png)">
+                  <option value="">{{ __('global.choose') }}</option>
+                    @foreach( $countries as $country )
+                    <option 
+                      value="{{ $country->iso }}" 
+                      @if ($country->iso == old('country'))
+                        selected="selected"
+                      @endif
+                    >{!! $country->{app()->getLocale()} !!}</option>
+                    @endforeach
+                  </select>
+                  <span class="text-danger">{{ $errors->first('country') }}</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                  <label for="email">{{ __('basket.label_email') }}</label>
+                  <input type="text" id="email" name="email" class="form-control" placeholder="{{ __('basket.placeholder_email') }}" value="{{ old('email') }}">
+                  <span class="text-danger">{{ $errors->first('email') }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">&nbsp;</div>
+              <div class="col-md-6">
+                @if (Auth::check())
+                <div class="form-group checkbox {{ (old('save_address') && $errors->first('address_name')) ? 'has-error' : '' }}">  
+                  <input type="checkbox" name="save_address" id="save_address" value="1"
+                  @if( old('save_address') ) checked="checked" @endif
+                  /> <label>{{ __('basket.save_address') }}</label>                
+                  <div id="address_name_div">
+                    <label for="email">{{ __('basket.label_address_name') }}</label>
+                    <input type="text" id="address_name" name="address_name" class="form-control" placeholder="{{ __('basket.placeholder_address_name') }}" value="{{ old('address_name') }}">
+                    @if( old('save_address') )
+                    <span class="text-danger">{{ $errors->first('address_name') }}</span>
                     @endif
-                  >{!! $country->{app()->getLocale()} !!}</option>
+                  </div>
+                </div>  
+                @endif
+              </div>
+            </div>
+
+          </div>
+          
+          <div class="box">
+            
+          <div class="row">
+            <div class="col-md-5">
+              <div class="row">
+                <h3>{{ __('basket.header_delivery') }}</h3>
+                <h6>{{ __('basket.header_sub_delivery') }}</h6>
+                <hr class="divider-w divider-p">
+                <div id="delivery-container" class="col-md-12 col-sm-12 delivery {{ $errors->has('delivery_type') ? 'has-error' : '' }}">
+                  @foreach( $deliveries as $delivery )
+                  <div class="form-group delivery-option">
+                    <div class="row">
+                      <div class="option-col option-radio">
+                        <input type="radio" name="delivery_type" id="delivery_type" value="{{ $delivery->id }}" data-price="{{ $delivery->d_price }}" 
+                        @if( old('delivery_type') == $delivery->id )
+                        checked="checked"
+                        @endif
+                        />
+                      </div>
+                      <div class="option-col option-ico">
+                        <img src="/img/ico/{{ $delivery->d_icon }}.svg" alt="" />
+                      </div>
+                      <div class="option-col">
+                        <label>{{ __('basket.'.$delivery->d_name) }} ({{ $delivery->d_price }})</label>
+                        <p>{{ __('basket.'.$delivery->d_desc) }}</p>
+                        <p>{{ __('basket.'.$delivery->d_time) }}</p>
+                      </div>
+                    </div>
+                  </div>
                   @endforeach
-                </select>
-                <span class="text-danger">{{ $errors->first('country') }}</span>
+                </div>
+                <span class="text-danger">{{ $errors->first('delivery_type') }}</span>
               </div>
+
+              
+
             </div>
-            <div class="col-md-6">
-              <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                <label for="email">{{ __('basket.label_email') }}</label>
-                <input type="text" id="email" name="email" class="form-control" placeholder="{{ __('basket.placeholder_email') }}" value="{{ old('email') }}">
-                <span class="text-danger">{{ $errors->first('email') }}</span>
+
+            <div class="col-md-2"></div>
+
+            <div class="col-md-5">
+            <div class="row">
+                <h3>{{ __('basket.header_payment') }}</h3>
+                <h6>{{ __('basket.header_sub_payment') }}</h6>
+                <hr class="divider-w divider-p">
+                <div id="payment-container" class="col-md-12 col-sm-12 payment {{ $errors->has('payment_type') ? 'has-error' : '' }}">
+                  @foreach( $payments as $payment )
+                  <div class="form-group payment-option">
+                    <div class="row">
+                      <div class="option-col option-radio">
+                        <input type="radio" name="payment_type" id="payment_type" value="{{ $payment->id }}" data-code="{{ $payment->code }}" 
+                        @if( old('payment_type') == $payment->id )
+                        checked="checked"
+                        @endif
+                        />
+                      </div>
+                      <div class="option-col option-ico">
+                        <img src="/img/ico/{{ $payment->icon }}" alt="" />
+                      </div>
+                      <div class="option-col">
+                        <label>{{ __('basket.'.$payment->name) }}</label>
+                        <p>{{ __('basket.'.$payment->desc) }}</p>
+                      </div>
+                    </div>
+                  </div>
+                  @endforeach
+                </div>
+                <span class="text-danger">{{ $errors->first('payment_type') }}</span>
               </div>
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-md-6">&nbsp;</div>
-            <div class="col-md-6">
-              @if (Auth::check())
-              <div class="form-group checkbox {{ (old('save_address') && $errors->first('address_name')) ? 'has-error' : '' }}">  
-                <input type="checkbox" name="save_address" id="save_address" value="1"
-                @if( old('save_address') ) checked="checked" @endif
-                /> <label>{{ __('basket.save_address') }}</label>                
-                <div id="address_name_div">
-                  <label for="email">{{ __('basket.label_address_name') }}</label>
-                  <input type="text" id="address_name" name="address_name" class="form-control" placeholder="{{ __('basket.placeholder_address_name') }}" value="{{ old('address_name') }}">
-                  @if( old('save_address') )
-                  <span class="text-danger">{{ $errors->first('address_name') }}</span>
-                  @endif
-                </div>
-              </div>  
-              @endif
-            </div>
           </div>
+          
 
+          <div class="box">
           <div class="row">
-            <hr class="divider-w divider-p">
-            <h3>{{ __('basket.header_delivery') }}</h3>
-            <h6>{{ __('basket.header_sub_delivery') }}</h6>
-            <hr class="divider-w divider-p">
-            <div id="delivery-container" class="col-md-12 col-sm-12 delivery {{ $errors->has('delivery_type') ? 'has-error' : '' }}">
-              @foreach( $deliveries as $delivery )
-              <div class="form-group delivery-option">
-                <div class="row">
-                  <div class="option-col option-radio">
-                    <input type="radio" name="delivery_type" id="delivery_type" value="{{ $delivery->id }}" 
-                    @if( old('delivery_type') == $delivery->id )
-                     checked="checked"
-                    @endif
-                    />
-                  </div>
-                  <div class="option-col option-ico">
-                    <img src="/img/ico/{{ $delivery->d_icon }}.svg" alt="" />
-                  </div>
-                  <div class="option-col">
-                    <label>{{ __('basket.'.$delivery->d_name) }} ({{ $delivery->d_price }})</label>
-                    <p>{{ __('basket.'.$delivery->d_desc) }}</p>
-                    <p>{{ __('basket.'.$delivery->d_time) }}</p>
-                  </div>
+                <h3>{{ __('basket.header_summary') }}</h3>
+                <h6>{{ __('basket.header_sub_summary') }}</h6>
+                <div>
+                  @php
+                  $total = 0;
+                  foreach( $cart as $item ){
+                    //echo 'p='.$item->price;
+                    $total += $item->totalPrice( $item->price );
+                  }
+                  @endphp
+                  <table class="table table-bordered">
+                  <tr>
+                    <th width="50%">{{ __('basket.summary_total') }}</th>
+                    <td class="summary_products" id="summary_products">{{ $total }}</td>
+                  </tr>
+                  <tr>
+                    <th>{{ __('basket.summary_shipping') }}</th>
+                    <td class="summary_shipping" id="summary_shipping">0.00</td>
+                  </tr>
+                  <tr>
+                    <th>{{ __('basket.summary_discount') }}</th>
+                    <td class="summary_discount" id="summary_discount">0.00</td>
+                  </tr>
+                  <tr>
+                    <th>{{ __('basket.summary_to_pay') }}</th>
+                    <td class="summary_to_pay" id="summary_to_pay">{{ $total }}</td>
+                  </tr>
+                  </table>
                 </div>
               </div>
-              @endforeach
-            </div>
-            <span class="text-danger">{{ $errors->first('delivery_type') }}</span>
-          </div>
-
-          <div class="row">
-            <hr class="divider-w divider-p">
-            <h3>{{ __('basket.header_payment') }}</h3>
-            <h6>{{ __('basket.header_sub_payment') }}</h6>
-            <hr class="divider-w divider-p">
-            <div id="payment-container" class="col-md-12 col-sm-12 payment {{ $errors->has('payment_type') ? 'has-error' : '' }}">
-              @foreach( $payments as $payment )
-              <div class="form-group payment-option">
-                <div class="row">
-                  <div class="option-col option-radio">
-                    <input type="radio" name="payment_type" id="payment_type" value="{{ $payment->id }}" 
-                    @if( old('payment_type') == $payment->id )
-                     checked="checked"
-                    @endif
-                    />
-                  </div>
-                  <div class="option-col option-ico">
-                    <img src="/img/ico/{{ $payment->icon }}" alt="" />
-                  </div>
-                  <div class="option-col">
-                    <label>{{ __('basket.'.$payment->name) }}</label>
-                    <p>{{ __('basket.'.$payment->desc) }}</p>
-                  </div>
-                </div>
-              </div>
-              @endforeach
-            </div>
-            <span class="text-danger">{{ $errors->first('payment_type') }}</span>
           </div>
 
           <div class="row" style="margin-top:30px;">
+            <hr class="divider-w divider-p">
             <div class="col-md-6">
               <div class="form-group">
                 <a href="{{ route('basket') }}" class="btn btn-default"><i class="fa fa-arrow-left" aria-hidden="true"></i> {{ __('global.btn_back') }}</a>
@@ -208,7 +261,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group text-right">
-                <button class="btn btn-primary">{{ __('basket.label_btn') }} <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                <button class="btn btn-primary">{{ __('basket.label_btn') }} <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
               </div>  
             </div>
           </div>

@@ -10,9 +10,13 @@ use App\Address;
 use App\Delivery;
 use App\DeliveryCountry;
 use App\Payment;
+use App\PaymentOption;
+use App\Order;
+use App\OrderHistory;
 use Session;
 use Config;
 use DB;
+use Hashids;
 
 class BasketController extends Controller
 {
@@ -125,7 +129,7 @@ class BasketController extends Controller
     /**
      * Get cart items of user
      */
-    $basket = \App\Basket::where('status', 'saved');
+    $basket = \App\Basket::where('status', 'saved')->get();
     if( Auth::id() )
     {
       $basket->where('user_id', Auth::id() );
@@ -134,6 +138,19 @@ class BasketController extends Controller
     {
       $basket->where('s3_id', session()->get('s3id') );
     }
+    /**
+     * Get basket price 
+     */
+    $basketsArray = [];
+    $price_cart = 0;
+    foreach( $basket as $cartItem )
+    {
+      //$basketsArray[] = ['id' => $cartItem->id];
+      $basketsArray[] = $cartItem->id;
+      $price_cart += ($cartItem->price * $cartItem->quantity);
+    }
+    //echo "<pre>".print_r( $basketsArray, 1 )."</pre>"; exit;
+
     $cartItems = $basket->count();
     /**
      * Redirect to cart page, if no items found in cart
@@ -162,6 +179,7 @@ class BasketController extends Controller
         //'fullname.max' => ' The first name may not be greater than 35 characters.',
         
       ]);
+
       //Save address data
       $address = new Address();
       $address->user_id = (Auth::id() ? Auth::id() : 0);
@@ -175,7 +193,84 @@ class BasketController extends Controller
       $address->address_name = ($request->address_name) ? $request->address_name : '---';
       $address->save();
 
-      return redirect()->route(app()->getLocale().'_basket_payment');
+      //Save order data
+      $order = new Order();
+      $order->user_id = (Auth::id() ? Auth::id() : 0);
+      $order->s3_id = session()->get('s3id');
+      /**
+       * Get data from request
+       */
+      $order->address_id = $address->id;
+      $order->payment_id = $request->payment_type;
+      $order->delivery_id = $request->delivery_type;
+      
+      $order->price_cart = number_format($price_cart,2);
+      $delivery = \App\Delivery::where('id',$request->delivery_type)->first();
+      $order->price_shipping = $delivery->price;
+      /**
+       * // todo DISCOUNT MODULE
+       */
+      $order->price_discount = 0;
+      $order->price_discount_type = '';
+      $order->price_discount_desc = '';
+      /**
+       * Set other fields
+       */
+      $order->status = 1;
+      $order->payment_session = (Auth::id() ? Auth::id() : session()->get('s3id')).'-'.time().'-'.$request->payment_type;
+      $order->transaction_id = '';
+      $order->order_hash = '';
+      /**
+       * Create pin for order view links
+       */
+      $digits = 4;
+      $orderPin = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
+      $order->order_pin = md5( $orderPin );
+      $order->order_currency = session()->get('currency');
+      $order->agreement_1 = 0;
+      $order->agreement_2 = 0;
+      $order->comments = '';
+      $order->archived = 0;
+      $order->to_cron = 1;
+      //SAVE the order
+      $order->save();
+      /**
+       * Update order hash value
+       */
+      $orderSaved = Order::where('id', '=', $order->id)->first();
+      $hashids = new Hashids\Hashids( config('app.name', 'MGNTD') );
+      $orderSaved->order_hash = $hashids->encode( $orderSaved->id );
+      $orderSaved->save();
+
+      /**
+       * Update baskets with order ID + status
+       */
+      DB::table('baskets')
+      ->whereIn('id', $basketsArray)
+      ->update(
+        [
+          'order_id' => $orderSaved->id,
+          'status' => 'placed'
+        ]
+      );
+
+      /**
+       * Add order history entry
+       */
+      $orderHistory = new OrderHistory();
+      $orderHistory->order_id = $order->id;
+      $orderHistory->status = 1;
+      $orderHistory->description = __('basket.order_status_1_desc');
+      $orderHistory->updated_by = 'system';
+      $orderHistory->created_at = time();
+      $orderHistory->updated_at = time();
+      $orderHistory->save();
+
+      /**
+       * Check payment method (for redirect)
+       */
+      $payentMethod = Payment::where('id', '=', $order->payment_id)->first();
+      return redirect()->route(app()->getLocale().'_basket_payment', [$payentMethod->code, $orderSaved->order_hash]);
     }
 
     //echo 'old='.$request->old('country');
@@ -204,7 +299,7 @@ class BasketController extends Controller
     /**
      * Return view
      */
-    return view('basket.shipping', compact('countries','deliveries','payments'));
+    return view('basket.shipping', compact('countries','deliveries','payments','cart'));
   }
 
   /**
@@ -280,6 +375,19 @@ class BasketController extends Controller
         'status' => 'error'
       ]);
     }
+  }
+
+  /**
+   * AJAX get payment sub options
+   */
+  public function payment_options( Request $request )
+  {
+    $parent = $request->input('parent');
+    $options = \App\PaymentOption::getActiveOptions( $parent );
+    return response()->json([
+      'response' => $options, 
+      'status' => 'success'
+    ]);
   }
 
   public function payment()

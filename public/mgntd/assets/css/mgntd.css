@@ -51,6 +51,97 @@ a {
   color: #fff;
 }
 
+.btn {
+  -webkit-appearance:none;
+  -webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;
+  display:inline-block;
+  position:relative;
+  text-decoration:none;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  white-space:nowrap;
+  vertical-align:middle;
+  cursor:pointer;
+  text-align:center;
+  padding:.6em 1.2em;
+  font-size: 16px;
+  border:0;
+  border-radius:6px;
+  color:#fff;
+  background-color:#1DABF2;
+  -webkit-transition:background-color .2s ease-out, color .2s ease-out, box-shadow .2s ease;
+  transition:background-color .2s ease-out, color .2s ease-out, box-shadow .2s ease;
+ }
+ .btn:focus,.btn.focus {
+  outline:0;
+  box-shadow:#fff 0 0 0 2px, rgba(29, 171, 242, 0.3) 0 0 0 4px
+ }
+ .btn:hover,.btn:focus {
+  text-decoration:none;
+  color:#fff;
+  background-color:#18b0fc
+ }
+ .btn:active {
+  -webkit-transition:none;
+  transition:none;
+  background-color:#0c8fd0;
+  box-shadow:none;
+  color:rgba(255, 255, 255, 0.75)
+ }
+ .btn[disabled] {
+  cursor:not-allowed;
+  box-shadow:none;
+  pointer-events:none;
+  -webkit-filter:grayscale(0.6);
+  filter:grayscale(0.6);
+  background-color:#E4EAEB;
+  color:#668ea7
+ }
+ .btn.btn-primary {
+  background-color:#2DDE98;
+  font-weight:bold
+ }
+ .btn.btn-primary:focus,.btn.btn-primary.focus {
+  box-shadow:#fff 0 0 0 2px, rgba(59, 215, 136, 0.3) 0 0 0 4px
+ }
+ .btn.btn-primary:hover,.btn.btn-primary:focus {
+  background-color:#00a864
+ }
+ .btn.btn-primary:active {
+  background-color:#00a864;
+  box-shadow:none
+ }
+ .btn.btn-primary[disabled] {
+  color:rgba(255, 255, 255, 0.8)
+ }
+ .btn.btn-default {
+  background-color:#8289ef;
+  font-weight:bold
+ }
+.btn.btn-default:hover {
+  background-color: #3D48D1;
+}
+
+footer .btn.btn-default {
+  background-color:#ffffff;
+  font-weight:500;
+  color: #2DDE98;
+ }
+ footer .btn.btn-default:hover, footer .btn.btn-default:focus {
+  background-color: #ccc;
+  color: #333;
+ } 
+
+ .module {
+   background-color: #f6fafb;
+   padding: 40px 0px;
+ }
+ 
+
+
 /* HOME */
 #newsletter-email {
   max-width: 250px;
@@ -78,10 +169,6 @@ a {
   font-family: 'Quicksand', cursive;
   text-transform: initial;
 }
-.module {
-  padding: 40px 0px;
-}
-
 .home-banners {
   margin: 30px 0px;
 }
@@ -187,12 +274,14 @@ a {
   border: solid 1px #e0e0e0;
   line-height: 22px;
   border-radius: 3px;
+  background-color: #fff;
 }
 .btn-sub:hover {
   border: solid 1px #e0e0e0;
   color: #2DDE98;
+  background-color: #efefef;
 }
-.btn-active {
+.btn-active, .btn-active:hover {
   border: solid 1px #2DDE98;
   background: #2DDE98;
   color: #fff !important;
@@ -448,6 +537,8 @@ section.shipping h3 {
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 30px;
+  color: #253461;
+  font-weight: 700;
 }
 section.shipping h6 {
   font-size: 14px;
@@ -511,8 +602,28 @@ section.shipping input:focus {
 section.shipping form {
   /*border-bottom:solid 1px #e0e0e0 !important;
   border-top:solid 1px #e0e0e0 !important;*/
-  padding: 30px 0px;
+  padding: 20px 20px;
 }
+
+.box {
+  background: #fff;
+  box-shadow: rgba(114, 182, 234, 0.2) 0 0 40px 5px;
+  padding: 25px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+}
+h4.text-header {
+  font-weight: bold;
+  font-size: 1.46667rem;
+  margin-bottom: .809rem;
+  border-bottom: 1px solid rgba(122,161,185,0.2);
+  color: #23616d;
+}
+p.text-content {
+  color: #8FB1C7;
+  font-size: 15px/1.618;
+}
+
 #address_name_div {
   /*display: none;*/
   clear: left;
@@ -553,6 +664,20 @@ section.shipping .checkbox input[type='checkbox']
 .delivery-option img, .payment-option img {
   max-height: 50px;
   max-width: 100px;
+}
+
+td.summary_products {
+  background: #efefef;
+}
+td.summary_shipping {
+  background: #efefef;
+}
+td.summary_discount {
+  background: #efefef;
+}
+td.summary_to_pay {
+  background: #2DDE98;
+  color :#fff;
 }
 
 

@@ -90,6 +90,10 @@ class ComposerStaticInitce2020314fb9ac50fbda7f94cba88f31
         array (
             'Illuminate\\' => 11,
         ),
+        'H' => 
+        array (
+            'Hashids\\' => 8,
+        ),
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
@@ -254,6 +258,10 @@ class ComposerStaticInitce2020314fb9ac50fbda7f94cba88f31
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
+        'Hashids\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hashids/hashids/src',
+        ),
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
@@ -370,6 +378,7 @@ class ComposerStaticInitce2020314fb9ac50fbda7f94cba88f31
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Listeners\\EventListener' => __DIR__ . '/../..' . '/app/Listeners/EventListener.php',
+        'App\\Order' => __DIR__ . '/../..' . '/app/Order.php',
         'App\\Payment' => __DIR__ . '/../..' . '/app/Payment.php',
         'App\\PaymentOption' => __DIR__ . '/../..' . '/app/PaymentOption.php',
         'App\\Product' => __DIR__ . '/../..' . '/app/Product.php',
@@ -763,6 +772,7 @@ class ComposerStaticInitce2020314fb9ac50fbda7f94cba88f31
         'CreateBasketsTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_07_081524_create_baskets_table.php',
         'CreateDeliveriesCountriesTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_24_120329_create_deliveries_countries_table.php',
         'CreateDeliveriesTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_24_082950_create_deliveries_table.php',
+        'CreateOrdersTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_27_110925_create_orders_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreatePaymentsOptionsTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_25_192607_create_payments_options_table.php',
         'CreatePaymentsTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_24_220126_create_payments_table.php',
@@ -1384,6 +1394,10 @@ class ComposerStaticInitce2020314fb9ac50fbda7f94cba88f31
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+        'Hashids\\Hashids' => __DIR__ . '/..' . '/hashids/hashids/src/Hashids.php',
+        'Hashids\\HashidsException' => __DIR__ . '/..' . '/hashids/hashids/src/HashidsException.php',
+        'Hashids\\HashidsInterface' => __DIR__ . '/..' . '/hashids/hashids/src/HashidsInterface.php',
+        'Hashids\\Math' => __DIR__ . '/..' . '/hashids/hashids/src/Math.php',
         'Illuminate\\Auth\\Access\\AuthorizationException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/AuthorizationException.php',
         'Illuminate\\Auth\\Access\\Gate' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Gate.php',
         'Illuminate\\Auth\\Access\\HandlesAuthorization' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/HandlesAuthorization.php',

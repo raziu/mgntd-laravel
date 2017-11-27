@@ -40,6 +40,7 @@ $total = 0;
       <div class="row">
           <div class="col-md-12">
             @if( count( $items ) )
+            <div class="box">
               <table class="shop_table shop_table_responsive cart">
               <thead>
                 <tr>
@@ -53,6 +54,11 @@ $total = 0;
               </thead>
               <tbody>
               @foreach( $items as $item )
+
+              @php
+                $total += $item->totalPrice( $item->price );
+              @endphp	
+
               <tr class="cart_item">
                 <td class="product-remove">
                   <a href="javascript:void(0);" class="remove" aria-label="{{ __('basket.remove_this_item') }}" data-id="{{ $item->id }}" data-title="{{ __('basket.confirm_title') }}" data-message="{{ __('basket.confirm_message') }}" >×</a>						
@@ -77,9 +83,6 @@ $total = 0;
                 </td>
                 <td class="product-subtotal">
                 {{ $item->totalPrice( $item->price ) }}	
-                @php
-                $total += $item->totalPrice( $item->price );
-                @endphp			
                 </td>
               </tr>
               @endforeach
@@ -87,10 +90,20 @@ $total = 0;
                 <td colspan="5"></td>
                 <td><b>{{ $total }}</b></td>
               </tr>
+
+              
+              
+                
+
               </tbody>
               </table>
+            </div>  
             @else
-              <p class="alert alert-info">{{ __('basket.no_items') }}</p>
+              <h4 class="text-header">{{ __('basket.cart_contents_header') }}</h4>
+              <p class="text-content">{{ __('basket.no_items') }}</p>
+              <p class="text-center">
+                <a href="{{ route('product') }}" class="btn btn-primary">{{ __('global.btn_back') }}</a>
+              </p>
             @endif
           </div>
       </div>
@@ -102,7 +115,7 @@ $total = 0;
             {{ __('global.btn_order_more') }}</a>
         </div>
         <div class="col-md-6 text-right">
-          <a href="{{ route('basket_shipping') }}" class="btn btn-primary">{{ __('basket.link_shipping') }} <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+          <a href="{{ route('basket_shipping') }}" class="btn btn-primary">{{ __('basket.link_shipping') }} <i class="fa fa-envelope" aria-hidden="true"></i></a>
         </div>
       </div>
       @endif

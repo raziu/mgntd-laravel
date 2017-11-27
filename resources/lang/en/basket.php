@@ -22,6 +22,7 @@ return [
     'header_quantity' => 'Quantity',
     'header_total' => 'Total',
     //
+    'cart_contents_header' => 'Cart contents',
     'remove_this_item' => 'Remove this item',
     'no_items' => 'No items in cart',
     'confirm_title' => 'Delete product',
@@ -46,7 +47,7 @@ return [
     'placeholder_city' => 'Enter city',
     'placeholder_zip' => 'Enter postal code',
     'placeholder_email' => 'Enter e-mail',
-    'label_btn' => 'Go to Payment',
+    'label_btn' => 'Place an order',
     //
     'save_address' => 'Save address',
     'label_address_name' => 'Address name',
@@ -59,8 +60,24 @@ return [
     'header_sub_delivery' => 'Available options (depending on the country)',
     'delivery_free' => 'Free',
     'delivery_free_desc' => 'Provided by your local postal office',
-    'delivery_free_time' => 'Estimated delivery 4-10 days',
+    'delivery_free_time' => 'Estimated delivery 7-14 days',
     'delivery_express' => 'Priority',
     'delivery_express_desc' => 'Provided by your local postal office',
     'delivery_express_time' => 'Estimated delivery 3-5 days',
+    //
+    'header_payment' => 'Payment',
+    'header_sub_payment' => 'Available payment methods',
+    'payment_wire' => 'Wire transfer',
+    'payment_wire_desc' => 'You pay with a wire transfer to our bank account',
+    'payment_dotpay' => 'DOTPAY',
+    'payment_dotpay_desc' => 'Online payments supported by DOTPAY',
+    'payment_paypal' => 'PAYPAL',
+    'payment_paypal_desc' => 'Online payments supported by PAYPAL',
+    //
+    'header_summary' => 'Summary',
+    'header_sub_summary' => 'Final costs of your order',
+    'summary_total' => 'In cart',
+    'summary_shipping' => 'Shipping',
+    'summary_discount' => 'Discount',
+    'summary_to_pay' => 'Total',
 ];

@@ -17,6 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->increments('id');
             $table->tinyInteger('active')->default(0);
             $table->string('name',64);
+            $table->string('code',32);
             $table->string('icon',64);
             $table->text('desc');
             $table->integer('order');
