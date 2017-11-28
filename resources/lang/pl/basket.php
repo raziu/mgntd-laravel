@@ -89,4 +89,12 @@ return [
     'summary_shipping' => 'Koszt dostawy',
     'summary_discount' => 'Zniżka',
     'summary_to_pay' => 'Do zapłaty',
+    //
+    'agreement_1_text' => 'Wyrażam zgodę na przetwarzanie danych osobowych przez ERTE Tomasz Razik (magnetoid.pl), jako Administratora, moich danych osobowych przekazanych w niniejszym wniosku (zamówienie usługi z wykorzystaniem aplikacji Magnetoid), zgodnie z przepisami ustawy z dnia 29 sierpnia 1997 r. o ochronie danych osobowych oraz zgodnie z zasadami opisanymi w „Polityce ochrony prywatności Magnetoid” w celu prawidłowego świadczenia usług.
+    Oświadczam, że przeczytałem/am, rozumiem i w pełni akceptuję „Politykę ochrony prywatności”. 
+    Wyrażenie zgody jest dobrowolne. Oświadczam, że zostałam/em poinformowana/y, że przysługuje mi prawo dostępu do moich danych osobowych, a także prawo do ich poprawiania,  uzupełniania, uaktualniania, usunięcia, a ponadto prawo do sprzeciwu w każdym czasie wobec ich przetwarzania.',
+
+    'agreement_2_text' => 'Wyrażam zgodę na otrzymywanie informacji handlowych od ERTE Tomasz Razik (magnetoid.pl), jako Administratora, moich danych osobowych przekazanych w niniejszym wniosku (zamówienie usługi z wykorzystaniem aplikacji Magnetoid), zgodnie z przepisami ustawy z dnia 29 sierpnia 1997 r. o ochronie danych osobowych oraz zgodnie z zasadami opisanymi w „Polityce ochrony prywatności Magnetoid” w celu prawidłowego świadczenia usług.
+    Oświadczam, że przeczytałem/am, rozumiem i w pełni akceptuję „Politykę ochrony prywatności”.  
+    Wyrażenie zgody jest dobrowolne. Oświadczam, że zostałam/em poinformowana/y, że przysługuje mi prawo dostępu do moich danych osobowych, a także prawo do ich poprawiania,  uzupełniania, uaktualniania, usunięcia, a ponadto prawo do sprzeciwu w każdym czasie wobec ich przetwarzania.',
 ];

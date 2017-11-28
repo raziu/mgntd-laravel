@@ -68,10 +68,14 @@
     <h2>{{ __("products.choose") }} {{ $elements }} {{ variety($elements, __("products.1photo"), __("products.234photos"), __("products.photos")) }}</h2>
     <div class="row">
       <div class="col-md-6">
-        @include('product.grid')
+        <div class="box">
+          @include('product.grid')
+        </div>
       </div>
       <div class="col-md-6">
-        @include('product.tabs')
+        <div class="box" style="overflow: hidden;">
+          @include('product.tabs')
+        </div>  
       </div>
     </div>
   </div>  

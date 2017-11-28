@@ -18,7 +18,7 @@ return array(
     'basket/update' => 'cart/update',
     'basket/shipping' => 'cart/shipping',
     'basket/validation' => 'cart/validation',
-    'basket/payment/{$payment}/{$hash}' => 'cart/payment/{$payment}/{$hash}',
+    'basket/payment/{payment}/{hash}' => 'cart/payment/{payment}/{hash}',
     'basket/country' => 'cart/country',
     'basket/payment_options' => 'cart/payment-options',
     'login'   => 'login',

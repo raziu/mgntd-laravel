@@ -15,6 +15,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class PaymentOption extends Model
 {
+  /**
+    * The table associated with the model.
+    *
+    * @var string
+    */
+  protected $table = 'payments_options';
+
   public static function getActiveOptions( $parent = 0 )
   {
     $options = self::where('active',1)->where('parent', $parent)

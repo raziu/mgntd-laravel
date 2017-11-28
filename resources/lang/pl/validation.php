@@ -77,7 +77,7 @@ return [
     'numeric'              => ':attribute musi być liczbą.',
     'present'              => 'Pole :attribute musi być obecne.',
     'regex'                => 'Format :attribute jest nieprawidłowy.',
-    'required'             => 'Pole :attribute jest wymagane.',
+    'required'             => 'Pole jest wymagane.', //:attribute 
     'required_if'          => 'Pole :attribute jest wymagane gdy :other jest :value.',
     'required_unless'      => ':attribute jest wymagany jeżeli :other nie znajduje się w :values.',
     'required_with'        => 'Pole :attribute jest wymagane gdy :values jest obecny.',

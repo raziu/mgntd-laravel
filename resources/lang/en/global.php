@@ -35,4 +35,5 @@ return [
     'btn_cancel' => 'No, thanks',
     'btn_order_more' => 'Order something else',
     'btn_back' => 'Go Back',
+    'btn_back_home' => 'Go back to home',
 ];

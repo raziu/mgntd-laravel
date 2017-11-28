@@ -252,6 +252,42 @@
               </div>
           </div>
 
+          @if( !Auth::check() )
+          <div class="row" style="margin-top:30px;">
+          <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <div class="form-group agreement-option {{ ($errors->has('agreement_1') || $errors->has('agreement_2')) ? 'has-error' : '' }}">
+                <div class="row">
+                  <div class="option-col option-checkbox">
+                    <input type="checkbox" name="agreement_1" id="agreement_1" value="1"
+                    @if( old('agreement_1') == 1 )
+                      checked="checked"
+                    @endif
+                     /> 
+                  </div>
+                  <div class="option-col option-label">{{ __('basket.agreement_1_text') }}</div>
+                  <span class="text-danger">{{ $errors->first('agreement_1') }}</span>
+                </div>
+                <div class="row">
+                  <div class="option-col option-checkbox">
+                  <input type="checkbox" name="agreement_2" id="agreement_2" value="1"
+                    @if( old('agreement_2') == 1 )
+                      checked="checked"
+                    @endif
+                     /> 
+                  </div>
+                  <div class="option-col option-label">{{ __('basket.agreement_2_text') }}</div>
+                  <span class="text-danger">{{ $errors->first('agreement_2') }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1"></div>
+          </div>
+          @else
+          <input type="hidden" name="agreement_1" id="agreement_1" value="1" />
+          <input type="hidden" name="agreement_2" id="agreement_2" value="1" /> 
+          @endif
+
           <div class="row" style="margin-top:30px;">
             <hr class="divider-w divider-p">
             <div class="col-md-6">

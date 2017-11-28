@@ -36,5 +36,6 @@ return [
     'btn_cancel' => 'Nie, rezygnuję',
     'btn_order_more' => 'Zamów coś jeszcze',
     'btn_back' => 'Wróć',
+    'btn_back_home' => 'Wróć do strony głównej',
 
 ];

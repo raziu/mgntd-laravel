@@ -18,7 +18,7 @@ return array(
     'basket/update' => 'koszyk/aktualizuj',
     'basket/shipping' => 'koszyk/wysylka',
     'basket/validation' => 'koszyk/walidacja',
-    'basket/payment/{$payment}/{$hash}' => 'koszyk/platnosc/{$payment}/{$hash}',
+    'basket/payment/{payment}/{hash}' => 'koszyk/platnosc/{payment}/{hash}',
     'basket/country' => 'koszyk/kraj',
     'basket/payment_options' => 'koszyk/opcje-platnosci',
     'login'   => 'logowanie',

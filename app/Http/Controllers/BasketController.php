@@ -152,11 +152,12 @@ class BasketController extends Controller
       $price_cart += ($cartItem->price * $cartItem->quantity);
     }
 
-    $cartItems = $basket->count();
+    //$cartItems = $basket->count();
     /**
      * Redirect to cart page, if no items found in cart
      */
-    if( !count($cartItems) )
+    //echo count($basket); exit;
+    if( !count($basket) )
     {
       return redirect()->route(app()->getLocale().'_basket');
     }
@@ -173,7 +174,9 @@ class BasketController extends Controller
         'address_name' => 'required_with:save_address|required_if:save_address,1|min:3|max:32',
         //'confirm_password' => 'required|min:3|max:20|same:password',
         'delivery_type' => 'required',
-        'payment_type' => 'required'
+        'payment_type' => 'required',
+        'agreement_1' => 'required',
+        //'agreement_2' => 'required',
       ],[
         //'fullname.required' => ' The first name field is required.',
         //'fullname.min' => ' The first name must be at least 5 characters.',
@@ -233,10 +236,13 @@ class BasketController extends Controller
        * Add agreement checkboxes for not logged users
        * //todo
        */
-      $order->agreement_1 = 0;
-      $order->agreement_2 = 0;
+      $order->agreement_1 = $request->agreement_1;
+      $order->agreement_2 = (isset($request->agreement_2) ? $request->agreement_2 : 0);
       $order->comments = '';
       $order->archived = 0;
+      /**
+       * Set flag to add the order to cron
+       */
       $order->to_cron = 1;
       /**
        * SAVE the order
@@ -348,24 +354,29 @@ class BasketController extends Controller
     ]);
   }
 
-  public function payment()
+  public function payment( $paymentCode, $orderHash, Request $request )
   {
-    echo __LINE__; exit;
-    /*$basket = \App\Basket::where('status', 'saved');
-    if( Auth::id() )
+    $paymentOptions = false;
+    $paymentMethod = Payment::where('code', '=', $paymentCode)->where('active', 1)->first();
+    if( isset( $paymentMethod->subs ) )
     {
-      $basket->where('user_id', Auth::id() );
+      $paymentOptions = PaymentOption::where('parent', '=', $paymentMethod->id)->where('active', 1)->get();
     }
-    else
-    {
-      $basket->where('s3_id', session()->get('s3id') );
-    }
-    $cartItems = $basket->count();
-    if( !count($cartItems) )
+
+    /**
+     * Redirect if payment method not exists
+     */
+    if( !is_object($paymentMethod) )
     {
       return redirect()->route(app()->getLocale().'_basket');
-    }*/
+    }
 
-    return view('basket.payment', compact(''));
+    $order = Order::where('order_hash', '=', $orderHash)->first();
+    if( !is_object($order) )
+    {
+      return redirect()->route(app()->getLocale().'_home');
+    }
+
+    return view('basket.payment', compact('paymentCode', 'orderHash', 'paymentMethod', 'paymentOptions', 'order'));
   }
 }

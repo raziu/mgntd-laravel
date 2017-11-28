@@ -89,4 +89,8 @@ return [
     'summary_shipping' => 'Shipping',
     'summary_discount' => 'Discount',
     'summary_to_pay' => 'Total',
+    //
+    'agreement_1_text' => 'Agreement 1 text',
+    'agreement_2_text' => 'Agreement 2 text',
+    //I hereby express my consent to the processing of my personal data by ERTE Tomasz Razik (magnetoid.pl) as the administrator of the personal data for the purpose of magnet printing services via Magnetoid Application, pursuant to the provisions of the Act of August 29, 1997 on the Protection of Personal Data and in accordance to the Magnetoid.pl Privacy Policy Rules in order to provide services by ERTE Tomasz Razik. I acknowledge I have read and understood the Magnetoid.pl Privacy Policy. I give my consent with the processing of my personal data of my free will and accord. I acknowledge that I have been informed of my right to access the personal data, edit it, and to withdraw this consent at any time in a written notice delivered to the address of the administrator.
 ];
