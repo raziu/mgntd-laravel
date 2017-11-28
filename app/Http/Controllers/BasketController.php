@@ -1,5 +1,14 @@
 <?php
-
+/**
+ * BASKET/CART Controller
+ * 
+ * PHP version 5
+ * 
+ * @category  Laravel
+ * @author    Tomasz Razik <info@raziu.com>
+ * @link      http://raziu.com/
+ * @copyright 2017 Tomasz Razik
+ */
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -26,6 +35,9 @@ class BasketController extends Controller
     parent::__construct();
   }
   
+  /**
+   * Basket/cart items listing
+   */
   public function index()
   {
     //$user = Auth::user();
@@ -47,6 +59,9 @@ class BasketController extends Controller
     return view('basket.index', compact('user', 'items'));
   }
 
+  /**
+   * AJAX post action - add item to basket/cart
+   */
   public function create(Request $request)
   {
     if($request->isMethod('post')) 
@@ -69,18 +84,6 @@ class BasketController extends Controller
       'status' => 'success'
     ]);
   }
-
-  /*public function edit( Basket $basket )
-  {
-    if( Auth::check() && Auth::user()->id == $basket->user_id )
-    {
-      return view('basket.edit', compact('basket'));
-    }
-    else
-    {
-      return redirect('/basket');
-    }
-  }*/
 
   /**
    * AJAX delete or update quantity action
@@ -145,11 +148,9 @@ class BasketController extends Controller
     $price_cart = 0;
     foreach( $basket as $cartItem )
     {
-      //$basketsArray[] = ['id' => $cartItem->id];
       $basketsArray[] = $cartItem->id;
       $price_cart += ($cartItem->price * $cartItem->quantity);
     }
-    //echo "<pre>".print_r( $basketsArray, 1 )."</pre>"; exit;
 
     $cartItems = $basket->count();
     /**
@@ -177,10 +178,11 @@ class BasketController extends Controller
         //'fullname.required' => ' The first name field is required.',
         //'fullname.min' => ' The first name must be at least 5 characters.',
         //'fullname.max' => ' The first name may not be greater than 35 characters.',
-        
       ]);
 
-      //Save address data
+      /**
+       * Save address data
+       */
       $address = new Address();
       $address->user_id = (Auth::id() ? Auth::id() : 0);
       $address->s3_id = session()->get('s3id');
@@ -192,8 +194,9 @@ class BasketController extends Controller
       $address->email = $request->email;
       $address->address_name = ($request->address_name) ? $request->address_name : '---';
       $address->save();
-
-      //Save order data
+      /**
+       * Save order data
+       */
       $order = new Order();
       $order->user_id = (Auth::id() ? Auth::id() : 0);
       $order->s3_id = session()->get('s3id');
@@ -203,7 +206,6 @@ class BasketController extends Controller
       $order->address_id = $address->id;
       $order->payment_id = $request->payment_type;
       $order->delivery_id = $request->delivery_type;
-      
       $order->price_cart = number_format($price_cart,2);
       $delivery = \App\Delivery::where('id',$request->delivery_type)->first();
       $order->price_shipping = $delivery->price;
@@ -227,12 +229,18 @@ class BasketController extends Controller
       $orderPin = str_pad(rand(0, pow(10, $digits)-1), $digits, '0', STR_PAD_LEFT);
       $order->order_pin = md5( $orderPin );
       $order->order_currency = session()->get('currency');
+      /**
+       * Add agreement checkboxes for not logged users
+       * //todo
+       */
       $order->agreement_1 = 0;
       $order->agreement_2 = 0;
       $order->comments = '';
       $order->archived = 0;
       $order->to_cron = 1;
-      //SAVE the order
+      /**
+       * SAVE the order
+       */
       $order->save();
       /**
        * Update order hash value
@@ -241,9 +249,8 @@ class BasketController extends Controller
       $hashids = new Hashids\Hashids( config('app.name', 'MGNTD') );
       $orderSaved->order_hash = $hashids->encode( $orderSaved->id );
       $orderSaved->save();
-
       /**
-       * Update baskets with order ID + status
+       * Update baskets with order ID + change status from saved -> placed
        */
       DB::table('baskets')
       ->whereIn('id', $basketsArray)
@@ -253,7 +260,6 @@ class BasketController extends Controller
           'status' => 'placed'
         ]
       );
-
       /**
        * Add order history entry
        */
@@ -265,26 +271,19 @@ class BasketController extends Controller
       $orderHistory->created_at = time();
       $orderHistory->updated_at = time();
       $orderHistory->save();
-
       /**
        * Check payment method (for redirect)
        */
-      $payentMethod = Payment::where('id', '=', $order->payment_id)->first();
-      return redirect()->route(app()->getLocale().'_basket_payment', [$payentMethod->code, $orderSaved->order_hash]);
+      $paymentMethod = Payment::where('id', '=', $order->payment_id)->first();
+      return redirect()->route(app()->getLocale().'_basket_payment', [$paymentMethod->code, $orderSaved->order_hash]);
     }
 
-    //echo 'old='.$request->old('country');
-
     $iso = ( $request->old('country') != "" ? $request->old('country') : app()->getLocale() );
-    //echo 'iso='.$iso;
-    //echo "<pre>".print_r( $request->country,1 )."</pre>"; exit;
-
     /**
      * Get list of available countries
      */
-    $countries = \App\Country::where('active',1)
+    $countries = \App\Country::where('active', 1)
     ->orderBy('id', 'asc')
-    ->take(100)
     ->get();
     /**
      * Get default list of available delivery types
@@ -300,47 +299,6 @@ class BasketController extends Controller
      * Return view
      */
     return view('basket.shipping', compact('countries','deliveries','payments','cart'));
-  }
-
-  /**
-   * NOT USED ANYMORE
-   */
-  public function validation(Request $request)
-  {
-    exit;
-    $iso = ( isset( $request->country ) ? $request->country : app()->getLocale() );
-    $deliveries = \App\DeliveryCountry::getDeliveriesByCountry( $iso );
-
-    $this->validate($request,[
-      'fullname' => 'required|min:5|max:70',
-      'address' => 'required|min:5|max:150',
-      'city' => 'required|min:5|max:30',
-      'zip' => 'required|min:5|max:15',
-      'email' => 'required|email|unique:users',
-      'save_address' => 'sometimes',
-      'address_name' => 'required_with:save_address|required_if:save_address,1|min:3|max:32',
-      //'confirm_password' => 'required|min:3|max:20|same:password',
-      'delivery_type' => 'required'
-    ],[
-      //'fullname.required' => ' The first name field is required.',
-      //'fullname.min' => ' The first name must be at least 5 characters.',
-      //'fullname.max' => ' The first name may not be greater than 35 characters.',
-      
-    ]);
-    //Save address data
-    $address = new Address();
-    $address->user_id = (Auth::id() ? Auth::id() : 0);
-    $address->s3_id = session()->get('s3id');
-    $address->fullname = $request->fullname;
-    $address->address = $request->address;
-    $address->city = $request->city;
-    $address->zip = $request->zip;
-    $address->country = $request->country;
-    $address->email = $request->email;
-    $address->address_name = ($request->address_name) ? $request->address_name : '---';
-    $address->save();
-
-    return redirect()->route(app()->getLocale().'_basket_payment');
   }
 
   /**
@@ -392,6 +350,7 @@ class BasketController extends Controller
 
   public function payment()
   {
+    echo __LINE__; exit;
     /*$basket = \App\Basket::where('status', 'saved');
     if( Auth::id() )
     {
@@ -405,8 +364,8 @@ class BasketController extends Controller
     if( !count($cartItems) )
     {
       return redirect()->route(app()->getLocale().'_basket');
-    }
+    }*/
 
-    return view('basket.payment', compact(''));*/
+    return view('basket.payment', compact(''));
   }
 }

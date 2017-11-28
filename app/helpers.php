@@ -1,4 +1,14 @@
 <?php
+/**
+ * CUSTOM HELPERS used in app
+ * 
+ * PHP version 5
+ * 
+ * @category  Laravel
+ * @author    Tomasz Razik <info@raziu.com>
+ * @link      http://raziu.com/
+ * @copyright 2017 Tomasz Razik
+ */
 //Same parameters and a new $lang parameter
 function route($name, $parameters = [], $absolute = true, $lang = null)
 {

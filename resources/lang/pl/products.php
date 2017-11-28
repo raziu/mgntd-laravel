@@ -1,4 +1,14 @@
 <?php
+/**
+ * PRODUCTS PL translations
+ * 
+ * PHP version 5
+ * 
+ * @category  Laravel
+ * @author    Tomasz Razik <info@raziu.com>
+ * @link      http://raziu.com/
+ * @copyright 2017 Tomasz Razik
+ */
 // app/lang/pl/products.php
 
 return array(

@@ -1,5 +1,14 @@
 <?php
-
+/**
+ * SUBSCRIBERS Controller
+ * 
+ * PHP version 5
+ * 
+ * @category  Laravel
+ * @author    Tomasz Razik <info@raziu.com>
+ * @link      http://raziu.com/
+ * @copyright 2017 Tomasz Razik
+ */
 namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request; //replaced to above

@@ -1,5 +1,14 @@
 <?php
-
+/**
+ * HOME Controller
+ * 
+ * PHP version 5
+ * 
+ * @category  Laravel
+ * @author    Tomasz Razik <info@raziu.com>
+ * @link      http://raziu.com/
+ * @copyright 2017 Tomasz Razik
+ */
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -18,44 +27,33 @@ class HomeController extends Controller
     parent::__construct();
   }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getHome()
+  /**
+   * Show the application dashboard.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function getHome()
+  {
+    $products = \App\Product::where('active', 1)
+    ->orderBy('id', 'desc')
+    ->take(10)
+    ->get();
+    return view('home', compact('products'));
+  }
+
+  /**
+   * 
+   */
+  public function changeCurrency(Request $request)
+  {
+    if ($request->isMethod('post'))
     {
-      //$products = App\Product::all();
-      $products = \App\Product::where('active', 1)
-      ->orderBy('id', 'desc')
-      ->take(10)
-      ->get();
-      return view('home', compact('products'));
+      //todo check if code is correct
+
+      //Update session data
+      $request->session()->put('currency', $request->currency);
+      
+      return response()->json(['status' => 'success', 'response' => $request->currency]); 
     }
-
-    public function changeCurrency(Request $request)
-    {
-      if ($request->isMethod('post'))
-      {
-        //todo check if code is correct
-
-        //Update session data
-        $request->session()->put('currency', $request->currency);
-        
-        return response()->json(['status' => 'success', 'response' => $request->currency]); 
-      }
-    }
-
-    /**
-     * Newsletter ajax action
-     */
-    /*public function ajaxNewsletter(Illuminate\Http\Request $request)
-    {
-        if ($request->isMethod('post'))
-        {    
-            return response()->json(['response' => 'This is post method']); 
-        }
-
-        return response()->json(['response' => 'This is get method']);
-    }*/
+  }
 }

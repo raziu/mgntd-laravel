@@ -1,5 +1,14 @@
 <?php
-// app/lang/en/routes.php
+/**
+ * ROUTES EN translations
+ * 
+ * PHP version 5
+ * 
+ * @category  Laravel
+ * @author    Tomasz Razik <info@raziu.com>
+ * @link      http://raziu.com/
+ * @copyright 2017 Tomasz Razik
+ */
 
 return array(
     'contact' => 'contact',
@@ -9,7 +18,6 @@ return array(
     'basket/update' => 'cart/update',
     'basket/shipping' => 'cart/shipping',
     'basket/validation' => 'cart/validation',
-    //'basket/payment' => 'cart/payment',
     'basket/payment/{$payment}/{$hash}' => 'cart/payment/{$payment}/{$hash}',
     'basket/country' => 'cart/country',
     'basket/payment_options' => 'cart/payment-options',

@@ -1,7 +1,16 @@
 <?php
+/**
+ * BASKET EN translations
+ * 
+ * PHP version 5
+ * 
+ * @category  Laravel
+ * @author    Tomasz Razik <info@raziu.com>
+ * @link      http://raziu.com/
+ * @copyright 2017 Tomasz Razik
+ */
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Basket Language Lines

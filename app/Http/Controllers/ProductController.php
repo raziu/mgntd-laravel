@@ -1,5 +1,14 @@
 <?php
-
+/**
+ * PRODUCT Controller
+ * 
+ * PHP version 5
+ * 
+ * @category  Laravel
+ * @author    Tomasz Razik <info@raziu.com>
+ * @link      http://raziu.com/
+ * @copyright 2017 Tomasz Razik
+ */
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -14,24 +23,27 @@ class ProductController extends Controller
     parent::__construct();
   }
 
+  /**
+   * Products listing action
+   */
   public function index()
   {
     $products = \App\Product::where('active', 1)
     ->orderBy('id', 'desc')
-    ->take(10)
     ->get();
     ;
     //dd($products->toSql());
-    //echo count($products); exit;
     return view('product.index', compact('products'));
   }
 
+  /**
+   * Product view action (listed available types)
+   */
   public function view($group, $type, Request $request)
   {
     $product = \App\Product::where('active', 1)
     ->where('group', $group)
     ->first();
-
     /**
      * Redirect to index action if product group not exists
      */
@@ -52,27 +64,31 @@ class ProductController extends Controller
     $elements = $product->setSetQuantityAttribute( $product->set_quantity, $type );
     $borderColors = json_encode(explode('|',$product->border_color));
     
-    //$s3 = AWS::createClient('s3');
     $s3 = new \Aws\S3\S3Client([
       'version' => 'latest',
       'region' => config('aws.region'),
     ]);
-    // Set some defaults for form input fields
+    /**
+     * Set some defaults for form input fields
+     */
     $formInputs = [
       'acl' => config('aws.acl'),
       'key' => '${filename}',
       'success_action_status' => '201'
     ];
-    // Construct an array of conditions for policy
+    /**
+     * Construct an array of conditions for policy
+     */
     $options = [
         ['acl' => config('aws.acl')],
         ['bucket' => config('aws.bucket')],
         ['starts-with', '$key', ''],
         ['success_action_status' => '201']
     ];
-    // Optional: configure expiration time string
+    /**
+     * Optional: configure expiration time string
+     */
     $expires = '+2 hours';
-
     $postObject = new \Aws\S3\PostObjectV4(
         $s3,
         config('aws.bucket'),
@@ -80,7 +96,9 @@ class ProductController extends Controller
         $options,
         $expires
     );
-    // Get attributes to set on an HTML form, e.g., action, method, enctype
+    /**
+     * Get attributes to set on an HTML form, e.g., action, method, enctype
+     */
     $formAttributes = $postObject->getFormAttributes();
     // Get form input fields. This will include anything set as a form input in
     // the constructor, the provided JSON policy, your AWS Access Key ID, and an
@@ -88,8 +106,6 @@ class ProductController extends Controller
     $formInputs = $postObject->getFormInputs();
 
     $uploaded_files = $request->session()->get('uploaded_files');
-    //echo "<pre>".print_r( $uploaded_files, 1 )."</pre>"; exit;
-    //var_dump($elements); exit;
 
     return view('product.view', compact(
       'product', 
@@ -104,13 +120,17 @@ class ProductController extends Controller
     );
   }
 
+  /**
+   * AMAZON S3 upload callback action
+   */
   public function uploadS3(Request $request)
   {
     if($request->isMethod('get')) 
     {
-      //Update session data
+      /**
+       * Update session data
+       */
       $uploaded_files = $request->session()->get('uploaded_files');
-      //echo "<pre>".print_r( $_GET, 1 )."</pre>"; exit;
       //echo "<pre>".print_r( $request->files, 1 )."</pre>"; exit; // ?? Symfony\Component\HttpFoundation\FileBag Object
       $file = [
         'width' => $_GET['files'][0]['width'],
