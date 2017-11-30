@@ -79,6 +79,15 @@ foreach( $all_langs as $prefix )
     Route::post(Lang::get('routes.basket/country',[], $prefix) , 'BasketController@country')->name($prefix.'_basket_country');
     Route::post(Lang::get('routes.basket/payment_options',[], $prefix) , 'BasketController@payment_options')->name($prefix.'_basket_payment_options');
     //
+    Route::post(Lang::get('routes.basket/address',[], $prefix) , 'BasketController@getAddress')->name($prefix.'_basket_address');
+    //
+    //
+    Route::post(Lang::get('routes.order/pay',[], $prefix) , 'BasketController@onlinePayment')->name($prefix.'_order_pay');
+    Route::post(Lang::get('routes.order/status',[], $prefix), ['uses' =>'BasketController@orderStatus', 'as'=>$prefix.'_order_status']);
+    
+    Route::get(Lang::get('routes.order/placed/{hash}/{pin}',[], $prefix), ['uses' =>'BasketController@orderPlaced', 'as'=>$prefix.'_order_placed']);
+    Route::post(Lang::get('routes.order/placed/{hash}/{pin}',[], $prefix), ['uses' =>'BasketController@orderPlaced', 'as'=>$prefix.'_order_placed_post']);
+    Route::get(Lang::get('routes.order/view/{hash}/{pin}',[], $prefix), ['uses' =>'BasketController@orderView', 'as'=>$prefix.'_order_view']);
 
   
     /**

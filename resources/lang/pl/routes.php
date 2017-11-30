@@ -20,7 +20,14 @@ return array(
     'basket/validation' => 'koszyk/walidacja',
     'basket/payment/{payment}/{hash}' => 'koszyk/platnosc/{payment}/{hash}',
     'basket/country' => 'koszyk/kraj',
+    'basket/address' => 'koszyk/adres',
     'basket/payment_options' => 'koszyk/opcje-platnosci',
+    //
+    'order/pay' => 'zamowienie/zaplac',
+    'order/status' => 'zamowienie/status',
+    'order/placed/{hash}/{pin}' => 'zamowienie/zlozone/{hash}/{pin}',
+    'order/view/{hash}/{pin}' => 'zamowienie/zobacz/{hash}/{pin}',
+    //
     'login'   => 'logowanie',
     'logout'   => 'wyloguj',
     'register'   => 'rejestracja',

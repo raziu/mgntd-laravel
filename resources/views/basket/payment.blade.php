@@ -11,6 +11,7 @@
 @section('javascript')
 <script type="text/javascript">
   var LANG = '{{ app()->getLocale() }}';
+  var URL_MAKE_PAYMENT = '{{ route("order_pay") }}';
 </script>
 <script type="text/javascript" src="{{ URL::asset(config('app.theme').'/assets/js/app/payment.js') }}"></script>
 @parent    

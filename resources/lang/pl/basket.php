@@ -21,6 +21,9 @@ return [
     | these language lines according to your application's requirements.
     |
     */
+    'order_status_1_desc' => 'Złożenie zamówienia',
+    'order_status_5_desc' => 'Zamówienie opłacone',
+    //
     'navigation_link' => 'Koszyk',
     'navigation_link_title' => 'Twój koszyk',
     'meta_title' => 'Koszyk',
@@ -66,7 +69,7 @@ return [
     'meta_description_payment' => 'Płatność meta opis',
     //
     'header_delivery' => 'Dostawa',
-    'header_sub_delivery' => 'Dostępne opcje dostawy (w zależności od kraju)',
+    'header_sub_delivery' => 'Dostępne opcje (w zależności od kraju)',
     'delivery_free' => 'Darmowa',
     'delivery_free_desc' => 'Przesyłka Pocztą Polską nierejestrowana',
     'delivery_free_time' => 'Czas dostawy 7-14 dni',

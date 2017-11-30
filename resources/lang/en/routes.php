@@ -20,7 +20,14 @@ return array(
     'basket/validation' => 'cart/validation',
     'basket/payment/{payment}/{hash}' => 'cart/payment/{payment}/{hash}',
     'basket/country' => 'cart/country',
+    'basket/address' => 'basket/address',
     'basket/payment_options' => 'cart/payment-options',
+    //
+    'order/pay' => 'order/pay',
+    'order/status' => 'order/status',
+    'order/placed/{hash}/{pin}' => 'order/placed/{hash}/{pin}',
+    'order/view/{hash}/{pin}' => 'order/view/{hash}/{pin}',
+    //
     'login'   => 'login',
     'logout'   => 'logout',
     'register'   => 'register',

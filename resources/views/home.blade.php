@@ -55,7 +55,36 @@
         <div class="col-sm-8">
           <div>
             <div class="post-thumbnail">
-              <img src="{{ $product->getImageAttribute($product->image) }}" class="attachment-shop_isle_blog_image_size size-shop_isle_blog_image_size wp-post-image" alt="" width="750" height="500">
+              {{-- <img src="{{ $product->getImageAttribute($product->image) }}" class="attachment-shop_isle_blog_image_size size-shop_isle_blog_image_size wp-post-image" alt="" width="750" height="500"> --}}
+
+              <div class="grid-photos">
+                <div class="column">
+                  <div class="grid-2-at-medium">
+                    <div class="column">
+                      <div class="image aspect-ratio-square home-magnets-1"></div>
+                    </div>
+                    <div class="column">
+                      <div class="grid-1">
+                        <div class="column">
+                          <div class="image aspect-ratio-rect home-magnets-2"></div>
+                        </div>
+                        <div class="column">
+                          <div class="grid-2">
+                            <div class="column">
+                              <div class="image aspect-ratio-square home-magnets-3"></div>
+                            </div>
+                            <div class="column">
+                              <div class="image aspect-ratio-square home-magnets-4"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
             </div>
           </div>
         </div>

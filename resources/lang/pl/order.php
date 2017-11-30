@@ -21,6 +21,22 @@ return [
     | these language lines according to your application's requirements.
     |
     */
+
+    'order_no' => 'Zamówienie ',
+    'meta_title_placed' => 'Zamówienie złożone',
+    'meta_description_placed' => 'Zamówienie złożone meta opis',
+    'placed_header' => 'Dziękujemy',
+    'btn_repay' => 'Ponów płatność online',
+    'btn_view_order' => 'Zobacz szczegóły zamówienia',
+    'meta_title_view' => 'Szczegóły zamówienia #:hash',
+    'meta_description_view' => 'Szczegóły zamówienia #:hash meta opis',
+    'view_header' => 'Zamówione produkty',
+    //
+    'status_ok_header' => 'Płatność potwierdzona!',
+    'status_ok_text' => 'Odnotowaliśmy wysłanie przez Ciebie płatności online.',
+    'status_fail_header' => 'Błąd płatności online!',
+    'status_fail_text' => '<b>Uwaga! Transakcja ta zakończyła się niepowodzeniem</b>,<br/> a odbiorca płatności jej nie otrzymał. Prosimy o ponowne dokonanie płatności. ',
+
     //WIRE
     'header_wire' => 'Wybrany sposób płatności',
     'header_wire_sub' => 'Płatność przelewem',
@@ -30,6 +46,7 @@ return [
     'wire_payment_title_info' => 'W tytule przelewu proszę wpisać:<h4>Magnetoid, zamówienie # :orderHash</h4>',
     'wire_tip' => '* Moment księgowania wyznacza początek naliczania czasu realizacji Zamówienia',
     //DOTPAY
+    'dotpay_payment_header' => 'obsługuje DOTPAY.PL'
 
     //PAYPAL
 

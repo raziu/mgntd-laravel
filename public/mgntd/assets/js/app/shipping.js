@@ -73,12 +73,36 @@ var shippingScript = {
       //$('#address_name_div').toggle('slow');
     });
   },
+  initAddressFill: function($) {
+    shippingScript.getAddressData(0);
+  },
+  getAddressData: function(id) {
+    jQuery.ajax({
+      method: "POST",
+      url: URL_GET_ADDRESS,
+      data: { s3_id: jQuery('#s3_id').val(), id: id }
+    }).done(function(data) 
+    {
+      if( data.status == 'success' )
+      {
+        jQuery('#fullname').val( data.response.fullname );
+        jQuery('#address').val( data.response.address );
+        jQuery('#city').val( data.response.city );
+        jQuery('#zip').val( data.response.zip );
+        jQuery('#country').val( data.response.country );
+        jQuery('#email').val( data.response.email );
+        //trigger country change
+        jQuery('#country').trigger('change');
+      }
+    });
+  },
   init: function($) {
     shippingScript.initAlerts($);
     shippingScript.initFormSelect($);
     shippingScript.initCheckboxToggle($);
     shippingScript.initDeliveryTypeSelected($);
     shippingScript.updateTotalPrice($);
+    shippingScript.initAddressFill();
   }
 };
 jQuery(document).ready(function($) {

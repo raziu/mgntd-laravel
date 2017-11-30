@@ -21,6 +21,9 @@ return [
     | these language lines according to your application's requirements.
     |
     */
+    'order_status_1_desc' => 'Order placed',
+    'order_status_5_desc' => 'Order paid',
+    //
     'navigation_link' => 'Shopping cart',
     'navigation_link_title' => 'View Your Shopping cart',
     'meta_title' => 'Shopping cart',

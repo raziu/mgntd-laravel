@@ -26,7 +26,7 @@ return [
     'cookies_info' => 'Używamy plików cookie w celu poprawy komfortu korzystania z naszej strony internetowej.',
     'cookies_details_link_label' => 'Dowiedz się więcej.',
     'cookies_agree_label' => 'Rozumiem, Akceptuję',
-    'footer_powered_by' => 'Stworzony przy pomocy <span class="coffee">☕</span> w Świdnicy <span class="heart">♥</span> w Polsce przez <a href="http://www.raziu.com?source=magnetoid" title="RAZIU.COM">RAZIU.COM</a>',
+    'footer_powered_by' => 'Stworzony przy pomocy <span class="coffee">☕</span> w Świdnicy <span class="heart">♥</span> w Polsce', // przez <a href="http://www.raziu.com?source=magnetoid" title="RAZIU.COM">RAZIU.COM</a>
     'footer_regulations' => 'Korzystanie z serwisu oznacza akceptację regulaminu. ',
     'find_out_more' => 'Dowiedz się więcej',
     'from' => 'od',
@@ -37,5 +37,7 @@ return [
     'btn_order_more' => 'Zamów coś jeszcze',
     'btn_back' => 'Wróć',
     'btn_back_home' => 'Wróć do strony głównej',
+    'choose' => 'Wybierz',
+    'not_found' => 'Brak danych do wyświetlenia',
 
 ];

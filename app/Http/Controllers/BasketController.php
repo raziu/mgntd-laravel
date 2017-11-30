@@ -284,6 +284,8 @@ class BasketController extends Controller
       return redirect()->route(app()->getLocale().'_basket_payment', [$paymentMethod->code, $orderSaved->order_hash]);
     }
 
+    $address = Address::where('s3_id', '=', session()->get('s3id'))->first();
+
     $iso = ( $request->old('country') != "" ? $request->old('country') : app()->getLocale() );
     /**
      * Get list of available countries
@@ -356,6 +358,7 @@ class BasketController extends Controller
 
   public function payment( $paymentCode, $orderHash, Request $request )
   {
+    //phpinfo(); exit;
     $paymentOptions = false;
     $paymentMethod = Payment::where('code', '=', $paymentCode)->where('active', 1)->first();
     if( isset( $paymentMethod->subs ) )
@@ -379,4 +382,134 @@ class BasketController extends Controller
 
     return view('basket.payment', compact('paymentCode', 'orderHash', 'paymentMethod', 'paymentOptions', 'order'));
   }
+
+  public function getAddress( Request $request )
+  {
+    if( $request->s3_id && !Auth::check() )
+    {
+      $address = \App\Address::where('s3_id', $request->s3_id)->first();
+    }
+    else
+    {
+      $address = \App\Address::where('user_id', Auth::id())->where('id', $request->id)->first();
+    }
+    if( is_object( $address ) )
+    {
+      return response()->json([
+        'response' => $address, 
+        'status' => 'success'
+      ]);
+    }
+    else
+    {
+      return response()->json([
+        'response' => '', 
+        'status' => 'error'
+      ]);
+    }
+  }
+
+  public function onlinePayment( Request $request )
+  {
+    
+    //todo
+    if( $request->type == 'dotpay' )
+    {
+      $canal = $request->canal;
+      $hash = $request->hash;
+      $order = \App\Order::where('status', 1)->where('order_hash', $hash)->first();
+      if( is_object( $order ) )
+      {
+        $address = \App\Address::where('id', $order->address_id)->first();
+        if( is_object( $address ) )
+        {
+          $params = [];
+          $params['api_version'] = 'dev';
+          //$params['form_url'] = config('payment.dotpay.url');
+          $params['id'] = config('payment.dotpay.user');
+
+          //todo check price for other currencies!!!
+
+          $params['amount'] = number_format(($order->price_cart + $order->price_shipping - $order->price_discount),2);
+          $params['description'] = __('order.order_no').' # '.$order->order_hash;
+          //$params['name'] = $address->fullname;
+          $nameData = explode(' ', $address->fullname);
+          $params['firstname'] = $nameData[0];
+          $params['lastname'] = @$nameData[1];
+
+          $params['email'] = $address->email;
+          $params['street'] = $address->address;
+          $params['city'] = $address->city;
+          $params['postcode'] = $address->zip;
+          $params['country'] = $address->country;
+          $params['p_email'] = 'info@magnetoid.pl';
+          $params['p_info'] = config('app.name', 'MGNTD');
+          $params['session'] = $order->payment_session;
+          $params['currency'] = $order->order_currency;
+          $params['lang'] = app()->getLocale();
+          $params['urlc'] = route('order_status'); // payment/status
+          $params['url'] = route('order_placed', [$order->order_hash, $order->order_pin]); // order/placed/1/pin
+          $params['channel'] = $canal;
+          $params['ch_lock'] = 1;
+          $params['form_id'] = 'sendPaymentData';
+          //
+          //$params['buttontext'] = 'sample button text';
+          //phone
+
+
+          return response()->json([
+            'response' => $params, 
+            'url' => config('payment.dotpay.url'),
+            'status' => 'success'
+          ]);
+        }
+      }
+    }
+
+    return response()->json([
+      'response' => '', 
+      'status' => 'error'
+    ]);
+  }
+
+  public function orderPlaced( $hash, $pin, Request $request )
+  {
+    $status = $request->status;
+    if( $status == 'OK')
+    {
+      $info_header = '<span class="alert-success">'.__('order.status_ok_header').'</span>';
+      $info_message = __('order.status_ok_text');
+    }
+    else
+    {
+      $info_header = '<span class="alert-danger">'.__('order.status_fail_header').'</span>';
+      $info_message = __('order.status_fail_text');
+    }
+
+    return view('order.placed', compact('info_header','info_message', 'status', 'hash', 'pin'));
+  }
+
+  public function orderStatus( Request $request )
+  {
+    echo 'OK'; exit;
+  }
+
+  public function orderView( $hash, $pin, Request $request )
+  {
+    $orderData = \App\Order::where('order_hash', $hash)->where('order_pin', $pin)->first();
+    if( is_object( $orderData ) )
+    {
+      $address = \App\Address::where('id', $orderData->address_id)->first();
+      $baskets = \App\Basket::where('order_id', $orderData->id)->get();
+      $history = \App\OrderHistory::where('order_id', $orderData->id)->get();
+      $locations = [
+        ["Świdnica","58-100","https://magnetoid.pl/"],
+        ["Świdnica","58-105",""]
+      ];
+      //echo $locations; exit;
+    }
+    
+    return view('order.view', compact('orderData', 'address', 'hash', 'pin', 'baskets', 'locations', 'history'));
+  }
+
 }

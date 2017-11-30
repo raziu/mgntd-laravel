@@ -12,6 +12,7 @@
 <script type="text/javascript">
   var LANG = '{{ app()->getLocale() }}';
   var URL_CHANGE_COUNTRY = '{{ route("basket_country") }}';
+  var URL_GET_ADDRESS = '{{ route("basket_address") }}';
 </script>
 <script type="text/javascript" src="{{ URL::asset(config('app.theme').'/assets/js/jquery.tmpl.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset(config('app.theme').'/assets/js/app/shipping.js') }}"></script>
@@ -38,6 +39,9 @@
       <div class="col-md-8 col-md-offset-2">
         
         <form method="POST" action="{{ route('basket_shipping') }}" autocomplete="off">
+
+          <input type="hidden" id="s3_id" name="s3_id" value="{{ session()->get('s3id') }}" />
+          <input type="hidden" id="address_id" name="address_id" value="" />
           
           @if (count($errors) > 0)
           <div class="alert alert-danger toppage-slider">
