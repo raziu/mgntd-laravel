@@ -23,10 +23,15 @@ return array(
     'basket/address' => 'basket/address',
     'basket/payment_options' => 'cart/payment-options',
     //
+    'profile' => 'my-profile',
+    'profile/orders' => 'my-orders',
+    'profile/address/{id}' => 'edit-address/{id}',
+    //
     'order/pay' => 'order/pay',
     'order/status' => 'order/status',
     'order/placed/{hash}/{pin}' => 'order/placed/{hash}/{pin}',
     'order/view/{hash}/{pin}' => 'order/view/{hash}/{pin}',
+    'order/repay/{payment}/{hash}/{pin}' => 'order/repay/{payment}/{hash}/{pin}',
     //
     'login'   => 'login',
     'logout'   => 'logout',

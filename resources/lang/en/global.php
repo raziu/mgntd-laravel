@@ -38,4 +38,8 @@ return [
     'btn_back_home' => 'Go back to home',
     'choose' => 'Choose',
     'not_found' => 'No data to show',
+    '404' => 'Sorry, Page Not Found 404',
+    '405' => 'Sorry, Page Not Found 405',
+    'link_profile' => 'My profile',
+    'link_profile_orders' => 'My orders',
 ];

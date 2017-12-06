@@ -21,13 +21,23 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'order_status_1_desc' => 'Złożenie zamówienia',
-    'order_status_5_desc' => 'Zamówienie opłacone',
+    'order_status_1_desc' => 'Zamówienie złożone',
+    'order_status_2_desc' => 'Anulowana płatność online',
+    'order_status_3_desc' => 'Oczekuje na płatność przelewem',
+    'order_status_4_desc' => 'Oczekuje na płatność online',
+    'order_status_5_desc' => 'Zamówienie opłacone przelewem',
+    'order_status_6_desc' => 'Zamówienie opłacone online',
+    'order_status_10_desc' => 'W realizacji',
+    'order_status_15_desc' => 'Przygotowane do wysyłki',
+    'order_status_20_desc' => 'Wysłane',
+    'order_status_30_desc' => 'Wstrzymane',
+    'order_status_50_desc' => 'Anulowane',
     //
     'navigation_link' => 'Koszyk',
     'navigation_link_title' => 'Twój koszyk',
     'meta_title' => 'Koszyk',
     'meta_description' => 'Koszyk meta opis',
+    'border_color' => 'Kolor ramki: ',
     //
     'header_product' => 'Produkt',
     'header_price' => 'Cena',
@@ -76,6 +86,9 @@ return [
     'delivery_express' => 'Priorytet',
     'delivery_express_desc' => 'Przesyłka Pocztą Polską rejestrowana',
     'delivery_express_time' => 'Czas dostawy 3-5 dni',
+    'delivery_courier_dpd' => 'Kurier DPD',
+    'delivery_courier_dpd_desc' => 'Przesyłka kurierem DPD',
+    'delivery_courier_dpd_time' => 'Czas dostawy 2-3 dni',
     //
     'header_payment' => 'Płatność',
     'header_sub_payment' => 'Dostępne metody płatności',

@@ -20,19 +20,8 @@
 @stop
 
 @section('content')
-<section class="page-header-module module bg-dark" data-background="/img/header.jpg">
-  <div class="bg-gradient">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-          <h1 class="module-title font-alt">{{ __('basket.meta_title_shipping') }}</h1>
-          <div class="module-subtitle font-serif mb-0"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<hr class="divider-w">
+@include('partials.title',['pageTitle' => __('basket.meta_title_shipping')])
+
 <section class="module shipping">
   <div class="container">
     <div class="row">
@@ -170,7 +159,7 @@
                         <img src="/img/ico/{{ $delivery->d_icon }}.svg" alt="" />
                       </div>
                       <div class="option-col">
-                        <label>{{ __('basket.'.$delivery->d_name) }} ({{ $delivery->d_price }})</label>
+                        <label>{{ __('basket.'.$delivery->d_name) }} (+{{ $delivery->d_price }})</label>
                         <p>{{ __('basket.'.$delivery->d_desc) }}</p>
                         <p>{{ __('basket.'.$delivery->d_time) }}</p>
                       </div>
@@ -316,13 +305,13 @@
 <div class="form-group delivery-option">
   <div class="row">
     <div class="option-col option-radio">
-      <input type="radio" name="delivery_type" id="delivery_type" value="${id}" />
+      <input type="radio" name="delivery_type" id="delivery_type" value="${id}" data-price="${price}" />
     </div>
     <div class="option-col option-ico">
       <img src="/img/ico/${icon}.svg" alt="" />
     </div>
     <div class="option-col">
-      <label>${name} (${price})</label>
+      <label>${name} (+${price})</label>
       <p>${desc}</p>
       <p>${time}</p>
     </div>

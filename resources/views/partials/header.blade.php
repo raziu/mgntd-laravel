@@ -38,6 +38,16 @@
               <a href="#" title="{{ Auth::user()->name }}">{{ Auth::user()->name }}</a>
                 <ul class="sub-menu">
                   <li>
+                    <a href="{{ route('profile') }}" title="{{ __('global.link_profile') }}">
+                      {{ __('global.link_profile') }}
+                    </a> 
+                  </li>
+                  <li>
+                    <a href="{{ route('profile_orders') }}" title="{{ __('global.link_profile_orders') }}">
+                      {{ __('global.link_profile_orders') }}
+                    </a> 
+                  </li>
+                  <li>
                     <a href="{{ route('logout') }}" title="{{ __('auth.link_logout') }}" 
                       onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                       {{ __('auth.link_logout') }}

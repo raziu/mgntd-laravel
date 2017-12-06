@@ -39,5 +39,8 @@ return [
     'btn_back_home' => 'Wróć do strony głównej',
     'choose' => 'Wybierz',
     'not_found' => 'Brak danych do wyświetlenia',
-
+    '404' => 'Opps, strona której szukasz nie istnieje 404',
+    '405' => 'Opps, strona której szukasz nie istnieje 405',
+    'link_profile' => 'Mój profil',
+    'link_profile_orders' => 'Moje zamówienia',
 ];

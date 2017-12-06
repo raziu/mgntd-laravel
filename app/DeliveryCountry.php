@@ -54,24 +54,29 @@ class DeliveryCountry extends Model
       'countries.pl as c_pl',
       'countries.en as c_en',
       'countries.de as c_de'
-    )
+    )->orderBy('deliveries.price', 'ASC')
     ->union( $deliveriesCommon )
     ->get()
     ;
-    //dd( $deliveries->toSql() ); exit;
+    //dd( $deliveries->toSql() );
     //echo "<pre>".print_r( $deliveries, 1 )."</pre>"; exit;
+    //exit;
 
     $result = [];
     foreach( $deliveries as $d )
     {
-      $iso = $d->c_iso;
+      /*$iso = $d->c_iso;
       if( $d->c_iso == "" )
       {
         $iso = '*';
-      }
+      }*/
       //$result[ $iso ][] = $d;
-      $result[] = $d;
+      $result[ $d->d_price ] = $d;
     }
+
+    ksort($result);
+
+    //echo "<pre>".print_r( $result, 1 )."</pre>"; exit;
     return $result;
     /*echo "<pre>".print_r( $result, 1 )."</pre>"; exit;
     if( isset( $result['*'] ) )

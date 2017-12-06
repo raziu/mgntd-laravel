@@ -12,6 +12,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 use Auth;
 use App\Basket;
 use App\Country;
@@ -26,12 +27,18 @@ use Session;
 use Config;
 use DB;
 use Hashids;
+//For custom log file
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 class BasketController extends Controller
 {
+  public $_links;
+
   public function __construct()
   {
     //$this->middleware('auth');
+    View::share('user_links', $this->_links);
     parent::__construct();
   }
   
@@ -272,7 +279,7 @@ class BasketController extends Controller
       $orderHistory = new OrderHistory();
       $orderHistory->order_id = $order->id;
       $orderHistory->status = 1;
-      $orderHistory->description = __('basket.order_status_1_desc');
+      $orderHistory->description = 'basket.order_status_1_desc';
       $orderHistory->updated_by = 'system';
       $orderHistory->created_at = time();
       $orderHistory->updated_at = time();
@@ -281,6 +288,56 @@ class BasketController extends Controller
        * Check payment method (for redirect)
        */
       $paymentMethod = Payment::where('id', '=', $order->payment_id)->first();
+
+      if( $paymentMethod->code == 'wire' )
+      {
+        /**
+         * Add order history entry
+         */
+        $orderHistory = new OrderHistory();
+        $orderHistory->order_id = $order->id;
+        $orderHistory->status = 3;
+        $orderHistory->description = 'basket.order_status_3_desc';
+        $orderHistory->updated_by = 'system';
+        $orderHistory->created_at = time();
+        $orderHistory->updated_at = time();
+        $orderHistory->save();
+        /**
+         * Update order status
+         */
+        DB::table('orders')
+        ->where('id', $order->id)
+        ->update(
+          [
+            'status' => 3
+          ]
+        );
+      }
+      elseif( $paymentMethod->code == 'dotpay' )
+      {
+        /**
+         * Add order history entry
+         */
+        $orderHistory = new OrderHistory();
+        $orderHistory->order_id = $order->id;
+        $orderHistory->status = 4;
+        $orderHistory->description = 'basket.order_status_4_desc';
+        $orderHistory->updated_by = 'system';
+        $orderHistory->created_at = time();
+        $orderHistory->updated_at = time();
+        $orderHistory->save();
+        /**
+         * Update order status
+         */
+        DB::table('orders')
+        ->where('id', $order->id)
+        ->update(
+          [
+            'status' => 4
+          ]
+        );
+      }
+
       return redirect()->route(app()->getLocale().'_basket_payment', [$paymentMethod->code, $orderSaved->order_hash]);
     }
 
@@ -356,6 +413,88 @@ class BasketController extends Controller
     ]);
   }
 
+  public function rePayment( $paymentCode, $orderHash, $orderPin, Request $request )
+  {
+    $paymentOptions = false;
+    $paymentMethod = Payment::where('code', '=', $paymentCode)->where('active', 1)->first();
+    if( isset( $paymentMethod->subs ) )
+    {
+      $paymentOptions = PaymentOption::where('parent', '=', $paymentMethod->id)->where('active', 1)->get();
+    }
+    /**
+     * Redirect if payment method not exists
+     */
+    if( !is_object($paymentMethod) )
+    {
+      return redirect()->route(app()->getLocale().'_basket');
+    }
+    $order = Order::where('order_hash', '=', $orderHash)->where('order_pin', '=', $orderPin)->first();
+    if( !is_object($order) )
+    {
+      return redirect()->route(app()->getLocale().'_home');
+    }
+
+    /**
+     * Redirect if order is paid
+     */
+    if( $order->status == '5' || $order->status == '6' )
+    {
+      return redirect()->route(app()->getLocale().'_order_view', [$orderHash, $orderPin]);
+    }
+
+    if( $paymentCode == 'wire' )
+    {
+      /**
+       * Add order history entry
+       */
+      $orderHistory = new OrderHistory();
+      $orderHistory->order_id = $order->id;
+      $orderHistory->status = 3;
+      $orderHistory->description = 'basket.order_status_3_desc';
+      $orderHistory->updated_by = 'system';
+      $orderHistory->created_at = time();
+      $orderHistory->updated_at = time();
+      $orderHistory->save();
+      /**
+       * Update order status
+       */
+      DB::table('orders')
+      ->where('id', $order->id)
+      ->update(
+        [
+          'status' => 3
+        ]
+      );
+    }
+    elseif( $paymentCode == 'dotpay' )
+    {
+      /**
+       * Add order history entry
+       */
+      $orderHistory = new OrderHistory();
+      $orderHistory->order_id = $order->id;
+      $orderHistory->status = 4;
+      $orderHistory->description = 'basket.order_status_4_desc';
+      $orderHistory->updated_by = 'system';
+      $orderHistory->created_at = time();
+      $orderHistory->updated_at = time();
+      $orderHistory->save();
+      /**
+       * Update order status
+       */
+      DB::table('orders')
+      ->where('id', $order->id)
+      ->update(
+        [
+          'status' => 4
+        ]
+      );
+    }
+    //todo recreate payment session
+
+    return view('basket.payment', compact('paymentCode', 'orderHash', 'paymentMethod', 'paymentOptions', 'order'));
+  }
+
   public function payment( $paymentCode, $orderHash, Request $request )
   {
     //phpinfo(); exit;
@@ -417,7 +556,7 @@ class BasketController extends Controller
     {
       $canal = $request->canal;
       $hash = $request->hash;
-      $order = \App\Order::where('status', 1)->where('order_hash', $hash)->first();
+      $order = \App\Order::where('status', 4)->where('order_hash', $hash)->first();
       if( is_object( $order ) )
       {
         $address = \App\Address::where('id', $order->address_id)->first();
@@ -475,27 +614,101 @@ class BasketController extends Controller
   public function orderPlaced( $hash, $pin, Request $request )
   {
     $status = $request->status;
+    $orderData = \App\Order::where('order_hash', $hash)->where('order_pin', $pin)->first();
+    if( !is_object( $orderData ) )
+    {
+      return redirect()->route(app()->getLocale().'_home');
+    }
+
     if( $status == 'OK')
     {
       $info_header = '<span class="alert-success">'.__('order.status_ok_header').'</span>';
       $info_message = __('order.status_ok_text');
+
+      if( $orderData->status != '6'  )
+      {
+        /**
+         * update status to paid
+         */
+        DB::table('orders')
+        ->where('id', $orderData->id)
+        ->update(
+          [
+            'status' => 6
+          ]
+        );
+        /**
+         * Add order history entry
+         */
+        $orderHistory = new OrderHistory();
+        $orderHistory->order_id = $orderData->id;
+        $orderHistory->status = 6;
+        $orderHistory->description = 'basket.order_status_6_desc';
+        $orderHistory->updated_by = 'system';
+        $orderHistory->created_at = time();
+        $orderHistory->updated_at = time();
+        $orderHistory->save();
+      }
     }
-    else
+    elseif( $status == 'FAIL' )
     {
       $info_header = '<span class="alert-danger">'.__('order.status_fail_header').'</span>';
       $info_message = __('order.status_fail_text');
+
+      $payment = \App\Payment::where('id', $orderData->payment_id)->first();
+      if( $orderData->status != '6' )
+      {
+        /**
+         * update status to paid
+         */
+        DB::table('orders')
+        ->where('id', $orderData->id)
+        ->update(
+          [
+            'status' => 2
+          ]
+        );
+        /**
+         * Add order history entry
+         */
+        $orderHistory = new OrderHistory();
+        $orderHistory->order_id = $orderData->id;
+        $orderHistory->status = 2;
+        $orderHistory->description = 'basket.order_status_2_desc';
+        $orderHistory->updated_by = 'system';
+        $orderHistory->created_at = time();
+        $orderHistory->updated_at = time();
+        $orderHistory->save();
+      }
+    }
+    else
+    {
+      $info_header = '';
+      $info_message = '';
     }
 
-    return view('order.placed', compact('info_header','info_message', 'status', 'hash', 'pin'));
+    return view('order.placed', compact('info_header','info_message', 'status', 'hash', 'pin', 'payment'));
   }
 
   public function orderStatus( Request $request )
   {
-    echo 'OK'; exit;
+    echo 'OK'; 
+
+    $orderLog = new Logger('dotpay');
+    $orderLog->pushHandler(new StreamHandler(storage_path('logs/dotpay-status-'.date("y-m").'.log')), Logger::INFO);
+    $orderLog->info('DOTPAY payment response:', $request->all());
+
+    //to check
+    //Log::useDailyFiles(storage_path().'/logs/name-of-log.log');
+    //Log::info([info to log]);
+
+    exit;
   }
 
   public function orderView( $hash, $pin, Request $request )
   {
+    
+
     $orderData = \App\Order::where('order_hash', $hash)->where('order_pin', $pin)->first();
     if( is_object( $orderData ) )
     {
@@ -506,10 +719,13 @@ class BasketController extends Controller
         ["Świdnica","58-100","https://magnetoid.pl/"],
         ["Świdnica","58-105",""]
       ];
-      //echo $locations; exit;
+      
+      $payment = \App\Payment::where('id', $orderData->payment_id)->first();
+      $delivery = \App\Delivery::where('id', $orderData->delivery_id)->first();
+      //echo "<pre>".print_r( $payment, 1 )."</pre>"; exit;
     }
     
-    return view('order.view', compact('orderData', 'address', 'hash', 'pin', 'baskets', 'locations', 'history'));
+    return view('order.view', compact('orderData', 'address', 'hash', 'pin', 'baskets', 'locations', 'history', 'payment', 'delivery'));
   }
 
 }

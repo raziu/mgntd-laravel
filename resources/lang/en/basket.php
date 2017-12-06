@@ -28,6 +28,7 @@ return [
     'navigation_link_title' => 'View Your Shopping cart',
     'meta_title' => 'Shopping cart',
     'meta_description' => 'Shopping cart meta desc',
+    'border_color' => 'Border color: ',
     //
     'header_product' => 'Product',
     'header_price' => 'Price',
@@ -76,6 +77,9 @@ return [
     'delivery_express' => 'Priority',
     'delivery_express_desc' => 'Provided by your local postal office',
     'delivery_express_time' => 'Estimated delivery 3-5 days',
+    'delivery_courier_dpd' => 'Courier DPD',
+    'delivery_courier_dpd_desc' => 'Provided by DPD',
+    'delivery_courier_dpd_time' => 'Estimated delivery 2-3 days',
     //
     'header_payment' => 'Payment',
     'header_sub_payment' => 'Available payment methods',

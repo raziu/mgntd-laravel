@@ -23,10 +23,15 @@ return array(
     'basket/address' => 'koszyk/adres',
     'basket/payment_options' => 'koszyk/opcje-platnosci',
     //
+    'profile' => 'moj-profil',
+    'profile/orders' => 'moje-zamowienia',
+    'profile/address/{id}' => 'edytuj-adres/{id}',
+    //
     'order/pay' => 'zamowienie/zaplac',
     'order/status' => 'zamowienie/status',
     'order/placed/{hash}/{pin}' => 'zamowienie/zlozone/{hash}/{pin}',
     'order/view/{hash}/{pin}' => 'zamowienie/zobacz/{hash}/{pin}',
+    'order/repay/{payment}/{hash}/{pin}' => 'zamowienie/platnosc/{payment}/{hash}/{pin}',
     //
     'login'   => 'logowanie',
     'logout'   => 'wyloguj',

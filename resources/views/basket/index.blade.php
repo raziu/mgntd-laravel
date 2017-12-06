@@ -22,19 +22,8 @@ $total = 0;
 @endphp
 
 @section('content')
-<section class="page-header-module module bg-dark" data-background="/img/header.jpg">
-  <div class="bg-gradient">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-          <h1 class="module-title font-alt">{{ __('basket.meta_title') }}</h1>
-          <div class="module-subtitle font-serif mb-0"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<hr class="divider-w">
+@include('partials.title',['pageTitle' => __('basket.meta_title')])
+
 <section class="module">
   <div class="container">
       <div class="row">
@@ -72,9 +61,11 @@ $total = 0;
                   </a>						
                   <br/>
                   {{ $item->type }}
+                  <br/>
+                  {{ __('basket.border_color') }} <span style="background: {{ $item->border_color }}" class="border_color">&nbsp;</span>
                 </td>
                 <td class="product-price">
-                  {{ $item->setPriceAttribute( $item->price ) }}
+                  <span class="price-item">{{ $item->setPriceAttribute( $item->price ) }}</span>
                 </td>
                 <td class="product-quantity">
                   <div class="quantity">
@@ -82,13 +73,13 @@ $total = 0;
                   </div>
                 </td>
                 <td class="product-subtotal">
-                {{ $item->totalPrice( $item->price ) }}	
+                  <span class="price-item-total">{{ $item->totalPrice( $item->price ) }}</span>	
                 </td>
               </tr>
               @endforeach
               <tr class="cart_item">
                 <td colspan="5"></td>
-                <td><b>{{ $total }}</b></td>
+                <td><span class="price-total">{{ $total }}</span></td>
               </tr>
 
               

@@ -21,7 +21,6 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
     'order_no' => 'Zamówienie ',
     'meta_title_placed' => 'Zamówienie złożone',
     'meta_description_placed' => 'Zamówienie złożone meta opis',
@@ -31,6 +30,15 @@ return [
     'meta_title_view' => 'Szczegóły zamówienia #:hash',
     'meta_description_view' => 'Szczegóły zamówienia #:hash meta opis',
     'view_header' => 'Zamówione produkty',
+    'header_address' => 'Dane adresowe',
+    'header_history' => 'Historia zamówienia',
+    'total_price' => 'w sumie',
+    'type' => 'Typ zamówionego produktu',
+    'btn_pay' => 'Zapłać za zamówienie',
+    'current_status' => 'Aktualny status zamówienia:',
+    'chosen_payment' => 'Wybrany sposób płatności',
+    'chosen_delivery' => 'Wybrany sposób wysyłki',
+    'shipping' => 'Wysyłka',
     //
     'status_ok_header' => 'Płatność potwierdzona!',
     'status_ok_text' => 'Odnotowaliśmy wysłanie przez Ciebie płatności online.',

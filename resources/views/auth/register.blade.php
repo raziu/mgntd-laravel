@@ -5,18 +5,7 @@
 
 @section('content')
 <section class="page-header-module module bg-dark" data-background="/img/header.jpg">
-  <div class="bg-gradient">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-          <h1 class="module-title font-alt">{{ __('auth.meta_title_register') }}</h1>
-          <div class="module-subtitle font-serif mb-0"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<hr class="divider-w">
+@include('partials.title',['pageTitle' => __('auth.meta_title_register')])
 <section class="module">
   <div class="container">
       <div class="row">
@@ -74,12 +63,16 @@
                           </div>
                           <hr/>
                           <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                            <a href="{{route('instagram_redirect')}}" class="btn btn-primary">{{ __('auth.login_form_label_instagram') }}</a>
+                          <div class="col-md-8 col-md-offset-4">
+                            <a href="{{route('instagram_redirect')}}" class="btn btn-social" title="{{ __('auth.login_form_label_instagram') }}">
+                              <img src="/img/ico/instagram-logo.svg" alt="" style="height:40px;" />
+                            </a>
                             {{ __('global.or') }}
-                            <a href="{{route('facebook_redirect')}}" class="btn btn-primary">{{ __('auth.login_form_label_facebook') }}</a>
-                            </div>
+                            <a href="{{route('facebook_redirect')}}" class="btn btn-social" title="{{ __('auth.login_form_label_facebook') }}">
+                              <img src="/img/ico/facebook-logo.svg" alt="" style="height:40px;" />
+                            </a>
                           </div>
+                        </div>
                       </form>
                   </div>
               </div>

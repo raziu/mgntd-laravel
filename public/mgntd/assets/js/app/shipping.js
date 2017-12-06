@@ -51,7 +51,7 @@ var shippingScript = {
     });
   },
   initDeliveryTypeSelected: function($) {
-    $('input[name="delivery_type"]').on('change', function(){
+    $(document).on('change','input[name="delivery_type"]', function(){
       shippingScript.updateTotalPrice($);
     });
   },

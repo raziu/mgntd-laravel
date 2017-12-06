@@ -14,19 +14,8 @@
 @stop
 
 @section('content')
-<section class="page-header-module module bg-dark" data-background="/img/header.jpg">
-  <div class="bg-gradient">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-          <h1 class="module-title font-alt">{{ __('order.meta_title_placed') }}</h1>
-          <div class="module-subtitle font-serif mb-0"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<hr class="divider-w">
+@include('partials.title',['pageTitle' => __('order.meta_title_placed')])
+
 <section class="module shipping">
   <div class="container">
     <div class="row">
@@ -39,7 +28,7 @@
         <p class="text-center">
           <a href="{{ route('home') }}" class="btn btn-default">{{ __('global.btn_back_home') }}</a>
           @if( $status == 'FAIL' )
-          &nbsp; {{ __('global.or') }} &nbsp;<a href="{{ route('order_pay') }}" class="btn btn-primary">{{ __('order.btn_repay') }}</a>
+          &nbsp; {{ __('global.or') }} &nbsp;<a href="{{ route('order_repay', [$payment->code, $hash, $pin]) }}" class="btn btn-primary">{{ __('order.btn_repay') }}</a>
           @endif
           @if( $status == 'OK' )
           &nbsp; {{ __('global.or') }} &nbsp;<a href="{{ route('order_view',[$hash, $pin]) }}" class="btn btn-primary">{{ __('order.btn_view_order') }}</a>
